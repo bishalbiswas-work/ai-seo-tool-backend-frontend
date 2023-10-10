@@ -66,10 +66,8 @@ app.use(express.json());
 const whitelist = [
   "http://localhost:3000", // React app's location in development
   "http://localhost:5000", // Optional: If you have another service running in production on this port
-  "https://open-chat.pro", // Production frontend domain
-  "https://www.open-chat.pro", // Production frontend domain with www
-  "https://betimeful.life",
-  "https://www.betimeful.life",
+  "https://autopilotseo.pro", // Production frontend domain
+  "https://www.autopilotseo.pro", // Production frontend domain with www
 ];
 
 const corsOptions = {
