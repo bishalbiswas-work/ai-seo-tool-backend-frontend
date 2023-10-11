@@ -4,6 +4,7 @@ import logo from "./logo.svg";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // Pages Import
 import LandingPage from "./Pages/LandingPage";
+import LandingPagev2 from "./Pages/LandingPagev2/LandingPagev2";
 // import Desktop6MixpanelGenerateTextToVideoPage from "./Pages/Desktop6MixpanelGenerateTextToVideo";
 
 // import { Prebuild_LandingPage } from "./Pages/Components/Prebuild_LandingPage/Prebuild_LandingPage";
@@ -12,6 +13,7 @@ import Signup from "./Pages/Auth/Signup";
 import ChatInterface from "./Dashboard/ChatInterface";
 import ChatInterface_v2 from "./Dashboard/ChatInterface_v2";
 import BlogPage from "./Dashboardv2/Pages/BlogsPage";
+import Dashboard from "./Dashboardv2/Pages/Dashboard";
 // import Logout from "./Pages/Auth/Logout";
 import PaymentSuccess from "./Pages/Auth/PaymentSuccess";
 import Pricing from "./Pages/Pricing";
@@ -39,7 +41,8 @@ class App extends Component {
                   index
                   element={
                     <WrapperComponent>
-                      <LandingPage />
+                      <LandingPagev2 />
+                      {/* <LandingPage /> */}
                       {/* <Desktop6MixpanelGenerateTextToVideoPage /> */}
                       {/* <Prebuild_LandingPage /> */}
                     </WrapperComponent>
@@ -91,6 +94,14 @@ class App extends Component {
                   element={
                     <WrapperComponent>
                       <ExtractData />
+                    </WrapperComponent>
+                  }
+                />
+                <Route
+                  path="/dashboard"
+                  element={
+                    <WrapperComponent>
+                      <Dashboard />
                     </WrapperComponent>
                   }
                 />

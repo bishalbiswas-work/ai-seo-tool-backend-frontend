@@ -240,18 +240,40 @@ async function checkURLAccessibility(url, browser) {
     return null;
   }
 }
+// async function checkURLAccessibility(url, browser) {
+//   const page = await browser.newPage();
+//   try {
+//     const response = await page.goto(url, {
+//       waitUntil: "domcontentloaded",
+//       timeout: 10000,
+//     });
+
+//     // Check the status of the response here
+//     if (response && response.status() >= 200 && response.status() <= 299) {
+//       await page.close();
+//       return url; // Return the tested URL if successful
+//     } else {
+//       await page.close();
+//       return null;
+//     }
+//   } catch (error) {
+//     await page.close();
+//     return null;
+//   }
+// }
 
 async function determineURLFormat(inputURL) {
   const cleanDomain = cleanURL(inputURL);
   const combinations = [
-    `http://${cleanDomain}`,
+    // `http://${cleanDomain}`,
     `https://${cleanDomain}`,
-    `http://www.${cleanDomain}`,
+    // `http://www.${cleanDomain}`,
     `https://www.${cleanDomain}`,
   ];
 
   const browser = await puppeteer.launch({
     executablePath: "/usr/bin/google-chrome-stable",
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
   const promises = combinations.map((url) =>
     checkURLAccessibility(url, browser)

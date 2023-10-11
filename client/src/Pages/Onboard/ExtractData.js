@@ -139,9 +139,12 @@ const ExtractData = () => {
       const submitDataBlogs = {
         summary: output.summary,
       };
-      console.log(output);
+
       const Blogs = await getBlog(submitDataBlogs);
+      console.log("Backend Reponse Blogs: ", Blogs);
+
       dataContext.setSelectedBlogFunction({ data: Blogs.blogs });
+
       // dataContext.setAuthTokenFunction({ data: output.data.authToken });
       // dataContext.setUidFunction({ data: output.data.uid });
       // // console.log(output.data.uid);
