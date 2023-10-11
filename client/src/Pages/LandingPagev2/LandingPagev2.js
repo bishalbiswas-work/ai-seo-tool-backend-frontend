@@ -128,8 +128,8 @@ const LandingPagev2 = () => {
   const checkUrl = async (submitData) => {
     try {
       const response = await axios.post(
-        // `${API_BASE_URL}/api/check-url`,
-        "http://localhost:5000/api/check-url",
+        `${API_BASE_URL}/api/check-url`,
+        // "http://localhost:5000/api/check-url",
 
         submitData,
         {
