@@ -406,7 +406,7 @@ const LandingPagev2 = () => {
               >
                 <Box width="70%">
                   <p className="url-text">Your website URL</p>
-                  <TextField
+                  {/* <TextField
                     variant="outlined"
                     type="text"
                     fullWidth
@@ -422,7 +422,33 @@ const LandingPagev2 = () => {
                         height: "3.5rem !important",
                       },
                     }}
+                  /> */}
+                  <TextField
+                    variant="outlined"
+                    type="text"
+                    fullWidth
+                    disabled={successUrl}
+                    value={input}
+                    onChange={handleChange}
+                    placeholder="example.com"
+                    error={confirmClick && !isValidUrl}
+                    sx={{
+                      height: "3.5rem !important",
+                      borderRadius: "15px !important",
+                      "& .MuiInputBase-input": {
+                        height: "3.5rem !important",
+                        padding: "0.75rem 0.875rem", // Adjust padding in rem units
+                      },
+                      "&.MuiTextField-root.Mui-error": {
+                        borderColor: "red",
+                        height: "3.5rem !important",
+                      },
+                    }}
                   />
+                  In this code: 3.125rem is equivalent to 50px if the root font
+                  size (html tag) is 16px (standard browser default). Padding
+                  values are also converted to rem based on an assumed root font
+                  size of 16px. Adjust the values as needed.
                 </Box>
                 <Box width="30%" style={{ position: "relative" }}>
                   {!successUrl && checkUrlStatus && (
