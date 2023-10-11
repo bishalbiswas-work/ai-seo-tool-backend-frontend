@@ -553,16 +553,40 @@ function BasicAccordion() {
           sx={{ p: 2 }}
         >
           <Typography sx={{ fontWeight: 700 }}>
-            Will just using AI Made Content Ban my YouTube Channel?
+            How's AutoSEO much better than ChatGPT?
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography sx={{ fontWeight: 700, color: "grey" }}>
-            Only using AI-generated videos bans your channel as it violates
-            YouTube Original content policy but also blends you in the crowd. At
-            AutoYT, you'll harness AI-crafted shorts to maximize reach paired
-            with captivating custom videos by your pro editorial team to
-            maximize watch time aka minimum time spent, maximize revenue made.
+            Glad You Asked! <br></br>
+            <br></br>
+            AutoSEO is actually built on top of chatGPT Fine Tuned to your
+            business to escape Google's AI AI plagiarism detector so your Blogs
+            only rank, not de-rank .<br></br>
+            <br></br>
+            Plus, Auto-SEO automates the entire process of SEO (Keyword
+            research, auto writing, auto optimizing, rewriting, technical seo)
+            so you focus on driving your business while autoSEO drives your
+            organic traffic!
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
+          sx={{ p: 2 }}
+        >
+          <Typography sx={{ fontWeight: 700 }}>
+            How promotional or non-promotional will AutoSEO blogs be?
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography sx={{ fontWeight: 700, color: "grey" }}>
+            Initially, your contents will be value contents to gets picked by
+            Google much faster. Once ranked, autoSEO will automatically blend
+            your business naturally in the blog to maximize conversions.
           </Typography>
         </AccordionDetails>
       </Accordion>

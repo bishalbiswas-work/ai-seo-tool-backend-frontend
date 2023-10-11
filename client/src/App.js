@@ -12,8 +12,10 @@ import ExtractData from "./Pages/Onboard/ExtractData";
 import Signup from "./Pages/Auth/Signup";
 import ChatInterface from "./Dashboard/ChatInterface";
 import ChatInterface_v2 from "./Dashboard/ChatInterface_v2";
-import BlogPage from "./Dashboardv2/Pages/BlogsPage";
+
 import Dashboard from "./Dashboardv2/Pages/Dashboard";
+import Dashboardv3 from "./Pages/Dashboardv3/Dashboardv3";
+import BlogPage2 from "./Pages/BlogPage/BlogPage";
 // import Logout from "./Pages/Auth/Logout";
 import PaymentSuccess from "./Pages/Auth/PaymentSuccess";
 import Pricing from "./Pages/Pricing";
@@ -101,15 +103,16 @@ class App extends Component {
                   path="/dashboard"
                   element={
                     <WrapperComponent>
-                      <Dashboard />
+                      {/* <Dashboard /> */}
+                      <Dashboardv3 />
                     </WrapperComponent>
                   }
                 />
                 <Route
-                  path="dashboard/blogpage "
+                  path="dashboard/blogpage"
                   element={
                     <WrapperComponent>
-                      <BlogPage />
+                      <BlogPage2 />
                     </WrapperComponent>
                   }
                 />

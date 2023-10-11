@@ -396,7 +396,13 @@ const LandingPagev2 = () => {
                 </div>
               </div>
               <Box
-                style={{ display: "flex", marginTop: "-200px", width: "679px" }}
+                style={{
+                  display: "flex",
+                  marginTop: "-200px",
+                  width: "679px",
+
+                  // background: "grey",
+                }}
               >
                 <Box width="70%">
                   <p className="url-text">Your website URL</p>
@@ -413,6 +419,7 @@ const LandingPagev2 = () => {
                       borderRadius: "15px !important",
                       "&.MuiTextField-root.Mui-error": {
                         borderColor: "red",
+                        height: "3.5rem",
                       },
                     }}
                   />
@@ -1228,7 +1235,7 @@ const LandingPagev2 = () => {
                   Get started
                 </Button>
 
-                <div className="flex flex-row items-start justify-start w-full">
+                <div className="flex flex-row items-start justify-center w-full">
                   <Text
                     className="text-[15px] text-white-A700 tracking-[-0.20px]"
                     size="txtDMSansRegular15"

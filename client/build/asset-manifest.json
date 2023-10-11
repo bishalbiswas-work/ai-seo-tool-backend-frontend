@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.85384eae.css",
-    "main.js": "/static/js/main.08e60df7.js",
+    "main.css": "/static/css/main.55526bf2.css",
+    "main.js": "/static/js/main.940c5c18.js",
     "static/media/InterSemiBold.ttf": "/static/media/InterSemiBold.6058d3da655fb35169c2.ttf",
     "static/media/MontserratRomanBold.ttf": "/static/media/MontserratRomanBold.50f0257aa1e905f4bfaf.ttf",
     "static/media/WorkSansRomanBold.ttf": "/static/media/WorkSansRomanBold.1cdef49100a51e35264a.ttf",
@@ -16,11 +16,11 @@
     "static/media/DMSansBold.ttf": "/static/media/DMSansBold.49af0e9e85f659857710.ttf",
     "static/media/logo.svg": "/static/media/logo.103b5fa18196d5665a7e12318285c916.svg",
     "index.html": "/index.html",
-    "main.85384eae.css.map": "/static/css/main.85384eae.css.map",
-    "main.08e60df7.js.map": "/static/js/main.08e60df7.js.map"
+    "main.55526bf2.css.map": "/static/css/main.55526bf2.css.map",
+    "main.940c5c18.js.map": "/static/js/main.940c5c18.js.map"
   },
   "entrypoints": [
-    "static/css/main.85384eae.css",
-    "static/js/main.08e60df7.js"
+    "static/css/main.55526bf2.css",
+    "static/js/main.940c5c18.js"
   ]
 }

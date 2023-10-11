@@ -138,12 +138,15 @@ const ExtractData = () => {
       console.log("Backend Reponse Summary: ", output);
       const submitDataBlogs = {
         summary: output.summary,
+        blogCount: 6,
+        wordCount: 2500,
       };
+      dataContext.setBusinessMetaDataFunction({ data: output.data });
 
       const Blogs = await getBlog(submitDataBlogs);
       console.log("Backend Reponse Blogs: ", Blogs);
 
-      dataContext.setSelectedBlogFunction({ data: Blogs.blogs });
+      dataContext.setBlogsFunction({ data: Blogs.data.blogs });
 
       // dataContext.setAuthTokenFunction({ data: output.data.authToken });
       // dataContext.setUidFunction({ data: output.data.uid });
@@ -162,8 +165,8 @@ const ExtractData = () => {
       //   data: output.data.collectPhoneNo,
       // });
       // dataContext.setCollectNameFunction({ data: output.data.collectName });
-      // delay(2000);
-      // navigate("/dashboard/chat");
+      delay(2000);
+      navigate("/dashboard");
     } catch (error) {
       setstate(false);
       console.error("There was an error with getLogin:", error);

@@ -80,7 +80,14 @@ const DataState = (props) => {
 
   const [selectedPage, setSelectedPage] = useState();
   const [messageContext, setMessageContext] = useState();
-  const [selectedBlog, setSelectedBlog] = useState(0);
+  const [selectedBlog, setSelectedBlog] = useState(1);
+  const [businessMetaData, setBusinessMetaData] = useState({
+    message: "success",
+    name: "wisesheets",
+    faviconUrl: "https://www.wisesheets.io/favicon.ico",
+    summary:
+      "Wisesheets is a spreadsheet add-on for stock investors that provides instant access to stock financials in a spreadsheet. It eliminates the need for manual data entry and allows users to quickly access years of financial statements and compare thousands of stocks. The add-on also allows users to build custom screeners with key metrics and live data, as well as create custom models and templates. Customers have praised Wisesheets for its automation capabilities, data quality, and customer support. The add-on offers a simple pricing plan with access to historical financial data, comprehensive email support, and live price data. Wisesheets is compatible with Google Sheets and Excel and covers over 50 stock exchanges. The add-on is highly recommended by users for its value, time-saving features, and affordable pricing.",
+  });
   const [blogs, setBlogs] = useState([
     {
       title: "Streamline Stock Investing with Wisesheets",
@@ -349,6 +356,9 @@ const DataState = (props) => {
   const setSelectedBlogFunction = ({ data }) => {
     setSelectedBlog(data);
   };
+  const setBusinessMetaDataFunction = ({ data }) => {
+    setBusinessMetaData(data);
+  };
   const facebookPagesData = ({ data }) => {
     setFacebookPages(data);
   };
@@ -609,6 +619,8 @@ const DataState = (props) => {
         logout,
         blogs,
         selectedBlog,
+        businessMetaData,
+        setBusinessMetaDataFunction,
         setProfileUrlFunction,
         setAuthTokenFunction,
         setUidFunction,

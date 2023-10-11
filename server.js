@@ -193,7 +193,8 @@ app.post("/api/get-summary", async (req, res) => {
     let UserPhoneNumber = req.body.UserPhoneNumber;
     // let urlLevel = req.body.urlLevel;
     console.log(websiteUrl, UserPhoneNumber);
-
+    let name = await extractDomainName(websiteUrl);
+    let faviconUrl = await fetchFavicon(websiteUrl);
     let content = await getContent(websiteUrl);
     console.log("Scraped Data: ", content.content);
 
@@ -201,6 +202,8 @@ app.post("/api/get-summary", async (req, res) => {
 
     res.json({
       message: "success",
+      name: name,
+      faviconUrl: faviconUrl,
       summary: summary,
     });
   } catch (err) {
