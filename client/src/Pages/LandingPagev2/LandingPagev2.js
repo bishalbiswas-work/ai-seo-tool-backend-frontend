@@ -419,7 +419,7 @@ const LandingPagev2 = () => {
                       borderRadius: "15px !important",
                       "&.MuiTextField-root.Mui-error": {
                         borderColor: "red",
-                        height: "3.5rem",
+                        height: "3.5rem !important",
                       },
                     }}
                   />
