@@ -433,22 +433,18 @@ const LandingPagev2 = () => {
                     placeholder="example.com"
                     error={confirmClick && !isValidUrl}
                     sx={{
-                      height: "3.5rem !important",
+                      height: "2.1rem !important",
                       borderRadius: "15px !important",
                       "& .MuiInputBase-input": {
-                        height: "3.5rem !important",
+                        height: "2.1rem !important",
                         padding: "0.75rem 0.875rem", // Adjust padding in rem units
                       },
                       "&.MuiTextField-root.Mui-error": {
                         borderColor: "red",
-                        height: "3.5rem !important",
+                        height: "2.1rem !important",
                       },
                     }}
                   />
-                  In this code: 3.125rem is equivalent to 50px if the root font
-                  size (html tag) is 16px (standard browser default). Padding
-                  values are also converted to rem based on an assumed root font
-                  size of 16px. Adjust the values as needed.
                 </Box>
                 <Box width="30%" style={{ position: "relative" }}>
                   {!successUrl && checkUrlStatus && (
