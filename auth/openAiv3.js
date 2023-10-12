@@ -161,12 +161,21 @@ async function writeTitleAndImageKeyword(content, count) {
 
   // Ensure that there's no comma-separation; instead, each keyword should be distinctly wrapped. Do not include any additional tags or descriptive text in your response. The keywords should represent what a customer of the business would actively search for.
   // `;
+  //   const prompt = `
+  //     For a business described as "${content}", generate the top ${count} titles that are between 4 to 10 words long, with high intent, and embed relevant SEO keywords. Each title should be enclosed within <title></title> tags.
+
+  // For every title, produce 2-3 individual stock image keywords and 2-3 SEO keywords. Each image keyword should be individually surrounded by <imageKeyword></imageKeyword> tags, and each SEO keyword should be encompassed by <SEOkeyword></SEOkeyword> tags. These keywords should aptly represent the subject matter of the blog.
+
+  // Ensure that keywords are not separated by commas. Instead, each keyword should be uniquely wrapped in its respective tag. Abstain from integrating any other tags or additional descriptions in your response. Ideally, the keywords should represent the search queries a potential customer might use in relation to the business.
+
+  //   `;
   const prompt = `
-    For a business described as "${content}", generate the top ${count} titles that are between 4 to 10 words long, with high intent, and embed relevant SEO keywords. Each title should be enclosed within <title></title> tags.
+  For a business described as "${content}", generate the top ${count} titles that are between 4 to 10 words long. Each title should focus on high intent and be enclosed within <title></title> tags without any embedded keywords.
 
 For every title, produce 2-3 individual stock image keywords and 2-3 SEO keywords. Each image keyword should be individually surrounded by <imageKeyword></imageKeyword> tags, and each SEO keyword should be encompassed by <SEOkeyword></SEOkeyword> tags. These keywords should aptly represent the subject matter of the blog.
 
 Ensure that keywords are not separated by commas. Instead, each keyword should be uniquely wrapped in its respective tag. Abstain from integrating any other tags or additional descriptions in your response. Ideally, the keywords should represent the search queries a potential customer might use in relation to the business.
+
 
   `;
 
