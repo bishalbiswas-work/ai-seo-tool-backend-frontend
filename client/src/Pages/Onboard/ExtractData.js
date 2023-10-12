@@ -282,7 +282,7 @@ const ExtractData = () => {
               sx={{
                 borderRadius: "10px",
                 background:
-                  "linear-gradient(180deg, rgb(105.08, 50, 131) 0%, rgb(50.16, 50.16, 130.74) 100%)",
+                  "linear-gradient(180deg, rgb(105.08, 50, 131) 0%, rgb(50.16, 50.16, 130.74) 100%) !important",
               }}
             >
               {/* I Agree to Fetch Data */}
