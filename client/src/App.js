@@ -102,10 +102,12 @@ class App extends Component {
                 <Route
                   path="/dashboard"
                   element={
-                    <WrapperComponent>
-                      {/* <Dashboard /> */}
-                      <Dashboardv3 />
-                    </WrapperComponent>
+                    <>
+                      <WrapperComponent>
+                        {/* <Dashboard /> */}
+                        <Dashboardv3 />
+                      </WrapperComponent>
+                    </>
                   }
                 />
                 <Route

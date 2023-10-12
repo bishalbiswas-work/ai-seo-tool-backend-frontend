@@ -91,23 +91,23 @@ const Dashboardv3 = () => {
                 </>
               </Text>
             </div>
-            <div className="border border-gray-500_02 border-solid flex md:flex-col flex-row gap-[7px]  md:h-auto items-end justify-end max-w-[1208px] ml-1 md:ml-[0] mt-[41px] p-6 sm:px-5 rounded-lg w-full">
+            <div className="border border-gray-500_02 border-solid flex md:flex-col flex-row gap-[7px] md:h-auto items-end justify-end max-w-[1208px] ml-1 md:ml-[0] mt-[41px] p-6 sm:px-5 rounded-lg w-full">
               <Text
-                className="leading-[30.00px] max-w-[1057px] md:max-w-full text-blue_gray-500 text-lg"
+                className="leading-[30.00px] max-w-[1157px] md:max-w-full text-blue_gray-500 text-lg max-h-[15.625rem] overflow-y-scroll"
                 size="txtDMSansRegular18"
               >
                 {businessMetaData.summary}
               </Text>
-              <div className="flex flex-col font-helvetica h-11 md:h-auto items-center justify-center sm:px-5 px-6 py-3 w-[78px]">
-                {/* <div className="flex flex-col items-center justify-center w-auto">
+              {/* <div className="flex flex-col font-helvetica h-11 md:h-auto items-center justify-center sm:px-5 px-6 py-3 w-[78px]">
+                <div className="flex flex-col items-center justify-center w-auto">
                   <Text
                     className="bg-clip-text bg-gradient  text-center text-sm text-transparent w-auto"
                     size="txtHelveticaBold14Purple800"
                   >
                     Update
                   </Text>
-                </div> */}
-              </div>
+                </div>
+              </div> */}
             </div>
             {/* <div className="flex flex-col items-center justify-start ml-1 md:ml-[0] mt-[100px] ">
               <Text
@@ -204,8 +204,7 @@ const Dashboardv3 = () => {
                                   <div className="flex flex-col gap-5 items-start justify-start p-2 w-full">
                                     <div className="flex flex-col items-start justify-start w-full">
                                       <div className="flex flex-col gap-4 items-start justify-start w-full">
-                                        {/* <div className="flex flex-row gap-3 items-center justify-start w-[85%] md:w-full"> */}
-                                        <div className="flex flex-col gap-4 items-start justify-start w-full">
+                                        <div className="flex flex-row gap-3 items-center justify-start w-[85%] md:w-full">
                                           {blogs[index].seoKeywords.map(
                                             (item, index) => (
                                               <>
@@ -616,10 +615,11 @@ const Dashboardv3 = () => {
                             style={{
                               textAlign: "right",
                               width: "100%",
+                              height: "250px",
                             }}
                           >
                             <Text
-                              className="text-[22px] text-blue_gray-900_04 mb-[100px]"
+                              className="text-[22px] text-blue_gray-900_04"
                               size="txtDMSansMedium22"
                               style={{
                                 display: "inline-block",
@@ -632,7 +632,7 @@ const Dashboardv3 = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="flex md:flex-1 flex-col h-[703px] md:h-auto items-start justify-start my-0 w-auto md:w-full pt-[100px]">
+                      <div className="flex md:flex-1 flex-col h-[703px] md:h-auto items-start justify-start my-0 w-auto md:w-full">
                         <div className="flex flex-col md:gap-10 gap-[111px] justify-start w-full">
                           <div className="font-worksans gap-5 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 items-center justify-between w-full">
                             {blogs.slice(3, 6).map((item, index) => (

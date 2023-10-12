@@ -43,7 +43,7 @@ async function writeBlog(content, wordLimit) {
     <cbody>A wrap-up paragraph summarizing the main points discussed, offering a final perspective, and possibly suggesting further reading or actions on the topic.</cbody>
     `;
   const data = {
-    model: "gpt-3.5-turbo-16k",
+    model: "gpt-3.5-turbo",
     messages: [
       {
         role: "system",
@@ -171,7 +171,7 @@ Ensure that keywords are not separated by commas. Instead, each keyword should b
   `;
 
   const data = {
-    model: "gpt-3.5-turbo-16k",
+    model: "gpt-3.5-turbo",
     messages: [
       {
         role: "system",
