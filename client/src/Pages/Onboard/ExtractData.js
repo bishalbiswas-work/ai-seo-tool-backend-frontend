@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 // Visual Imports
 import PropTypes from "prop-types";
+import Lottie from "lottie-react";
+
+import animationData from "./animationJson/Animation - 1697128612293.json"; // Adjust the path to point to your Lottie JSON file
 
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
@@ -67,10 +70,18 @@ const ExtractData = () => {
       clearInterval(timer);
     };
   }, []);
+  useEffect(() => {
+    if (dataContext.dataLoaded) {
+      setProgress(100);
+      delay(2000).then(() => {
+        navigate("/dashboard");
+      });
+    }
+  }, [dataContext.dataLoaded]);
 
   const [conversations, setConversations] = useState([]);
   const [textBlob, setTextBlob] = useState("");
-  const [state, setstate] = useState(false);
+  const [state, setstate] = useState(true);
   const [error, setError] = useState(false);
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
   const getLogin = async (submitData) => {
@@ -137,7 +148,7 @@ const ExtractData = () => {
       const output = await getSummary(submitData);
       console.log("Backend Reponse Summary: ", output);
       const submitDataBlogs = {
-        summary: output.summary,
+        summary: output.data.summary,
         blogCount: 6,
         wordCount: 2500,
       };
@@ -148,23 +159,6 @@ const ExtractData = () => {
 
       dataContext.setBlogsFunction({ data: Blogs.data.blogs });
 
-      // dataContext.setAuthTokenFunction({ data: output.data.authToken });
-      // dataContext.setUidFunction({ data: output.data.uid });
-      // // console.log(output.data.uid);
-      // // dataContext.setProfileUrlFunction({ data: output.data.profileUrl });
-      // dataContext.setNameFunction({ data: output.data.name });
-      // dataContext.setProfileUrlFunction({ data: output.data.faviconUrl });
-      // dataContext.setQuestionsFunction({ data: output.data.questions });
-      // dataContext.setAnswersFunction({ data: output.data.answers });
-      // dataContext.setCommonQuestionsFunction({
-      //   data: output.data.commonQuestions,
-      // });
-      // dataContext.setAboutBusinessFunction({ data: output.data.aboutBusiness });
-      // dataContext.setCollectEmailFunction({ data: output.data.collectEmail });
-      // dataContext.setCollectPhoneNoFunction({
-      //   data: output.data.collectPhoneNo,
-      // });
-      // dataContext.setCollectNameFunction({ data: output.data.collectName });
       delay(2000);
       navigate("/dashboard");
     } catch (error) {
@@ -172,30 +166,8 @@ const ExtractData = () => {
       console.error("There was an error with getLogin:", error);
       // Handle the error or set some state here if necessary
     }
-
-    // try {
-    //   // Verify and decode the JWT token
-    //   // const decoded = jwt.decode(output.data.authToken);
-    //   const { decodedToken, isExpired } = useJwt(output.data.authToken);
-    //   // Check if the decoded token contains a UID field
-    //   if (decodedToken) {
-    //     dataContext.setUidFunction({ data: decodedToken });
-    //     console.log("UID: ", decodedToken);
-    //   } else {
-    //     // Token doesn't contain a UID field or is invalid
-    //     return null;
-    //   }
-    // } catch (error) {
-    //   // Token is invalid or couldn't be decoded
-    //   console.error("Error decoding JWT token:", error);
-    //   return null;
-    // }
   };
-  // useEffect(() => {
-  //   // Update the document title using the browser API
-  //   setstate(true);
-  //   handleLoad();
-  // });
+
   return (
     <div>
       <Box
@@ -208,7 +180,17 @@ const ExtractData = () => {
         {/* Display Text */}
 
         {state ? (
-          <Typography variant="h6">{texts[index]}</Typography>
+          <>
+            <div>
+              <Lottie
+                animationData={animationData}
+                loop
+                autoplay
+                style={{ width: 250, height: 250 }}
+              />
+            </div>
+            <Typography variant="h6">{texts[index]}</Typography>
+          </>
         ) : (
           <div>
             <Box display="flex" justifyContent="center" alignItems="center">
@@ -269,7 +251,7 @@ const ExtractData = () => {
             // <Box sx={{ width: "500px" }}>
             //   <LinearProgress color="secondary" />
             // </Box>
-            <Box sx={{ width: "500px" }}>
+            <Box sx={{ width: "800px" }}>
               <LinearProgressWithLabel value={progress} />
             </Box>
           ) : (
@@ -328,7 +310,28 @@ function LinearProgressWithLabel(props) {
   return (
     <Box sx={{ display: "flex", alignItems: "center" }}>
       <Box sx={{ width: "100%", mr: 1 }}>
-        <LinearProgress variant="determinate" {...props} />
+        {/* <LinearProgress
+          variant="determinate"
+          {...props}
+          sx={{
+            height: "20px",
+            borderRadius: "25px",
+            color:
+              "linear-gradient(180deg, rgb(105.08, 50, 131) 0%, rgb(50.16, 50.16, 130.74) 100%) !important",
+          }}
+        /> */}
+        <LinearProgress
+          variant="determinate"
+          {...props}
+          sx={{
+            height: "20px",
+            borderRadius: "25px",
+            "& .MuiLinearProgress-bar": {
+              background:
+                "linear-gradient(180deg, rgb(105.08, 50, 131) 0%, rgb(50.16, 50.16, 130.74) 100%)",
+            },
+          }}
+        />
       </Box>
       <Box sx={{ minWidth: 35 }}>
         <Typography variant="body2" color="text.secondary">{`${Math.round(

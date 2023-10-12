@@ -139,7 +139,7 @@ const Dashboardv3 = () => {
                 className="text-[22px] text-blue_gray-900_04"
                 size="txtDMSansMedium22"
               >
-                2023 November
+                2023 October
               </Text>
             </div>
           </div>
@@ -204,7 +204,8 @@ const Dashboardv3 = () => {
                                   <div className="flex flex-col gap-5 items-start justify-start p-2 w-full">
                                     <div className="flex flex-col items-start justify-start w-full">
                                       <div className="flex flex-col gap-4 items-start justify-start w-full">
-                                        <div className="flex flex-row gap-3 items-center justify-start w-[85%] md:w-full">
+                                        {/* <div className="flex flex-row gap-3 items-center justify-start w-[85%] md:w-full"> */}
+                                        <div className="flex flex-col gap-4 items-start justify-start w-full">
                                           {blogs[index].seoKeywords.map(
                                             (item, index) => (
                                               <>
@@ -611,9 +612,14 @@ const Dashboardv3 = () => {
                           >
                             2023 November
                           </Text> */}
-                          <div style={{ textAlign: "right", width: "100%" }}>
+                          <div
+                            style={{
+                              textAlign: "right",
+                              width: "100%",
+                            }}
+                          >
                             <Text
-                              className="text-[22px] text-blue_gray-900_04"
+                              className="text-[22px] text-blue_gray-900_04 mb-[100px]"
                               size="txtDMSansMedium22"
                               style={{
                                 display: "inline-block",
@@ -626,7 +632,7 @@ const Dashboardv3 = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="flex md:flex-1 flex-col h-[703px] md:h-auto items-start justify-start my-0 w-auto md:w-full">
+                      <div className="flex md:flex-1 flex-col h-[703px] md:h-auto items-start justify-start my-0 w-auto md:w-full pt-[100px]">
                         <div className="flex flex-col md:gap-10 gap-[111px] justify-start w-full">
                           <div className="font-worksans gap-5 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 items-center justify-between w-full">
                             {blogs.slice(3, 6).map((item, index) => (

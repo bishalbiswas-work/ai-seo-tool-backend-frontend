@@ -30,6 +30,10 @@ const BlogPage = () => {
   const handleClickNext = () => {
     navigate("/pricing");
   };
+  useEffect(() => {
+    // window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0 });
+  }, []);
   return (
     <>
       <div className="bg-gray-200_04 flex flex-col font-inter gap-[51px] items-center justify-start mx-auto w-full">

@@ -34,7 +34,7 @@ async function contentSummarize(content) {
       },
       {
         role: "user",
-        content: `Given this content, from this  paragraph, write a summary of 1000 words.: ${content}`,
+        content: `Given the content sourced directly from the website, provide a summary that best describes them and their work. The summary should be up to 1000 words: ${content}.`,
       },
     ],
   };

@@ -1,6 +1,7 @@
 import React from "react";
 import DataContext from "./DataState";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 // Firebase
 import { db } from "../Pages/Auth/Firebase";
@@ -14,6 +15,8 @@ import {
 
 // End Firebase
 const DataState = (props) => {
+  const API_BASE_URL =
+    process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
   // const APP_ID = "834715744964121";
   // const APP_SECRET = "2582a389247cbe3902699eea25594d1d";
   const [appID, setAppID] = useState("834715744964121");
@@ -77,7 +80,7 @@ const DataState = (props) => {
     pageProfileImg: "",
   });
   const [facebookPages, setFacebookPages] = useState();
-
+  const [dataLoaded, setDataLoaded] = useState(false);
   const [selectedPage, setSelectedPage] = useState();
   const [messageContext, setMessageContext] = useState();
   const [selectedBlog, setSelectedBlog] = useState(1);
@@ -587,6 +590,75 @@ const DataState = (props) => {
     }
   };
 
+  // ==================================================================
+
+  const fetchData = async () => {
+    console.log("Fetch is called: ", phoneNumber, website);
+    const getSummary = async (submitData) => {
+      try {
+        const response = await axios.post(
+          `${API_BASE_URL}/api/get-summary`,
+          // "http://localhost:5000/api/get-access-token",
+          submitData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        return response;
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    const getBlog = async (submitData) => {
+      try {
+        const response = await axios.post(
+          `${API_BASE_URL}/api/get-blogs`,
+          // "http://localhost:5000/api/get-access-token",
+          submitData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        return response;
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    const submitData = {
+      websiteUrl: website,
+      UserPhoneNumber: phoneNumber,
+    };
+    // const output = await getLogin(submitData);
+    try {
+      const output = await getSummary(submitData);
+      console.log("Backend Reponse Summary: ", output);
+      const submitDataBlogs = {
+        summary: output.data.summary,
+        blogCount: 6,
+        wordCount: 2500,
+      };
+      setBusinessMetaDataFunction({ data: output.data });
+
+      const Blogs = await getBlog(submitDataBlogs);
+      console.log("Backend Reponse Blogs: ", Blogs);
+
+      setBlogsFunction({ data: Blogs.data.blogs });
+      setDataLoaded(true);
+      //  delay(2000);
+      //  navigate("/dashboard");
+    } catch (error) {
+      //  setstate(false);
+      console.error("There was an error with getLogin:", error);
+      // Handle the error or set some state here if necessary
+    }
+  };
+  // ==================================================================
+
   // useEffect(() => {
 
   // }, [docId, phoneNumber, website, sourceUrl, messages]);
@@ -620,6 +692,7 @@ const DataState = (props) => {
         blogs,
         selectedBlog,
         businessMetaData,
+        fetchData,
         setBusinessMetaDataFunction,
         setProfileUrlFunction,
         setAuthTokenFunction,
@@ -641,6 +714,7 @@ const DataState = (props) => {
         facebookToken,
         facebookPages,
         selectedPage,
+        dataLoaded,
         setSelectedPage,
         messageContext,
         setBlogsFunction,

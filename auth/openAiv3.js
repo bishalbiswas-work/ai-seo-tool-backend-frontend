@@ -146,13 +146,29 @@ async function writeTitleAndImageKeyword(content, count) {
 
   //    Ensure that there's no comma-separation; instead, each keyword should be distinctly wrapped. Do not include any additional tags or descriptive text in your response. The keywords should represent what a customer of the business would actively search for.
   // `;
+  //   const prompt = `
+  //    For a business with the description "${content}", generate top ${count} titles that are 4-10 words in length, high intent, and contain highly searchable SEO keywords. Each title should be wrapped in <title></title> tags.
+
+  //    For each title, provide 2-3 stock image keywords and 2-3 SEO keywords. Each image keyword should be individually wrapped in its own <imageKeyword></imageKeyword> tag, and each SEO keyword should be wrapped in its own <keyword></keyword> tag. These keywords should represent the topic of the blog.
+
+  //    Ensure that there's no comma-separation; instead, each keyword should be distinctly wrapped. Do not include any additional tags or descriptive text in your response. The keywords should represent what a customer of the business would actively search for.
+  // `;
+
+  //   const prompt = `
+  //   For a business with the description "${content}", generate top ${count} titles that are 4-10 words in length, high intent, and contain highly searchable SEO keywords. Each title should be wrapped in <title></title> tags.
+
+  // For each title, provide 2-3 stock image keywords and 2-3 SEO keywords. Each image keyword should be individually wrapped in its own <imageKeyword></imageKeyword> tag, and each SEO keyword should be wrapped in its own <SEOkeyword></SEOkeyword> tag. These keywords should represent the topic of the blog.
+
+  // Ensure that there's no comma-separation; instead, each keyword should be distinctly wrapped. Do not include any additional tags or descriptive text in your response. The keywords should represent what a customer of the business would actively search for.
+  // `;
   const prompt = `
-   For a business with the description "${content}", generate top ${count} titles that are 4-10 words in length, high intent, and contain highly searchable SEO keywords. Each title should be wrapped in <title></title> tags. 
+    For a business described as "${content}", generate the top ${count} titles that are between 4 to 10 words long, with high intent, and embed relevant SEO keywords. Each title should be enclosed within <title></title> tags.
 
-   For each title, provide 2-3 stock image keywords and 2-3 SEO keywords. Each image keyword should be individually wrapped in its own <imageKeyword></imageKeyword> tag, and each SEO keyword should be wrapped in its own <keyword></keyword> tag. These keywords should represent the topic of the blog.
+For every title, produce 2-3 individual stock image keywords and 2-3 SEO keywords. Each image keyword should be individually surrounded by <imageKeyword></imageKeyword> tags, and each SEO keyword should be encompassed by <SEOkeyword></SEOkeyword> tags. These keywords should aptly represent the subject matter of the blog.
 
-   Ensure that there's no comma-separation; instead, each keyword should be distinctly wrapped. Do not include any additional tags or descriptive text in your response. The keywords should represent what a customer of the business would actively search for.
-`;
+Ensure that keywords are not separated by commas. Instead, each keyword should be uniquely wrapped in its respective tag. Abstain from integrating any other tags or additional descriptions in your response. Ideally, the keywords should represent the search queries a potential customer might use in relation to the business.
+
+  `;
 
   const data = {
     model: "gpt-3.5-turbo-16k",
@@ -211,9 +227,9 @@ function convertBlobToJSONMain(textBlob) {
     ...textBlob.matchAll(/<imageKeyword>(.*?)<\/imageKeyword>/g),
   ].map((match) => match[1]);
 
-  const seoKeywords = [...textBlob.matchAll(/<keyword>(.*?)<\/keyword>/g)].map(
-    (match) => match[1]
-  );
+  const seoKeywords = [
+    ...textBlob.matchAll(/<SEOkeyword>(.*?)<\/SEOkeyword>/g),
+  ].map((match) => match[1]);
 
   const structuredData = titles.map((title, index) => {
     return {
@@ -279,10 +295,8 @@ function convertBlobToJSONMain(textBlob) {
 async function generateBlogs(contentObject, topicCount, wordLimit) {
   let blogs = [];
 
-  let topicsRaw = await writeTitleAndImageKeyword(
-    contentObject,
-    `${topicCount}`
-  );
+  let topicsRaw = await writeTitleAndImageKeyword(contentObject, topicCount);
+  console.log(topicsRaw);
   let topics = convertBlobToJSONMain(topicsRaw);
 
   // Helper function to ensure content meets criteria
@@ -316,7 +330,7 @@ async function generateBlogs(contentObject, topicCount, wordLimit) {
     for (let ix = 0; ix < topics[i].imageKeywords.length; ix++) {
       let imageUrl = await getImageFromUnsplash(topics[i].imageKeywords[ix]);
       imagesUrl.push({ imageUrl });
-      await delay(500); // Assuming delay() returns a promise
+      await delay(150); // Assuming delay() returns a promise
     }
 
     blogs.push({
@@ -326,7 +340,7 @@ async function generateBlogs(contentObject, topicCount, wordLimit) {
       imagesUrl: imagesUrl,
       content: blog,
     });
-    await delay(1000);
+    await delay(150);
   }
 
   return blogs;

@@ -69,7 +69,7 @@ const Pricing = () => {
   };
   const defaultCountry = "United States";
 
-  const [index, setIndex] = useState(2); // Default index value is 2
+  const [index, setIndex] = useState(1); // Default index value is 2
   const value = mapIndexToValue(index);
   const selectedPrice = getPriceFromValue(value);
   const payment_url = getPaymentUrlFromPrice(selectedPrice);
@@ -124,7 +124,9 @@ const Pricing = () => {
               variant="h6"
               style={{ marginLeft: "10px", fontSize: "0.9rem" }}
             >
-              {/* <span style={{ color: "gray" }}>Step 4 out of 4</span> */}
+              <span style={{ color: "gray" }}>
+                Your Last Stwp to SEO Freedom!
+              </span>
             </Typography>
           </Box>
         </Grid>
@@ -140,7 +142,7 @@ const Pricing = () => {
               }}
             >
               <span style={{ color: "black" }}>
-                How to pick topics worth making video about?
+                How Fast Do Your Organic Traffic to Grow? &#129300;
               </span>
             </Typography>
           </Box>
@@ -220,13 +222,13 @@ const Pricing = () => {
         </Grid>
         <Grid item>
           <Grid item>
-            <Box display="flex" justifyContent="center" alignItems="center">
+            {/* <Box display="flex" justifyContent="center" alignItems="center">
               <img
                 src="/assets/icons/poweredbystripe.png"
                 alt="Placeholder"
                 style={{ width: "150px" }}
               />
-            </Box>
+            </Box> */}
           </Grid>
           <Box height={20}></Box>
           {/* <Box bgcolor="secondary.main" height={40}></Box> */}
@@ -264,7 +266,8 @@ const Pricing = () => {
               }}
             >
               <span style={{ color: "black" }}>
-                Common Pricing & Payment Questions
+                {/* Common Pricing & Payment Questions */}
+                FAQs
               </span>
             </Typography>
           </Box>
@@ -374,7 +377,7 @@ function PriceCard({ time, price, paymentLink, onClickNext }) {
     <Card
       variant="outlined"
       sx={{
-        width: 320,
+        width: 340,
         background: "linear-gradient(90deg,#060640 10%, #2A2A4B 90%)",
         color: "white",
       }}
@@ -508,7 +511,7 @@ function PriceCard({ time, price, paymentLink, onClickNext }) {
                   backgroundColor: "#ffe5eb",
                 },
                 "&:active": {
-                  backgroundColor: "white",
+                  backgroundColor: "white !important",
                 },
                 mx: "auto",
               }}

@@ -117,8 +117,9 @@ const LandingPagev2 = () => {
       setValidNumber({ valid: true, click: true });
       dataContext.updateOrCreateFirebaseDoc();
 
-      delay(2000).then(() => {
+      delay(500).then(() => {
         // navigate("/auth");
+        dataContext.fetchData();
         navigate("/extract-data");
       });
     } else {
@@ -1244,6 +1245,9 @@ const LandingPagev2 = () => {
                   
                 </Button> */}
                 <Button
+                  onClick={() =>
+                    window.scrollTo({ top: 0, behavior: "smooth" })
+                  }
                   className="cursor-pointer font-bold leading-[normal] min-w-[175px] ml-0.5 md:ml-[0] text-[17px] text-center tracking-[-0.23px]"
                   shape="round"
                   size="md"
