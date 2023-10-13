@@ -17,6 +17,7 @@ async function getImageFromUnsplash(keyword) {
       response.data.results &&
       response.data.results.length > 0
     ) {
+      // console.log(response.data.results);
       return response.data.results[0].urls.full; // or `.small` or `.regular` for different sizes
     } else {
       return null; // No images found for the given keyword

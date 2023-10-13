@@ -251,7 +251,8 @@ const LandingPagev2 = () => {
           </div> */}
         </header>
         <div className="flex flex-col items-center justify-start w-full">
-          <div className="flex md:flex-col flex-row md:gap-11 h-[621px] md:h-auto items-center justify-between max-w-[1440px] md:px-10 sm:px-5 px-[120px] py-[60px] w-full">
+          {/* <div className="flex md:flex-col flex-row md:gap-11 h-[621px] md:h-auto items-center justify-between max-w-[1440px] md:px-10 sm:px-5 px-[120px] py-[60px] w-full"> */}
+          <div className="flex md:flex-col flex-row md:gap-11 h-[621px] md:h-auto items-center justify-between max-w-[1440px] md:px-[10px] sm:px-5 px-[120px] mt-[-45px] w-full">
             <div className="md:h-80 h-[540px] relative w-[53%] md:w-full">
               <div className="md:h-80 h-[540px] m-auto w-full">
                 <div className="absolute flex flex-col md:h-auto h-full inset-[0] items-center justify-start m-auto max-w-[627px] pt-8 w-full">
@@ -514,7 +515,8 @@ const LandingPagev2 = () => {
             <div className=""></div>
           </div>
           {/* <HeroSectionv3 /> */}
-          <div className="flex flex-col font-montserrat gap-3 items-center justify-start mt-[67px] pt-2.5 w-full">
+          {/* <div className="flex flex-col font-montserrat gap-3 items-center justify-start mt-[67px] pt-2.5 w-full"> */}
+          <div className="flex flex-col font-montserrat gap-3 items-center justify-start mt-[40px] pt-2.5 w-full">
             <Text
               className="text-base text-blue_gray-900_01 text-center tracking-[1.00px]"
               size="txtMontserratRomanBold16"

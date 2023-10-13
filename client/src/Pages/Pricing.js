@@ -207,16 +207,25 @@ const Pricing = () => {
             {value == 8 &&
               renderBox(
                 "#FFD18C",
-                "This Could Significantly Delay Your Time To Monetization"
+                // "This Could Significantly Delay Your Time To Monetization"
+                "Low Organic Traffic & Slow Timeline"
               )}
 
             {value == 16 &&
               // value < 45 &&
-              renderBox("#a6ced9", "Average Speed Monetization")}
+              renderBox(
+                "#a6ced9",
+                // "Average Speed Monetization"
+                "Average Organic Traffic & Timeline"
+              )}
 
             {value == 24 &&
               // value <= 60 &&
-              renderBox("#89ff80", "10X Speed To Monetization")}
+              renderBox(
+                "#89ff80",
+                // "10X Speed To Monetization"
+                "High Organic Traffic & Fast Timeline"
+              )}
           </Box>
           <Box height={40}></Box>
         </Grid>
