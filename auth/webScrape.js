@@ -11,7 +11,19 @@ let CONCURRENCY = 5;
 
 let TARGET_URL = "https://www.betimeful.com"; // Replace with your URL
 const FILE_NAME = "scraped_urls.txt";
+let browser;
 
+async function getBrowserInstance() {
+  if (!browser) {
+    browser = await puppeteer.launch({
+      headless: false,
+      executablePath: "/usr/bin/google-chrome-stable",
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    });
+  }
+  return browser;
+}
+getBrowserInstance();
 function extractDomainName(fullURL) {
   const hostname = new url.URL(fullURL).hostname;
   const parts = hostname.split(".").reverse();
@@ -22,9 +34,11 @@ function extractDomainName(fullURL) {
 }
 
 async function fetchFavicon(url) {
-  const browser = await puppeteer.launch({
-    executablePath: "/usr/bin/google-chrome-stable",
-  });
+  // const browser = await puppeteer.launch({
+  //   executablePath: "/usr/bin/google-chrome-stable",
+  // });
+  const browser = await getBrowserInstance();
+
   const page = await browser.newPage();
 
   await page.goto(url, {
@@ -41,7 +55,8 @@ async function fetchFavicon(url) {
       return "No favicon found!";
     });
 
-  await browser.close();
+  // await browser.close();
+  await page.close();
 
   return favicon;
 }
@@ -135,10 +150,11 @@ async function getContentAndUrl(url, concurrency, url_level) {
   TARGET_URL = url; // Replace with your URL
   CONCURRENCY = concurrency;
 
-  const browser = await puppeteer.launch({
-    headless: true,
-    executablePath: "/usr/bin/google-chrome-stable",
-  });
+  // const browser = await puppeteer.launch({
+  //   headless: true,
+  //   executablePath: "/usr/bin/google-chrome-stable",
+  // });
+  const browser = await getBrowserInstance();
 
   // Read existing URLs from the file into a set
   let existingURLs = new Set();
@@ -183,7 +199,7 @@ async function getContentAndUrl(url, concurrency, url_level) {
   //   fs.writeFileSync(URL_FILE_NAME, allAccumulatedUrls);
   //   fs.writeFileSync(CONTENT_FILE_NAME, allAccumulatedContents);
 
-  await browser.close();
+  // await browser.close();
   return { allAccumulatedUrls, allAccumulatedContents };
 }
 ////////////////////////////////////////////////////////////////////////////
@@ -191,10 +207,11 @@ async function getContentAndUrl(url, concurrency, url_level) {
 ////////////////////////////////////////////////////////////////////////////
 
 async function getContent(url) {
-  const browser = await puppeteer.launch({
-    headless: true,
-    executablePath: "/usr/bin/google-chrome-stable",
-  });
+  // const browser = await puppeteer.launch({
+  //   headless: true,
+  //   executablePath: "/usr/bin/google-chrome-stable",
+  // });
+  const browser = await getBrowserInstance();
 
   // Process the provided URL to get its content
   const data = await processUrlsInParallel([url], browser, 1);
@@ -202,7 +219,7 @@ async function getContent(url) {
   // Separate links and text content, but since we're only processing a single URL, we can access the first index
   const content = `URL: ${data[0].url}\nContent:\n${data[0].textContent}\n`;
 
-  await browser.close();
+  // await browser.close();
   return { url, content };
 }
 
@@ -271,15 +288,17 @@ async function determineURLFormat(inputURL) {
     `https://www.${cleanDomain}`,
   ];
 
-  const browser = await puppeteer.launch({
-    executablePath: "/usr/bin/google-chrome-stable",
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
-  });
+  // const browser = await puppeteer.launch({
+  //   executablePath: "/usr/bin/google-chrome-stable",
+  //   args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  // });
+  const browser = await getBrowserInstance();
+
   const promises = combinations.map((url) =>
     checkURLAccessibility(url, browser)
   );
   const results = await Promise.allSettled(promises);
-  await browser.close();
+  // await browser.close();
 
   const finalURLs = results
     .map((result) => (result.status === "fulfilled" ? result.value : null))
@@ -300,10 +319,11 @@ async function determineURLFormat(inputURL) {
 ////////////////////////////////////////////////////////////////////////////
 
 async function CheckContentUrl(url) {
-  const browser = await puppeteer.launch({
-    headless: true,
-    executablePath: "/usr/bin/google-chrome-stable",
-  });
+  // const browser = await puppeteer.launch({
+  //   headless: true,
+  //   executablePath: "/usr/bin/google-chrome-stable",
+  // });
+  const browser = await getBrowserInstance();
 
   const page = await browser.newPage();
   await page.goto(url, { waitUntil: "domcontentloaded" });
@@ -333,7 +353,7 @@ async function CheckContentUrl(url) {
     return { hasMessenger, hasBlogSection, blogUrls };
   });
 
-  await browser.close();
+  // await browser.close();
 
   return {
     url,

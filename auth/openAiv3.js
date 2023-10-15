@@ -362,6 +362,71 @@ async function generateBlogs(contentObject, topicCount, wordLimit) {
   return blogs;
 }
 
+// =======================================================================
+
+async function generateBlogsv2(contentObject, topicCount, wordLimit) {
+  let topicsRaw = await writeTitleAndImageKeyword(contentObject, topicCount);
+  console.log(topicsRaw);
+  let topics = convertBlobToJSONMain(topicsRaw);
+
+  async function generateBlogForTopic(topic) {
+    console.log("Title:", topic.title);
+    console.log("Image Keywords:", topic.imageKeywords.join(", "));
+
+    let blog = await ensureContent(topic.title);
+
+    // let imageUrls = await Promise.all(
+    //   topic.imageKeywords.map((keyword) => {
+    //     console.log("Keyword: ", keyword);
+    //     return getImageFromUnsplash(keyword); // Added 'return' here
+    //   })
+    // );
+    let imageUrls = await Promise.all(
+      topic.imageKeywords.map((keyword) => {
+        console.log(
+          "Keyword:",
+          keyword,
+          "Timestamp:",
+          new Date().toISOString()
+        );
+        return getImageFromUnsplash(keyword);
+      })
+    );
+
+    return {
+      title: topic.title,
+      seoKeywords: topic.seoKeywords,
+      imageKeywords: topic.imageKeywords,
+      imagesUrl: imageUrls.map((imageUrl) => ({ imageUrl })),
+      content: blog,
+    };
+  }
+
+  // Helper function to ensure content meets criteria
+  async function ensureContent(title, retryCount = 0) {
+    if (retryCount > 3) {
+      throw new Error(
+        "Failed to generate desired content after multiple attempts"
+      );
+    }
+
+    let blogRaw = await writeBlog(title, `${wordLimit}`);
+    let blog = convertBlobToJSONBlog(blogRaw);
+
+    if (blog.title && blog.intro && blog.paragraphs && blog.conclusion) {
+      return blog;
+    } else {
+      await delay(1000);
+      return await ensureContent(title, retryCount + 1);
+    }
+  }
+
+  let blogs = await Promise.all(
+    topics.map((topic) => generateBlogForTopic(topic))
+  );
+  return blogs;
+}
+
 // (async () => {
 //   // const blogs = await generateBlogs("a good dog", 3, 500);
 //   // console.log(blogs);
@@ -375,4 +440,5 @@ module.exports = {
   writeTitleAndImageKeyword,
   convertBlobToJSONMain,
   generateBlogs,
+  generateBlogsv2,
 };

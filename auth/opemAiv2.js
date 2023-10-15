@@ -18,7 +18,7 @@ const pinecone = new Pinecone({
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
-async function contentSummarize(content) {
+async function contentSummarize(content, wordLimit) {
   const endpoint = "https://api.openai.com/v1/chat/completions";
   const headers = {
     "Content-Type": "application/json",
@@ -26,7 +26,7 @@ async function contentSummarize(content) {
   };
 
   const data = {
-    model: "gpt-3.5-turbo-16k",
+    model: "gpt-3.5-turbo",
     messages: [
       {
         role: "system",
@@ -34,7 +34,7 @@ async function contentSummarize(content) {
       },
       {
         role: "user",
-        content: `Given the content sourced directly from the website, provide a summary that best describes them and their work. The summary should be up to 1000 words: ${content}.`,
+        content: `Given the content sourced directly from the website, provide a summary that best describes them and their work. The summary should be up to ${wordLimit} words: ${content}.`,
       },
     ],
   };
