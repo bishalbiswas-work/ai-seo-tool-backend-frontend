@@ -16,9 +16,9 @@ let browser;
 async function getBrowserInstance() {
   if (!browser) {
     browser = await puppeteer.launch({
-      headless: false,
+      //   headless: false,
       executablePath: "/usr/bin/google-chrome-stable",
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      //   args: ["--no-sandbox", "--disable-setuid-sandbox"],
     });
   }
   return browser;
