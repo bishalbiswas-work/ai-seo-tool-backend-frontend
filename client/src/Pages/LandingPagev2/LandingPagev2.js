@@ -133,23 +133,23 @@ const LandingPagev2 = () => {
       return setValidNumber({ valid: false, click: true });
     }
 
-    const numberRegex = new RegExp(
-      /^\+?(\d{1,4}[-.\s]?)?(\()?(\d{1,3})?(\))?[-.\s]?\d{1,15}([-.\s]?\d{1,15})?$/
-    );
-    if (numberRegex.test(`+${contactNumber}`)) {
-      console.log("clicked get started");
-      const url = getCurrentURL();
-      setValidNumber({ valid: true, click: true });
-      dataContext.updateOrCreateFirebaseDoc();
+    // const numberRegex = new RegExp(
+    //   /^\+?(\d{1,4}[-.\s]?)?(\()?(\d{1,3})?(\))?[-.\s]?\d{1,15}([-.\s]?\d{1,15})?$/
+    // );
+    // if (numberRegex.test(`+${contactNumber}`)) {
+    console.log("clicked get started");
+    const url = getCurrentURL();
+    setValidNumber({ valid: true, click: true });
+    dataContext.updateOrCreateFirebaseDoc();
 
-      delay(2000).then(() => {
-        // navigate("/auth");
-        dataContext.fetchData();
-        navigate("/extract-data");
-      });
-    } else {
-      setValidNumber({ valid: false, click: true });
-    }
+    delay(2000).then(() => {
+      // navigate("/auth");
+      dataContext.fetchData();
+      navigate("/extract-data");
+    });
+    // } else {
+    //   setValidNumber({ valid: false, click: true });
+    // }
   };
   const checkUrl = async (submitData) => {
     try {
