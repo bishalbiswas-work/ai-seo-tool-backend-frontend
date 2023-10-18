@@ -95,7 +95,8 @@ const LandingPagev2 = () => {
   };
 
   const handleChangeNumber = (number) => {
-    setContactNumber("+" + countryCode + number);
+    // setContactNumber("+" + countryCode + number);
+    setContactNumber(number);
   };
 
   const handleConfirm = async () => {
