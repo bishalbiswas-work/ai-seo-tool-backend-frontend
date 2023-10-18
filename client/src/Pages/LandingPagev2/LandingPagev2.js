@@ -37,8 +37,25 @@ import { useContext } from "react";
 import DataContext from "ContextAPI/DataState";
 // End Import ContextAPI
 const LandingPagev2 = () => {
-  const location = useGeoLocation();
-  // console.log(location);
+  const geoLocation = useGeoLocation();
+  let countryCode = "";
+  // const [countryCode, setCountryCode] = useState("");
+  const delay = (time) => new Promise((resolve) => setTimeout(resolve, time));
+
+  const getCountryCode = async () => {
+    await delay(1000).then(() => {
+      if (geoLocation.country != null) {
+        // setCountryCode(getCountryCallingCode(geoLocation.country));
+        countryCode = getCountryCallingCode(geoLocation.country);
+        console.log(getCountryCallingCode(geoLocation.country));
+        if (contactNumber === "") {
+          // setContactNumber("+" + countryCode);
+        }
+      }
+      // console.log(geoLocation);
+    });
+  };
+  getCountryCode();
   // console.log(location.country);
   // const phoneCode = getCountryCallingCode(location.country);
   // console.log(phoneCode);
@@ -60,17 +77,10 @@ const LandingPagev2 = () => {
     valid: false,
     click: false,
   });
-  const delay = (time) => new Promise((resolve) => setTimeout(resolve, time));
   function getCurrentURL() {
     const currentURL = window.location.href;
     return currentURL;
   }
-  useEffect(() => {
-    if (location && location.country) {
-      const countryCode = getCountryCallingCode(location.country);
-      setContactNumber("+" + countryCode);
-    }
-  }, [location]);
 
   useEffect(() => {
     dataContext.setPhoneNumberFunction({
@@ -85,7 +95,7 @@ const LandingPagev2 = () => {
   };
 
   const handleChangeNumber = (number) => {
-    setContactNumber(number);
+    setContactNumber("+" + countryCode + number);
   };
 
   const handleConfirm = async () => {
@@ -115,7 +125,6 @@ const LandingPagev2 = () => {
       setSuccessUrl(false);
     }
   };
-  // use
 
   const handelGetStarted = async () => {
     const strippedPhone = contactNumber.replace(/\D/g, ""); // Removes non-digit characters
