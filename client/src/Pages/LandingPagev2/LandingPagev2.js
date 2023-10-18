@@ -49,7 +49,7 @@ const LandingPagev2 = () => {
         countryCode = getCountryCallingCode(geoLocation.country);
         console.log(getCountryCallingCode(geoLocation.country));
         if (contactNumber === "") {
-          // setContactNumber("+" + countryCode);
+          setContactNumber("+" + countryCode);
         }
       }
       // console.log(geoLocation);
