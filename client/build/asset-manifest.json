@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.bb2d100b.css",
-    "main.js": "/static/js/main.b4d6ce6a.js",
+    "main.css": "/static/css/main.46cf6913.css",
+    "main.js": "/static/js/main.e2e034a7.js",
     "static/media/InterSemiBold.ttf": "/static/media/InterSemiBold.6058d3da655fb35169c2.ttf",
     "static/media/MontserratRomanBold.ttf": "/static/media/MontserratRomanBold.50f0257aa1e905f4bfaf.ttf",
     "static/media/WorkSansRomanBold.ttf": "/static/media/WorkSansRomanBold.1cdef49100a51e35264a.ttf",
@@ -14,13 +14,13 @@
     "static/media/DMSansMedium.ttf": "/static/media/DMSansMedium.64a5ff1b212ef8a741e5.ttf",
     "static/media/DMSansRegular.ttf": "/static/media/DMSansRegular.5796ba67a2ae308b784c.ttf",
     "static/media/DMSansBold.ttf": "/static/media/DMSansBold.49af0e9e85f659857710.ttf",
-    "static/media/logo.svg": "/static/media/logo.103b5fa18196d5665a7e12318285c916.svg",
     "index.html": "/index.html",
-    "main.bb2d100b.css.map": "/static/css/main.bb2d100b.css.map",
-    "main.b4d6ce6a.js.map": "/static/js/main.b4d6ce6a.js.map"
+    "static/media/logo.svg": "/static/media/logo.103b5fa18196d5665a7e12318285c916.svg",
+    "main.46cf6913.css.map": "/static/css/main.46cf6913.css.map",
+    "main.e2e034a7.js.map": "/static/js/main.e2e034a7.js.map"
   },
   "entrypoints": [
-    "static/css/main.bb2d100b.css",
-    "static/js/main.b4d6ce6a.js"
+    "static/css/main.46cf6913.css",
+    "static/js/main.e2e034a7.js"
   ]
 }

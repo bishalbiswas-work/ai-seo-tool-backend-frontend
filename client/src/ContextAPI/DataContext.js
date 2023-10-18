@@ -345,6 +345,7 @@ const DataState = (props) => {
       },
     },
   ]);
+  const delay = (time) => new Promise((resolve) => setTimeout(resolve, time));
 
   const login = () => {
     setIsLoggedIn(true);
@@ -556,14 +557,14 @@ const DataState = (props) => {
             phoneNumber: phoneNumber,
             website: website,
             sourceUrl: sourceUrl,
-            messages: messages,
+            // messages: messages,
 
             timestamp: serverTimestamp(),
           },
           { merge: true }
         );
 
-        console.log("Document updated successfully");
+        console.log("Document updated successfully: ", docId);
       } catch (error) {
         console.error("Error updating document:", error);
       }
@@ -576,8 +577,8 @@ const DataState = (props) => {
             phoneNumber: phoneNumber,
             website: website,
             sourceUrl: sourceUrl,
-            messages: messages,
-            messagesLP: messagesLP,
+            // messages: messages,
+            // messagesLP: messagesLP,
             timestamp: serverTimestamp(),
           }
         );
@@ -591,9 +592,33 @@ const DataState = (props) => {
   };
 
   // ==================================================================
+  const createNewFirebaseDoc = async () => {
+    try {
+      const newDocRef = await addDoc(
+        collection(db, "LP_Visitors_Data_AutoSEO"),
+        {
+          username: name,
+          phoneNumber: phoneNumber,
+          website: website,
+          sourceUrl: sourceUrl,
+          // messages: messages,
+          // messagesLP: messagesLP,
+          timestamp: serverTimestamp(),
+        }
+      );
 
+      // If you still want to update some state with the new ID, you can keep this
+      setDocId(newDocRef.id);
+
+      console.log("Document created successfully with ID:", newDocRef.id);
+    } catch (error) {
+      console.error("Error adding new document:", error);
+    }
+  };
+  // =====================================================
   const fetchData = async () => {
     console.log("Fetch is called: ", phoneNumber, website);
+    // await createNewFirebaseDoc();
     const getSummary = async (submitData) => {
       try {
         const response = await axios.post(
@@ -649,7 +674,8 @@ const DataState = (props) => {
 
       setBlogsFunction({ data: Blogs.data.blogs });
       setDataLoaded(true);
-      //  delay(2000);
+
+      // delay(2000);
       //  navigate("/dashboard");
     } catch (error) {
       //  setstate(false);

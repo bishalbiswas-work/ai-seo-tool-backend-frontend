@@ -63,6 +63,13 @@ const PaymentSuccess = () => {
             ]
             });
 
+            <script>
+              rdt('track', 'Purchase', {
+                  "transactionId": "12345678",
+                  "value": 20
+              });
+            </script>
+
           `,
         }}
       />

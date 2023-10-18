@@ -65,7 +65,7 @@ const ExtractData = () => {
       setProgress((prevProgress) =>
         prevProgress >= 100 ? 1 : prevProgress + 1
       );
-    }, 600);
+    }, 10000);
     return () => {
       clearInterval(timer);
     };

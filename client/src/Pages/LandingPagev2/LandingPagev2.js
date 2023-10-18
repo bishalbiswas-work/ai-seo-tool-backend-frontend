@@ -21,6 +21,9 @@ import PagerIndicator from "./PageIndicator";
 import Text from "./Text";
 // import PInput from "./PInput-old";
 import PInput from "./PInput";
+import useGeoLocation from "react-ipgeolocation";
+import { getCountryCallingCode } from "libphonenumber-js";
+
 // import Desktop6MixpanelGenerateTextToVideoRowcreateainstareeOne from "components/Desktop6MixpanelGenerateTextToVideoRowcreateainstareeOne";
 import { Box, CircularProgress, TextField, Typography } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
@@ -34,6 +37,12 @@ import { useContext } from "react";
 import DataContext from "ContextAPI/DataState";
 // End Import ContextAPI
 const LandingPagev2 = () => {
+  const location = useGeoLocation();
+  // console.log(location);
+  // console.log(location.country);
+  // const phoneCode = getCountryCallingCode(location.country);
+  // console.log(phoneCode);
+  // console.log(getCountryCallingCode(location.country));
   const API_BASE_URL =
     process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
   const navigate = useNavigate();
@@ -45,7 +54,7 @@ const LandingPagev2 = () => {
   const [checkUrlStatus, setCheckUrlStatus] = useState(true);
   const [isValidUrl, setIsValidUrl] = useState(false);
   const [confirmClick, setConfirmClick] = useState(false);
-
+  const [confirmButton, setConfirmButton] = useState(false);
   const [number, setNumber] = useState(null);
   const [validNumber, setValidNumber] = useState({
     valid: false,
@@ -56,6 +65,12 @@ const LandingPagev2 = () => {
     const currentURL = window.location.href;
     return currentURL;
   }
+  useEffect(() => {
+    if (location && location.country) {
+      const countryCode = getCountryCallingCode(location.country);
+      setContactNumber("+" + countryCode);
+    }
+  }, [location]);
 
   useEffect(() => {
     dataContext.setPhoneNumberFunction({
@@ -100,6 +115,7 @@ const LandingPagev2 = () => {
       setSuccessUrl(false);
     }
   };
+  // use
 
   const handelGetStarted = async () => {
     const strippedPhone = contactNumber.replace(/\D/g, ""); // Removes non-digit characters
@@ -117,7 +133,7 @@ const LandingPagev2 = () => {
       setValidNumber({ valid: true, click: true });
       dataContext.updateOrCreateFirebaseDoc();
 
-      delay(500).then(() => {
+      delay(2000).then(() => {
         // navigate("/auth");
         dataContext.fetchData();
         navigate("/extract-data");
@@ -144,7 +160,19 @@ const LandingPagev2 = () => {
       console.log(err);
     }
   };
+  // =====================================
+  //  Update Data to firebase
+  // =====================================
 
+  // useEffect(() => {
+  //   const updateFun = async () => {
+  //     console.log("Doc in firebase ");
+  //     await dataContext.updateOrCreateFirebaseDoc();
+  //     delay(1000);
+  //   };
+  //   updateFun();
+  // }, [confirmButton]);
+  // =====================================
   return (
     <>
       <div className="bg-white-A700 flex flex-col font-helvetica gap-5 items-center justify-start mx-auto w-full">
@@ -352,7 +380,10 @@ const LandingPagev2 = () => {
                             <Box sx={{ position: "relative" }}>
                               <Button
                                 variant="contained"
-                                onClick={() => handelGetStarted()}
+                                onClick={() => {
+                                  handelGetStarted();
+                                  setConfirmButton(true);
+                                }}
                                 style={{
                                   position: "absolute",
                                   left: "-157px",

@@ -11,6 +11,7 @@ import Line from "./Line";
 import List from "./List";
 import PagerIndicator from "./PageIndicator";
 import Text from "./Text";
+import Typewriter from "typewriter-effect";
 
 // Import ContextAPI
 import { useContext } from "react";
@@ -152,6 +153,7 @@ const Dashboardv3 = () => {
                       className="flex flex-col gap-5 items-center w-full"
                       orientation="vertical"
                     >
+                      {/* Main Container for blogs */}
                       <div className="flex md:flex-1 flex-col h-[696px] md:h-auto items-start justify-start my-0 w-auto md:w-full">
                         <div className="flex flex-col md:gap-10 gap-[147px] items-start justify-start w-full">
                           <div className="font-worksans gap-5 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 items-center justify-between w-full">
@@ -212,6 +214,10 @@ const Dashboardv3 = () => {
                                                   className="cursor-pointer font-medium min-w-[97px] rounded-md text-center text-sm"
                                                   shape="round"
                                                   color="indigo_A200_0c"
+                                                  style={{
+                                                    backgroundColor: `rgb(75 107 251  )`,
+                                                    color: "white",
+                                                  }}
                                                 >
                                                   {item}
                                                 </Button>
@@ -237,7 +243,13 @@ const Dashboardv3 = () => {
                                           className="leading-[28.00px] text-2xl md:text-[22px] text-gray-900_03 sm:text-xl w-full"
                                           size="txtWorkSansSemiBold24"
                                         >
-                                          {item.title}
+                                          <Typewriter
+                                            options={{
+                                              strings: [item.title],
+                                              autoStart: true,
+                                              loop: true,
+                                            }}
+                                          />
                                         </Text>
                                       </div>
                                     </div>
@@ -258,7 +270,7 @@ const Dashboardv3 = () => {
                                                 className="text-gray-900_04 text-xs w-auto"
                                                 size="txtDMSansRegular12"
                                               >
-                                                16500
+                                                16,000
                                               </Text>
                                               <Img
                                                 className="h-2.5 w-[11px]"
@@ -302,7 +314,7 @@ const Dashboardv3 = () => {
                                                 className="text-gray-900_04 text-xs w-auto"
                                                 size="txtDMSansRegular12"
                                               >
-                                                10000
+                                                10,000
                                               </Text>
                                               <Img
                                                 className="h-2.5 w-[11px]"
@@ -346,7 +358,7 @@ const Dashboardv3 = () => {
                                                 className="text-gray-900_04 text-xs w-auto"
                                                 size="txtDMSansRegular12"
                                               >
-                                                16500
+                                                16,000
                                               </Text>
                                               <Img
                                                 className="h-2.5 w-[11px]"
@@ -728,7 +740,7 @@ const Dashboardv3 = () => {
                                               className="text-gray-900_04 text-xs w-auto"
                                               size="txtDMSansRegular12"
                                             >
-                                              16500
+                                              16,000
                                             </Text>
                                             <Img
                                               className="h-2.5 w-[11px]"
@@ -772,7 +784,7 @@ const Dashboardv3 = () => {
                                               className="text-gray-900_04 text-xs w-auto"
                                               size="txtDMSansRegular12"
                                             >
-                                              10000
+                                              10,000
                                             </Text>
                                             <Img
                                               className="h-2.5 w-[11px]"
@@ -816,7 +828,7 @@ const Dashboardv3 = () => {
                                               className="text-gray-900_04 text-xs w-auto"
                                               size="txtDMSansRegular12"
                                             >
-                                              16500
+                                              16,000
                                             </Text>
                                             <Img
                                               className="h-2.5 w-[11px]"
@@ -1083,6 +1095,7 @@ const Dashboardv3 = () => {
                       </div>
                     </List>
                   </div>
+
                   {/* <div className="absolute md:h-[198px] h-[234px] left-[16%] top-[35%] w-[36%] sm:w-full">
                     <div
                       className="absolute bg-cover bg-no-repeat flex flex-col h-max inset-[0] items-center justify-center m-auto p-[79px] md:px-10 sm:px-5 w-[92%]"

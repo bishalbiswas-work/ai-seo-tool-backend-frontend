@@ -10,6 +10,7 @@ import Line from "./Line";
 import List from "./List";
 import PagerIndicator from "./PageIndicator";
 import Text from "./Text";
+import Typewriter from "typewriter-effect";
 
 import DesktopFiveOconclusion from "./DesktopFiveOconclusion";
 import LoaderBar from "./LoaderBar";
@@ -114,11 +115,22 @@ const BlogPage = () => {
                       >
                         {blogs[dataContext.selectedBlog].seoKeywords.map(
                           (item, index) => (
+                            // <Button
+                            //   key={index} // Remember to add a key prop when mapping in React
+                            //   className="cursor-pointer font-medium min-w-[97px] rounded-md text-center text-sm"
+                            //   shape="round"
+                            //   color="rgb(255 255 255 / var(--tw-text-opacity))"
+                            // >
+                            //   {item}
+                            // </Button>
                             <Button
-                              key={index} // Remember to add a key prop when mapping in React
+                              key={index}
                               className="cursor-pointer font-medium min-w-[97px] rounded-md text-center text-sm"
                               shape="round"
-                              color="indigo_A200_0c"
+                              style={{
+                                backgroundColor: `rgb(75 107 251  )`,
+                                color: "white",
+                              }}
                             >
                               {item}
                             </Button>
@@ -138,7 +150,15 @@ const BlogPage = () => {
                         className="leading-[40.00px] max-w-[695px] md:max-w-full text-4xl sm:text-[32px] md:text-[34px] text-gray-900_03"
                         size="txtWorkSansSemiBold36"
                       >
-                        {blog.title}
+                        {/* {blog.title} */}
+
+                        <Typewriter
+                          options={{
+                            strings: [blog.title],
+                            autoStart: true,
+                            loop: true,
+                          }}
+                        />
                       </Text>
                     </div>
                     <div className="flex flex-col items-center justify-start w-auto">
@@ -160,7 +180,15 @@ const BlogPage = () => {
                       className="leading-[32.00px] text-gray-800 text-xl"
                       size="txtSourceSerifProRegular20"
                     >
-                      {blog.content.intro}
+                      {/* {blog.content.intro} */}
+
+                      <Typewriter
+                        options={{
+                          strings: [blog.content.intro],
+                          autoStart: true,
+                          loop: true,
+                        }}
+                      />
                       {/* <>
                         Traveling is an enriching experience that opens up new
                         horizons, exposes us to different cultures, and creates
@@ -375,7 +403,11 @@ const BlogPage = () => {
                   className="cursor-pointer font-semibold rounded-[14px] shadow-bs5 sm:text-[21px] md:text-[23px] text-[25px] text-center w-[300px]"
                   size="md"
                   variant="gradient"
-                  color="purple_800_indigo_800"
+                  // color="purple_800_indigo_800"
+                  style={{
+                    backgroundColor: `rgb(6 6 64)`,
+                    color: "white",
+                  }}
                 >
                   Get Started
                 </Button>
@@ -997,7 +1029,7 @@ const BlogPage = () => {
               </div> */}
             </div>
           </div>
-          <div className="absolute bg-white-A700 border border-gray-300_01 border-solid flex flex-col font-worksans gap-2.5 items-center justify-start p-4 right-[0] rounded-[12px] top-[0] w-auto">
+          {/* <div className="absolute bg-white-A700 border border-gray-300_01 border-solid flex flex-col font-worksans gap-2.5 items-center justify-start p-4 right-[0] rounded-[12px] top-[0] w-auto">
             <div className="flex flex-col gap-4 items-center justify-start w-auto">
               <div className="bg-white-A700 flex flex-col gap-[7.5px] items-center justify-start px-3 py-[9px] rounded-[9px] w-[132px]">
                 <div className="flex flex-col font-dmsans gap-[9px] h-[75px] md:h-auto items-center justify-start w-auto">
@@ -1135,7 +1167,7 @@ const BlogPage = () => {
                 </div>
               </List>
             </div>
-          </div>
+          </div> */}
           {/* <div className="absolute bg-white-A700 border border-gray-300_01 border-solid flex flex-col font-worksans gap-6 items-start justify-start left-[0] px-4 py-6 rounded-[12px] top-[0] w-[303px]">
             <Text
               className="text-gray-900_03 text-lg w-auto"
