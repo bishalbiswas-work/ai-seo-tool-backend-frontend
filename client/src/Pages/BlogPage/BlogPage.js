@@ -150,15 +150,15 @@ const BlogPage = () => {
                         className="leading-[40.00px] max-w-[695px] md:max-w-full text-4xl sm:text-[32px] md:text-[34px] text-gray-900_03"
                         size="txtWorkSansSemiBold36"
                       >
-                        {/* {blog.title} */}
+                        {blog.title}
 
-                        <Typewriter
+                        {/* <Typewriter
                           options={{
                             strings: [blog.title],
                             autoStart: true,
-                            loop: true,
+                            loop: false,
                           }}
-                        />
+                        /> */}
                       </Text>
                     </div>
                     <div className="flex flex-col items-center justify-start w-auto">
@@ -180,15 +180,15 @@ const BlogPage = () => {
                       className="leading-[32.00px] text-gray-800 text-xl"
                       size="txtSourceSerifProRegular20"
                     >
-                      {/* {blog.content.intro} */}
+                      {blog.content.intro}
 
-                      <Typewriter
+                      {/* <Typewriter
                         options={{
                           strings: [blog.content.intro],
                           autoStart: true,
                           loop: true,
                         }}
-                      />
+                      /> */}
                       {/* <>
                         Traveling is an enriching experience that opens up new
                         horizons, exposes us to different cultures, and creates
@@ -1029,8 +1029,8 @@ const BlogPage = () => {
               </div> */}
             </div>
           </div>
-          {/* <div className="absolute bg-white-A700 border border-gray-300_01 border-solid flex flex-col font-worksans gap-2.5 items-center justify-start p-4 right-[0] rounded-[12px] top-[0] w-auto">
-            <div className="flex flex-col gap-4 items-center justify-start w-auto">
+          <div className="absolute bg-white-A700 border border-gray-300_01 border-solid flex flex-col font-worksans gap-2.5 items-center justify-start p-4 right-[0] rounded-[12px] top-[0] w-auto">
+            {/* <div className="flex flex-col gap-4 items-center justify-start w-auto">
               <div className="bg-white-A700 flex flex-col gap-[7.5px] items-center justify-start px-3 py-[9px] rounded-[9px] w-[132px]">
                 <div className="flex flex-col font-dmsans gap-[9px] h-[75px] md:h-auto items-center justify-start w-auto">
                   <Img
@@ -1100,7 +1100,7 @@ const BlogPage = () => {
                   Medium
                 </Text>
               </div>
-            </div>
+            </div> */}
             <Img
               className="h-[26px] w-full"
               src="/images/img_frame1000002924.svg"
@@ -1167,7 +1167,7 @@ const BlogPage = () => {
                 </div>
               </List>
             </div>
-          </div> */}
+          </div>
           {/* <div className="absolute bg-white-A700 border border-gray-300_01 border-solid flex flex-col font-worksans gap-6 items-start justify-start left-[0] px-4 py-6 rounded-[12px] top-[0] w-[303px]">
             <Text
               className="text-gray-900_03 text-lg w-auto"

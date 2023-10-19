@@ -214,9 +214,13 @@ const Dashboardv3 = () => {
                                                   className="cursor-pointer font-medium min-w-[97px] rounded-md text-center text-sm"
                                                   shape="round"
                                                   color="indigo_A200_0c"
+                                                  // style={{
+                                                  //   backgroundColor: `rgb(75 107 251  )`,
+                                                  //   color: "white",
+                                                  // }}
                                                   style={{
-                                                    backgroundColor: `rgb(75 107 251  )`,
-                                                    color: "white",
+                                                    // backgroundColor: `rgb(75 107 251  )`,
+                                                    color: `rgb(75 107 251  )`,
                                                   }}
                                                 >
                                                   {item}
