@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.46cf6913.css",
+    "main.js": "/static/js/main.978500c9.js",
+    "static/media/InterSemiBold.ttf": "/static/media/InterSemiBold.6058d3da655fb35169c2.ttf",
+    "static/media/MontserratRomanBold.ttf": "/static/media/MontserratRomanBold.50f0257aa1e905f4bfaf.ttf",
+    "static/media/WorkSansRomanBold.ttf": "/static/media/WorkSansRomanBold.1cdef49100a51e35264a.ttf",
+    "static/media/WorkSansSemiBold.ttf": "/static/media/WorkSansSemiBold.6059d691b0223afc6cc5.ttf",
+    "static/media/WorkSansRomanMedium.ttf": "/static/media/WorkSansRomanMedium.905f58df4c3ad21ca78d.ttf",
+    "static/media/WorkSansRomanRegular.ttf": "/static/media/WorkSansRomanRegular.7c5aca8a8c320a8df026.ttf",
+    "static/media/PoppinsLight.ttf": "/static/media/PoppinsLight.7641a0f76ca9ef6c252c.ttf",
+    "static/media/PoppinsRegular.ttf": "/static/media/PoppinsRegular.35d26b781dc5fda684cc.ttf",
+    "static/media/OpenSansRegular.ttf": "/static/media/OpenSansRegular.9a6cfa5890d7f3eef585.ttf",
+    "static/media/DMSansMedium.ttf": "/static/media/DMSansMedium.64a5ff1b212ef8a741e5.ttf",
+    "static/media/DMSansRegular.ttf": "/static/media/DMSansRegular.5796ba67a2ae308b784c.ttf",
+    "static/media/DMSansBold.ttf": "/static/media/DMSansBold.49af0e9e85f659857710.ttf",
+    "index.html": "/index.html",
+    "static/media/logo.svg": "/static/media/logo.103b5fa18196d5665a7e12318285c916.svg",
+    "main.46cf6913.css.map": "/static/css/main.46cf6913.css.map",
+    "main.978500c9.js.map": "/static/js/main.978500c9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.46cf6913.css",
+    "static/js/main.978500c9.js"
+  ]
+}

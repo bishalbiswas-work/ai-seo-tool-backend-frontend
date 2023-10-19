@@ -247,13 +247,14 @@ const Dashboardv3 = () => {
                                           className="leading-[28.00px] text-2xl md:text-[22px] text-gray-900_03 sm:text-xl w-full"
                                           size="txtWorkSansSemiBold24"
                                         >
-                                          <Typewriter
+                                          {item.title}
+                                          {/* <Typewriter
                                             options={{
                                               strings: [item.title],
                                               autoStart: true,
                                               loop: true,
                                             }}
-                                          />
+                                          /> */}
                                         </Text>
                                       </div>
                                     </div>
