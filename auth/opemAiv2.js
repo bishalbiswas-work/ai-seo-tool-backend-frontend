@@ -18,7 +18,25 @@ const pinecone = new Pinecone({
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
-async function contentSummarize(content, wordLimit) {
+function limitWords(text, MAX_TOKENS = 5000) {
+  // Remove newlines and replace with spaces
+  text = text.replace(/\r?\n|\r/g, " ");
+
+  // Remove extra spaces
+  text = text.replace(/\s+/g, " ").trim();
+
+  // Split text into words/tokens
+  let tokens = text.split(" ");
+
+  // If the number of tokens is less than or equal to the limit, return the modified text
+  if (tokens.length <= MAX_TOKENS) {
+    return text;
+  }
+
+  // Otherwise, return only the first MAX_TOKENS tokens
+  return tokens.slice(0, MAX_TOKENS).join(" ");
+}
+async function contentSummarize(content) {
   const endpoint = "https://api.openai.com/v1/chat/completions";
   const headers = {
     "Content-Type": "application/json",
@@ -26,7 +44,7 @@ async function contentSummarize(content, wordLimit) {
   };
 
   const data = {
-    model: "gpt-3.5-turbo",
+    model: "gpt-3.5-turbo-16k",
     messages: [
       {
         role: "system",
@@ -34,7 +52,7 @@ async function contentSummarize(content, wordLimit) {
       },
       {
         role: "user",
-        content: `Given the content sourced directly from the website, provide a summary that best describes them and their work. The summary should be up to ${wordLimit} words: ${content}.`,
+        content: `Given the content sourced directly from the website, provide a summary that best describes them and their work. The summary should be up to 1000 words: ${content}.`,
       },
     ],
   };
@@ -150,6 +168,7 @@ async function writeContent(titles, wordLimit) {
   }
 }
 module.exports = {
+  limitWords,
   contentSummarize,
   writeTitles,
   writeContent,

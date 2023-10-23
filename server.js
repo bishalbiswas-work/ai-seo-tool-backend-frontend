@@ -13,7 +13,6 @@ const {
   determineURLFormat,
   getContent,
 } = require("./auth/webScrape");
-const { getContentv2, fetchContentAndFavicon } = require("./auth/webScrapev2");
 const {
   createVectors,
   createVectors2,
@@ -31,6 +30,7 @@ const {
   writeTitles,
   writeContent,
   writeImagesKeywords,
+  limitWords,
 } = require("./auth/opemAiv2");
 const {
   writeBlog,
@@ -38,7 +38,6 @@ const {
   writeTitleAndImageKeyword,
   convertBlobToJSONMain,
   generateBlogs,
-  generateBlogsv2,
 } = require("./auth/openAiv3");
 //
 //
@@ -195,28 +194,20 @@ app.post("/api/get-summary", async (req, res) => {
     let UserPhoneNumber = req.body.UserPhoneNumber;
     // let urlLevel = req.body.urlLevel;
     console.log(websiteUrl, UserPhoneNumber);
-    let name = extractDomainName(websiteUrl);
+    let name = await extractDomainName(websiteUrl);
+    let faviconUrl = await fetchFavicon(websiteUrl);
+    let content = await getContent(websiteUrl);
+    console.log("Scraped Data: ", content.content);
+    let limitwords = limitWords(content.content);
+    console.log("======================================================");
+    console.log(limitwords);
+    console.log("======================================================");
+    let summary = await contentSummarize(limitwords);
 
-    // let faviconUrl = await fetchFavicon(websiteUrl);
-    // let faviconUrl = "www.test.com";
-
-    // // let content = await getContent(websiteUrl);
-    // let content = await getContentv2(websiteUrl);
-    // let content = "this is content";
-    // let [faviconUrl, content] = await Promise.all([
-    //   fetchFavicon(websiteUrl),
-    //   getContentv2(websiteUrl),
-    // ]);
-    let data = await fetchContentAndFavicon(websiteUrl);
-    console.log("Scraped Data: ", data.content);
-
-    let summary = await contentSummarize(data.content, 150);
-
-    // let summary = data.content;
     res.json({
       message: "success",
       name: name,
-      faviconUrl: data.favicon,
+      faviconUrl: faviconUrl,
       summary: summary,
     });
   } catch (err) {
@@ -232,9 +223,7 @@ app.post("/api/get-blogs", async (req, res) => {
     let blogCount = req.body.blogCount;
     let wordCount = req.body.wordCount;
 
-    // let blogs = await generateBlogs(summary, blogCount, wordCount);
-    let blogs = await generateBlogsv2(summary, blogCount, wordCount);
-
+    let blogs = await generateBlogs(summary, blogCount, wordCount);
     res.json({
       message: "success",
       blogs: blogs,
