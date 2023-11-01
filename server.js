@@ -42,6 +42,8 @@ const {
 //
 //
 //
+const dns = require("dns");
+
 var admin = require("firebase-admin");
 var serviceAccount = require("./auth/messangergpt-firebase-adminsdk-b3qv7-42edd05227.json");
 admin.initializeApp({
@@ -265,6 +267,33 @@ app.post("/api/check-url", async (req, res) => {
 // ========================================================
 //                    End Chec Url
 // ========================================================
+
+// =======================================================
+
+app.post("/api/check-domain-ip", (req, res) => {
+  const { domain, ip } = req.body;
+
+  dns.lookup(domain, (err, address) => {
+    if (err) {
+      res.status(500).send({ error: `Error occurred: ${err.message}` });
+      return;
+    }
+
+    if (address === ip) {
+      res.send({
+        message: `The domain ${domain} points to the given IP: ${ip}`,
+        status: true,
+      });
+    } else {
+      res.send({
+        message: `The domain ${domain} does not point to the given IP: ${ip}. It points to ${address}`,
+        status: false,
+      });
+    }
+  });
+});
+
+// =======================================================
 
 app.post("/api/get-response-self", async (req, res) => {
   try {

@@ -85,6 +85,13 @@ const DataState = (props) => {
   const [messageContext, setMessageContext] = useState();
   const [selectedBlog, setSelectedBlog] = useState(1);
   const [businessMetaData, setBusinessMetaData] = useState({
+    status: false,
+    domain: "",
+    facebookLink: "",
+    linkedinLink: "",
+    twitterLink: "",
+    redditLink: "",
+    voice: "",
     message: "success",
     name: "wisesheets",
     faviconUrl: "https://www.wisesheets.io/favicon.ico",
@@ -684,11 +691,56 @@ const DataState = (props) => {
     }
   };
   // ==================================================================
+  const pushBlogs = async (docId) => {
+    const targetDoc = doc(db, "AutoSEO_Blogs", docId);
 
-  // useEffect(() => {
+    try {
+      await setDoc(
+        targetDoc,
+        {
+          ssl: false,
+          blogs: blogs,
+          businessMetaData: businessMetaData,
+          timestamp: serverTimestamp(),
+        },
+        { merge: true }
+      );
 
-  // }, [docId, phoneNumber, website, sourceUrl, messages]);
-
+      console.log("Document updated successfully: ", docId);
+    } catch (error) {
+      console.error("Error updating document:", error);
+    }
+  };
+  const verifiyDomainIP = async (domain) => {
+    const getIp = async (submitData) => {
+      try {
+        const response = await axios.post(
+          `${API_BASE_URL}/api/check-domain-ip`,
+          // "http://localhost:5000/api/get-access-token",
+          submitData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        return response;
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    try {
+      let submitData = {
+        domain: domain,
+        ip: "159.223.182.225",
+      };
+      const response = await getIp(submitData);
+      console.log("Backend Check Domain: ", response);
+      return response;
+    } catch (error) {
+      console.error("Error updating document:", error);
+    }
+  };
   return (
     <DataContext.Provider
       value={{
@@ -758,6 +810,8 @@ const DataState = (props) => {
         setMessageContextDetails,
         updateOrCreateFirebaseDoc,
         updateKnowledgeBase,
+        pushBlogs,
+        verifiyDomainIP,
       }}
     >
       {props.children}

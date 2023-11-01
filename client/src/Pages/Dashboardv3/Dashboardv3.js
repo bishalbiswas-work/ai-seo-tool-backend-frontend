@@ -33,7 +33,11 @@ const Dashboardv3 = () => {
     dataContext.businessMetaData
   );
   const handleClickNext = () => {
-    navigate("/pricing");
+    // navigate("/pricing");
+    navigate("/onboarding/dns-setup");
+  };
+  const handleClickTryFree = () => {
+    navigate("/onboarding/dns-setup");
   };
   console.log("Blogs on Dashboard ", blogs);
   return (
@@ -68,14 +72,17 @@ const Dashboardv3 = () => {
               <div className="bg-gray-200_04 pt-[30px] border border-solid border-white-A700_14 flex md:flex-1 flex-col items-end justify-start p-[5px] rounded-[24px] md:w-full">
                 <div className="flex flex-col items-center justify-start mr-2  md:w-full">
                   <Button
+                    // onClick={() => {
+                    //   handleClickNext();
+                    // }}
                     onClick={() => {
-                      handleClickNext();
+                      handleClickTryFree();
                     }}
                     className="cursor-pointer font-semibold min-w-[112px] rounded-[19px] text-[13px] text-center tracking-[0.20px]"
                     color="indigo_900"
                     size="md"
                   >
-                    Try For Free{" "}
+                    Start Free Trial
                   </Button>
                 </div>
               </div>
@@ -1308,20 +1315,31 @@ const Dashboardv3 = () => {
                   }}
                   className="cursor-pointer font-semibold rounded-[14px] shadow-bs5 text-center text-lg w-[300px]"
                   size="lg"
-                  variant="gradient"
-                  color="purple_800_indigo_800"
+                  variant="fill"
+                  // variant="gradient"
+                  // color="purple_800_indigo_800"
+                  color="indigo_900"
+                  // style={{ background: "#060640" }}
                 >
-                  Get Started
+                  Automate Your SEO
                 </Button>
               </div>
-              <div>
+              <div className="w-full flex justify-end items-center">
+                <Text
+                  className="ml-2 md:ml-0 text-[15px] text-black-900"
+                  size="txtDMSansBold15"
+                >
+                  2023 December
+                </Text>
+              </div>
+              {/* <div>
                 <Text
                   className="text-center mt-[100px] md:ml-[0] sm:text-[32px] md:text-[38px] text-[42px] text-black-900"
                   size="txtHelveticaBold42"
                 >
                   What Busy Founders & Marketers Say...
                 </Text>
-              </div>
+              </div> */}
               <div className="flex md:flex-col flex-row md:gap-10 items-start justify-between mt-[100px] w-full">
                 {/* <div className="bg-white-A700 flex md:flex-1 flex-col items-center justify-start mb-[41px] md:mt-0 mt-[76px] p-[17px] rounded-[12px] shadow-bs4 w-[26%] md:w-full">
                   <div className="flex flex-col justify-start mb-[3px] mt-3 w-full">

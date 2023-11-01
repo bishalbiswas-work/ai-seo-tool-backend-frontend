@@ -19,6 +19,8 @@ import BlogPage2 from "./Pages/BlogPage/BlogPage";
 // import Logout from "./Pages/Auth/Logout";
 import PaymentSuccess from "./Pages/Auth/PaymentSuccess";
 import Pricing from "./Pages/Pricing";
+import NewPricing from "Pages/NewPricing";
+import ConnectDomain from "Pages/ConnectDomain";
 // End Pages Imports
 // Components Import
 import WrapperComponent from "./Pages/WrapperComponent";
@@ -31,6 +33,13 @@ import DataState from "./ContextAPI/DataContext";
 // import ChatInterface from "./Pages/Onboard/ChatInterface";
 // import Success from "./Pages/Auth/Success";
 // ContentAPI End
+
+// Onboarding Pages
+
+import DNSSetup from "pages/DNSSetup";
+import VoiceSetup from "pages/VoiceSetup";
+import AddSocialMediaLinks from "pages/AddSocialMediaLinks";
+import AddWebsiteCode from "pages/AddWebsiteCode";
 class App extends Component {
   render() {
     return (
@@ -126,11 +135,59 @@ class App extends Component {
                     </WrapperComponent>
                   }
                 />
-                <Route
+                {/* <Route
                   path="/pricing"
                   element={
                     <WrapperComponent>
                       <Pricing />
+                    </WrapperComponent>
+                  }
+                /> */}
+                <Route
+                  path="/pricing"
+                  element={
+                    <WrapperComponent>
+                      <NewPricing />
+                    </WrapperComponent>
+                  }
+                />
+                <Route
+                  path="dashboard/connect-domain"
+                  element={
+                    <WrapperComponent>
+                      <ConnectDomain />
+                    </WrapperComponent>
+                  }
+                />
+                <Route
+                  path="onboarding/dns-setup"
+                  element={
+                    <WrapperComponent>
+                      <DNSSetup />
+                    </WrapperComponent>
+                  }
+                />
+                <Route
+                  path="onboarding/voice-setup"
+                  element={
+                    <WrapperComponent>
+                      <VoiceSetup />
+                    </WrapperComponent>
+                  }
+                />
+                <Route
+                  path="onboarding/add-social-media-links"
+                  element={
+                    <WrapperComponent>
+                      <AddSocialMediaLinks />
+                    </WrapperComponent>
+                  }
+                />
+                <Route
+                  path="onboarding/add-website-code"
+                  element={
+                    <WrapperComponent>
+                      <AddWebsiteCode />
                     </WrapperComponent>
                   }
                 />

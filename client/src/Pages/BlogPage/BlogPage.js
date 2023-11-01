@@ -29,7 +29,8 @@ const BlogPage = () => {
   const [blog, setBlog] = useState(dataContext.blogs[dataContext.selectedBlog]);
   // console.log("Blog: ", blog);
   const handleClickNext = () => {
-    navigate("/pricing");
+    // navigate("/pricing");
+    navigate("/onboarding/dns-setup");
   };
   useEffect(() => {
     // window.scrollTo({ top: 0, behavior: "smooth" });

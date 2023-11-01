@@ -550,7 +550,8 @@ const LandingPagev2 = () => {
 
             <img
               style={{ width: "100%", marginLeft: "3em" }}
-              src="/landing.png"
+              // src="/landing.png"
+              src="/images/showcase.png"
               alt=""
             />
             <div className=""></div>

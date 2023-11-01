@@ -178,13 +178,62 @@ async function writeTitleAndImageKeyword(content, count) {
 
   //   `;
   const prompt = `
-For a business described as "${content}", generate the top ${count} titles that are between 4 to 10 words long. Each title should focus on high intent and be enclosed within <title></title> tags without any embedded keywords.
+  For a business described as "${content}", generate the top ${count} titles that are between 4 to 10 words long. Each title should focus on high intent and be enclosed within <title></title> tags without any embedded keywords.
 
-For every title, produce 2-3 individual stock image keywords and 2-3 SEO keywords. Each image keyword should be uniquely represented and surrounded by <imageKeyword></imageKeyword> tags, ensuring no repetitions. Similarly, each SEO keyword should be encompassed by <SEOkeyword></SEOkeyword> tags. These keywords should aptly represent the subject matter of the blog.
+  For every title, produce 2-3 individual stock image keywords and 2-3 SEO keywords. Each image keyword should be uniquely represented and surrounded by <imageKeyword></imageKeyword> tags, ensuring no repetitions. Similarly, each SEO keyword should be encompassed by <SEOkeyword></SEOkeyword> tags. These keywords should aptly represent the subject matter of the blog.
 
-Ensure that keywords are not separated by commas. Instead, each keyword should be uniquely wrapped in its respective tag. Abstain from integrating any other tags or additional descriptions in your response. Ideally, the keywords should represent the search queries a potential customer might use in relation to the business.
+  Ensure that keywords are not separated by commas. Instead, each keyword should be uniquely wrapped in its respective tag. Abstain from integrating any other tags or additional descriptions in your response. Ideally, the keywords should represent the search queries a potential customer might use in relation to the business.
 
-  `;
+    `;
+  //   const prompt = `
+  // For a business described as "${content}", generate the top ${count} titles that are between 4 to 10 words long. Each title should focus on high intent and be enclosed within <title></title> tags without any embedded keywords.
+
+  // For every title, produce 2-3 individual stock image keywords. Each image keyword should be uniquely represented and surrounded by <imageKeyword></imageKeyword> tags, ensuring no repetitions. These keywords should aptly represent the subject matter of the blog.
+
+  // Ensure that keywords are not separated by commas. Instead, each keyword should be uniquely wrapped in its respective tag. Abstain from integrating any other tags or additional descriptions in your response. Ideally, the keywords should represent the search queries a potential customer might use in relation to the business.
+
+  // Make sure that all keywords are unique.
+
+  //     `;
+
+  const data = {
+    model: "gpt-3.5-turbo",
+    messages: [
+      {
+        role: "system",
+        content: "You are a helpful assistant. And do content writing",
+      },
+      {
+        role: "user",
+        content: prompt,
+      },
+    ],
+  };
+  try {
+    const response = await axios.post(endpoint, data, { headers: headers });
+    if (response.data.choices && response.data.choices.length > 0) {
+      return response.data.choices[0].message.content;
+    } else {
+      throw new Error("No content returned from OpenAI");
+    }
+  } catch (error) {
+    console.error("Error fetching data from OpenAI:", error);
+    throw error;
+  }
+}
+// =====================================================================
+async function checkContentRepeation(content) {
+  const endpoint = "https://api.openai.com/v1/chat/completions";
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${OPENAI_API_KEY}`,
+  };
+
+  const prompt = `
+   Please review the following output for repeated image and SEO keywords. Correct any repetitions by replacing them with unique keywords. Maintain the existing structure, including the <title>, <imageKeyword>, and <SEOkeyword> tags, to ensure the output remains parseable.
+  
+   ${content}
+    `;
 
   const data = {
     model: "gpt-3.5-turbo",
@@ -311,7 +360,9 @@ function convertBlobToJSONMain(textBlob) {
 async function generateBlogs(contentObject, topicCount, wordLimit) {
   let blogs = [];
 
-  let topicsRaw = await writeTitleAndImageKeyword(contentObject, topicCount);
+  let topicsRaw1 = await writeTitleAndImageKeyword(contentObject, topicCount);
+  console.log(topicsRaw1);
+  let topicsRaw = await checkContentRepeation(topicsRaw1);
   console.log(topicsRaw);
   let topics = convertBlobToJSONMain(topicsRaw);
 
