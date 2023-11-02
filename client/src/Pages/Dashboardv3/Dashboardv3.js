@@ -33,11 +33,12 @@ const Dashboardv3 = () => {
     dataContext.businessMetaData
   );
   const handleClickNext = () => {
-    // navigate("/pricing");
-    navigate("/onboarding/dns-setup");
+    navigate("/pricing");
+    // navigate("/onboarding/dns-setup");
   };
   const handleClickTryFree = () => {
-    navigate("/onboarding/dns-setup");
+    navigate("/pricing");
+    // navigate("/onboarding/dns-setup");
   };
   console.log("Blogs on Dashboard ", blogs);
   return (
@@ -151,7 +152,7 @@ const Dashboardv3 = () => {
               </Text>
             </div>
           </div>
-          <div className="font-worksans h-[2158px] md:h-[3240px] sm:h-[4988px] relative w-full">
+          <div className="font-worksans h-[2358px] md:h-[3240px] sm:h-[4988px] relative w-full">
             <div className="absolute flex flex-col gap-5 inset-x-[0] items-center justify-start mx-auto top-[0] w-auto">
               <div className="h-[1419px] md:h-[2224px] sm:h-[3464px] relative w-full">
                 <div className="h-[1419px] md:h-[2224px] sm:h-[3464px] m-auto w-full">
@@ -411,231 +412,9 @@ const Dashboardv3 = () => {
                                 </div>
                               </div>
                             ))}
-
-                            {/* <div className="bg-white-A700 border border-gray-200_05 border-solid flex flex-1 flex-col gap-4 items-center justify-center p-4 rounded-[12px] w-full">
-                              <div className="h-60 relative w-full">
-                                <Img
-                                  className="h-60 m-auto object-cover rounded-md w-full"
-                                  src="images/img_rectangle38_240x360.png"
-                                  alt="rectangleThirtyEight_One"
-                                />
-                                <div className="absolute bg-white-A700 flex flex-col h-[89px] items-center justify-start p-1.5 right-[3%] rounded-md top-[5%] w-[89px]">
-                                  <div className="flex flex-col font-dmsans gap-1.5 h-[50px] md:h-auto items-center justify-start w-auto">
-                                    <Img
-                                      className="h-8 md:h-auto object-cover w-16 sm:w-full"
-                                      src="images/img_graph.png"
-                                      alt="graph_One"
-                                    />
-                                    <div className="flex flex-col items-center justify-between w-[72px]">
-                                      <Text
-                                        className="text-[10px] text-center text-green-A700"
-                                        size="txtDMSansBold10"
-                                      >
-                                        60
-                                      </Text>
-                                    </div>
-                                  </div>
-                                  <Text
-                                    className="text-[9px] text-center text-gray-900_03"
-                                    size="txtWorkSansRomanRegular9"
-                                  >
-                                    <span className="text-gray-900_03 font-worksans font-normal">
-                                      <>
-                                        Overall score
-                                        <br />
-                                      </>
-                                    </span>
-                                    <span className="text-gray-900_03 font-worksans font-bold">
-                                      High
-                                    </span>
-                                  </Text>
-                                </div>
-                              </div>
-                              <div className="flex flex-col gap-5 items-start justify-start p-2 w-full">
-                                <div className="flex flex-col gap-4 items-start justify-start w-full">
-                                  <Button
-                                    className="cursor-pointer font-medium min-w-[97px] rounded-md text-center text-sm"
-                                    shape="round"
-                                    color="indigo_A200_0c"
-                                  >
-                                    Technology
-                                  </Button>
-                                  <Text
-                                    className="leading-[28.00px] max-w-[344px] md:max-w-full text-2xl md:text-[22px] text-gray-900_03 sm:text-xl"
-                                    size="txtWorkSansSemiBold24"
-                                  >
-                                    The Impact of Technology on the Workplace:
-                                    How Technology is Changing
-                                  </Text>
-                                </div>
-                                <div className="flex flex-col items-center justify-start w-auto">
-                                  <Text
-                                    className="text-base text-gray-500_03 w-auto"
-                                    size="txtWorkSansRomanRegular16"
-                                  >
-                                    August 20, 2022
-                                  </Text>
-                                </div>
-                                <div className="flex flex-col items-start justify-start w-auto">
-                                  <div className="flex flex-row gap-5 items-start justify-start w-auto">
-                                    <div className="bg-amber-100 border border-amber-A700 border-solid flex flex-row gap-1 items-center justify-start px-2 py-[3px] rounded-md w-auto">
-                                      <Text
-                                        className="text-gray-900_04 text-xs w-auto"
-                                        size="txtDMSansRegular12"
-                                      >
-                                        10000
-                                      </Text>
-                                      <Img
-                                        className="h-2.5 w-[11px]"
-                                        src="images/img_trash.svg"
-                                        alt="trash_One"
-                                      />
-                                      <Text
-                                        className="text-[11px] text-amber-A700 w-auto"
-                                        size="txtPoppinsRegular11AmberA700"
-                                      >
-                                        Medium
-                                      </Text>
-                                    </div>
-                                    <div className="bg-deep_orange-50 border border-deep_orange-A700 border-solid flex flex-row gap-0.5 items-center justify-start px-2 py-[3px] rounded-md w-auto">
-                                      <Text
-                                        className="text-gray-900_04 text-xs w-auto"
-                                        size="txtDMSansRegular12"
-                                      >
-                                        Competition
-                                      </Text>
-                                      <Img
-                                        className="h-2.5 w-[11px]"
-                                        src="images/img_skill.svg"
-                                        alt="skill"
-                                      />
-                                      <Text
-                                        className="text-[11px] text-deep_orange-A700 w-auto"
-                                        size="txtPoppinsRegular11DeeporangeA700"
-                                      >
-                                        High
-                                      </Text>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="bg-white-A700 border border-gray-200_05 border-solid flex flex-1 flex-col gap-4 items-center justify-center p-4 rounded-[12px] w-full">
-                              <div className="h-60 relative w-full">
-                                <Img
-                                  className="h-60 m-auto object-cover rounded-md w-full"
-                                  src="images/img_rectangle38_1.png"
-                                  alt="rectangleThirtyEight_Two"
-                                />
-                                <div className="absolute bg-white-A700 flex flex-col h-[89px] items-center justify-start p-1.5 right-[3%] rounded-md top-[5%] w-[89px]">
-                                  <div className="flex flex-col font-dmsans gap-1.5 h-[50px] md:h-auto items-center justify-start w-auto">
-                                    <Img
-                                      className="h-8 md:h-auto object-cover w-16 sm:w-full"
-                                      src="images/img_graph.png"
-                                      alt="graph_Two"
-                                    />
-                                    <div className="flex flex-col items-center justify-between w-[72px]">
-                                      <Text
-                                        className="text-[10px] text-center text-green-A700"
-                                        size="txtDMSansBold10"
-                                      >
-                                        60
-                                      </Text>
-                                    </div>
-                                  </div>
-                                  <Text
-                                    className="text-[9px] text-center text-gray-900_03"
-                                    size="txtWorkSansRomanRegular9"
-                                  >
-                                    <span className="text-gray-900_03 font-worksans font-normal">
-                                      <>
-                                        Overall score
-                                        <br />
-                                      </>
-                                    </span>
-                                    <span className="text-gray-900_03 font-worksans font-bold">
-                                      High
-                                    </span>
-                                  </Text>
-                                </div>
-                              </div>
-                              <div className="flex flex-col gap-5 items-start justify-start p-2 w-full">
-                                <div className="flex flex-col gap-4 items-start justify-start w-full">
-                                  <Button
-                                    className="cursor-pointer font-medium min-w-[97px] rounded-md text-center text-sm"
-                                    shape="round"
-                                    color="indigo_A200_0c"
-                                  >
-                                    Technology
-                                  </Button>
-                                  <Text
-                                    className="leading-[28.00px] max-w-[344px] md:max-w-full text-2xl md:text-[22px] text-gray-900_03 sm:text-xl"
-                                    size="txtWorkSansSemiBold24"
-                                  >
-                                    The Impact of Technology on the Workplace:
-                                    How Technology is Changing
-                                  </Text>
-                                </div>
-                                <div className="flex flex-col items-center justify-start w-auto">
-                                  <Text
-                                    className="text-base text-gray-500_03 w-auto"
-                                    size="txtWorkSansRomanRegular16"
-                                  >
-                                    August 20, 2022
-                                  </Text>
-                                </div>
-                                <div className="flex flex-col items-start justify-start w-auto">
-                                  <div className="flex flex-row gap-5 items-start justify-start w-auto">
-                                    <div className="bg-green-A100 border border-green-A700 border-solid flex flex-row gap-1 items-center justify-start px-2 py-[3px] rounded-md w-auto">
-                                      <Text
-                                        className="text-gray-900_04 text-xs w-auto"
-                                        size="txtDMSansRegular12"
-                                      >
-                                        16500
-                                      </Text>
-                                      <Img
-                                        className="h-2.5 w-[11px]"
-                                        src="images/img_signal.svg"
-                                        alt="signal_One"
-                                      />
-                                      <Text
-                                        className="text-[11px] text-green-A700 w-auto"
-                                        size="txtPoppinsRegular11"
-                                      >
-                                        High
-                                      </Text>
-                                    </div>
-                                    <div className="bg-amber-100 border border-amber-A700 border-solid flex flex-row gap-0.5 items-center justify-start px-2 py-[3px] rounded-md w-auto">
-                                      <Text
-                                        className="text-gray-900_04 text-xs w-auto"
-                                        size="txtDMSansRegular12"
-                                      >
-                                        Competition
-                                      </Text>
-                                      <Img
-                                        className="h-2.5 w-[11px]"
-                                        src="images/img_trash.svg"
-                                        alt="trash_Two"
-                                      />
-                                      <Text
-                                        className="text-[11px] text-amber-A700 w-auto"
-                                        size="txtPoppinsRegular11AmberA700"
-                                      >
-                                        Medium
-                                      </Text>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div> */}
                           </div>
-                          {/* <Text
-                            className="text-[24px] text-end text-black-900"
-                            size="txtDMSansBold15"
-                          >
-                            2023 November
-                          </Text> */}
-                          <div
+
+                          {/* <div
                             style={{
                               textAlign: "right",
                               width: "100%",
@@ -653,10 +432,10 @@ const Dashboardv3 = () => {
                             >
                               2023 November
                             </Text>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
-                      <div className="flex md:flex-1 flex-col h-[703px] md:h-auto items-start justify-start my-0 w-auto md:w-full">
+                      {/* <div className="flex md:flex-1 flex-col h-[703px] md:h-auto items-start justify-start my-0 w-auto md:w-full">
                         <div className="flex flex-col md:gap-10 gap-[111px] justify-start w-full">
                           <div className="font-worksans gap-5 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 items-center justify-between w-full">
                             {blogs.slice(3, 6).map((item, index) => (
@@ -673,37 +452,6 @@ const Dashboardv3 = () => {
                                       src={item.imagesUrl[0].imageUrl}
                                       alt="rectangleThirtyEight"
                                     />
-                                    {/* <div className="absolute bg-white-A700 flex flex-col h-[89px] items-center justify-start p-1.5 right-[3%] rounded-md top-[5%] w-[89px]">
-                                    <div className="flex flex-col font-dmsans gap-1.5 h-[50px] md:h-auto items-center justify-start w-auto">
-                                      <Img
-                                        className="h-8 md:h-auto object-cover w-16 sm:w-full"
-                                        src="images/img_graph.png"
-                                        alt="graph"
-                                      />
-                                      <div className="flex flex-col items-center justify-between w-[72px]">
-                                        <Text
-                                          className="text-[10px] text-center text-green-A700"
-                                          size="txtDMSansBold10"
-                                        >
-                                          60
-                                        </Text>
-                                      </div>
-                                    </div>
-                                    <Text
-                                      className="text-[9px] text-center text-gray-900_03"
-                                      size="txtWorkSansRomanRegular9"
-                                    >
-                                      <span className="text-gray-900_03 font-worksans font-normal">
-                                        <>
-                                          Overall score
-                                          <br />
-                                        </>
-                                      </span>
-                                      <span className="text-gray-900_03 font-worksans font-bold">
-                                        High
-                                      </span>
-                                    </Text>
-                                  </div> */}
                                   </div>
                                   <div className="flex flex-col gap-5 items-start justify-start p-2 w-full">
                                     <div className="flex flex-col gap-4 items-start justify-start w-full">
@@ -720,13 +468,7 @@ const Dashboardv3 = () => {
                                           </>
                                         )
                                       )}
-                                      {/* <Button
-                                        className="cursor-pointer font-medium min-w-[97px] rounded-md text-center text-sm"
-                                        shape="round"
-                                        color="indigo_A200_0c"
-                                      >
-                                        Technology
-                                      </Button> */}
+
                                       <Text
                                         className="leading-[28.00px] max-w-[344px] md:max-w-full text-2xl md:text-[22px] text-gray-900_03 sm:text-xl"
                                         size="txtWorkSansSemiBold24"
@@ -880,222 +622,6 @@ const Dashboardv3 = () => {
                                 </div>
                               </div>
                             ))}
-                            {/* <div className="bg-white-A700 border border-gray-200_05 border-solid flex flex-1 flex-col gap-4 items-start justify-center p-4 rounded-[12px] w-full">
-                              <div className="h-60 relative w-full">
-                                <Img
-                                  className="h-60 m-auto object-cover rounded-md w-full"
-                                  src="images/img_rectangle38_3.png"
-                                  alt="rectangleThirtyEight_One"
-                                />
-                                <div className="absolute bg-white-A700 flex flex-col h-[89px] items-center justify-start p-1.5 right-[3%] rounded-md top-[5%] w-[89px]">
-                                  <div className="flex flex-col font-dmsans gap-1.5 h-[50px] md:h-auto items-center justify-start w-auto">
-                                    <Img
-                                      className="h-8 md:h-auto object-cover w-16 sm:w-full"
-                                      src="images/img_graph.png"
-                                      alt="graph_One"
-                                    />
-                                    <div className="flex flex-col items-center justify-between w-[72px]">
-                                      <Text
-                                        className="text-[10px] text-center text-green-A700"
-                                        size="txtDMSansBold10"
-                                      >
-                                        60
-                                      </Text>
-                                    </div>
-                                  </div>
-                                  <Text
-                                    className="text-[9px] text-center text-gray-900_03"
-                                    size="txtWorkSansRomanRegular9"
-                                  >
-                                    <span className="text-gray-900_03 font-worksans font-normal">
-                                      <>
-                                        Overall score
-                                        <br />
-                                      </>
-                                    </span>
-                                    <span className="text-gray-900_03 font-worksans font-bold">
-                                      High
-                                    </span>
-                                  </Text>
-                                </div>
-                              </div>
-                              <div className="flex flex-col gap-5 items-start justify-start p-2 w-full">
-                                <div className="flex flex-col gap-4 items-start justify-start w-full">
-                                  <Button
-                                    className="cursor-pointer font-medium min-w-[97px] rounded-md text-center text-sm"
-                                    shape="round"
-                                    color="indigo_A200_0c"
-                                  >
-                                    Technology
-                                  </Button>
-                                  <Text
-                                    className="leading-[28.00px] max-w-[344px] md:max-w-full text-2xl md:text-[22px] text-gray-900_03 sm:text-xl"
-                                    size="txtWorkSansSemiBold24"
-                                  >
-                                    The Impact of Technology on the Workplace:
-                                    How Technology is Changing
-                                  </Text>
-                                </div>
-                                <div className="flex flex-col items-center justify-start w-auto">
-                                  <Text
-                                    className="text-base text-gray-500_03 w-auto"
-                                    size="txtWorkSansRomanRegular16"
-                                  >
-                                    August 20, 2022
-                                  </Text>
-                                </div>
-                              </div>
-                              <div className="flex flex-col items-start justify-start w-auto">
-                                <div className="flex flex-row gap-5 items-start justify-start w-auto">
-                                  <div className="bg-green-A100 border border-green-A700 border-solid flex flex-row gap-1 items-center justify-start px-2 py-[3px] rounded-md w-auto">
-                                    <Text
-                                      className="text-gray-900_04 text-xs w-auto"
-                                      size="txtDMSansRegular12"
-                                    >
-                                      16500
-                                    </Text>
-                                    <Img
-                                      className="h-2.5 w-[11px]"
-                                      src="images/img_signal.svg"
-                                      alt="signal_One"
-                                    />
-                                    <Text
-                                      className="text-[11px] text-green-A700 w-auto"
-                                      size="txtPoppinsRegular11"
-                                    >
-                                      High
-                                    </Text>
-                                  </div>
-                                  <div className="bg-amber-100 border border-amber-A700 border-solid flex flex-row gap-0.5 items-center justify-start px-2 py-[3px] rounded-md w-auto">
-                                    <Text
-                                      className="text-gray-900_04 text-xs w-auto"
-                                      size="txtDMSansRegular12"
-                                    >
-                                      Competition
-                                    </Text>
-                                    <Img
-                                      className="h-2.5 w-[11px]"
-                                      src="images/img_trash.svg"
-                                      alt="trash_One"
-                                    />
-                                    <Text
-                                      className="text-[11px] text-amber-A700 w-auto"
-                                      size="txtPoppinsRegular11AmberA700"
-                                    >
-                                      Medium
-                                    </Text>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="bg-white-A700 border border-gray-200_05 border-solid flex flex-1 flex-col gap-4 items-start justify-center p-4 rounded-[12px] w-full">
-                              <div className="h-60 relative w-full">
-                                <Img
-                                  className="h-60 m-auto object-cover rounded-md w-full"
-                                  src="images/img_rectangle38_4.png"
-                                  alt="rectangleThirtyEight_Two"
-                                />
-                                <div className="absolute bg-white-A700 flex flex-col h-[89px] items-center justify-start p-1.5 right-[3%] rounded-md top-[5%] w-[89px]">
-                                  <div className="flex flex-col font-dmsans gap-1.5 h-[50px] md:h-auto items-center justify-start w-auto">
-                                    <Img
-                                      className="h-8 md:h-auto object-cover w-16 sm:w-full"
-                                      src="images/img_graph.png"
-                                      alt="graph_Two"
-                                    />
-                                    <div className="flex flex-col items-center justify-between w-[72px]">
-                                      <Text
-                                        className="text-[10px] text-center text-green-A700"
-                                        size="txtDMSansBold10"
-                                      >
-                                        60
-                                      </Text>
-                                    </div>
-                                  </div>
-                                  <Text
-                                    className="text-[9px] text-center text-gray-900_03"
-                                    size="txtWorkSansRomanRegular9"
-                                  >
-                                    <span className="text-gray-900_03 font-worksans font-normal">
-                                      <>
-                                        Overall score
-                                        <br />
-                                      </>
-                                    </span>
-                                    <span className="text-gray-900_03 font-worksans font-bold">
-                                      High
-                                    </span>
-                                  </Text>
-                                </div>
-                              </div>
-                              <div className="flex flex-col gap-5 items-start justify-start p-2 w-full">
-                                <div className="flex flex-col gap-4 items-start justify-start w-full">
-                                  <Button
-                                    className="cursor-pointer font-medium min-w-[97px] rounded-md text-center text-sm"
-                                    shape="round"
-                                    color="indigo_A200_0c"
-                                  >
-                                    Technology
-                                  </Button>
-                                  <Text
-                                    className="leading-[28.00px] max-w-[344px] md:max-w-full text-2xl md:text-[22px] text-gray-900_03 sm:text-xl"
-                                    size="txtWorkSansSemiBold24"
-                                  >
-                                    The Impact of Technology on the Workplace:
-                                    How Technology is Changing
-                                  </Text>
-                                </div>
-                                <div className="flex flex-col items-center justify-start w-auto">
-                                  <Text
-                                    className="text-base text-gray-500_03 w-auto"
-                                    size="txtWorkSansRomanRegular16"
-                                  >
-                                    August 20, 2022
-                                  </Text>
-                                </div>
-                              </div>
-                              <div className="flex flex-col items-start justify-start w-auto">
-                                <div className="flex flex-row gap-5 items-start justify-start w-auto">
-                                  <div className="bg-green-A100 border border-green-A700 border-solid flex flex-row gap-1 items-center justify-start px-2 py-[3px] rounded-md w-auto">
-                                    <Text
-                                      className="text-gray-900_04 text-xs w-auto"
-                                      size="txtDMSansRegular12"
-                                    >
-                                      16500
-                                    </Text>
-                                    <Img
-                                      className="h-2.5 w-[11px]"
-                                      src="images/img_signal.svg"
-                                      alt="signal_Two"
-                                    />
-                                    <Text
-                                      className="text-[11px] text-green-A700 w-auto"
-                                      size="txtPoppinsRegular11"
-                                    >
-                                      High
-                                    </Text>
-                                  </div>
-                                  <div className="bg-amber-100 border border-amber-A700 border-solid flex flex-row gap-0.5 items-center justify-start px-2 py-[3px] rounded-md w-auto">
-                                    <Text
-                                      className="text-gray-900_04 text-xs w-auto"
-                                      size="txtDMSansRegular12"
-                                    >
-                                      Competition
-                                    </Text>
-                                    <Img
-                                      className="h-2.5 w-[11px]"
-                                      src="images/img_trash.svg"
-                                      alt="trash_Two"
-                                    />
-                                    <Text
-                                      className="text-[11px] text-amber-A700 w-auto"
-                                      size="txtPoppinsRegular11AmberA700"
-                                    >
-                                      Medium
-                                    </Text>
-                                  </div>
-                                </div>
-                              </div>
-                            </div> */}
                           </div>
                           <Text
                             className="ml-2 md:ml-[0] text-[15px] text-black-900"
@@ -1104,8 +630,139 @@ const Dashboardv3 = () => {
                             December Blogs
                           </Text>
                         </div>
-                      </div>
+                      </div> */}
                     </List>
+                    {/* <div
+                      className="sm:flex-col flex-row gap-5 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 justify-start w-auto md:w-full"
+                      orientation="horizontal"
+                    >
+                      sdfsdfsdf
+                    </div> */}
+                    {/* <div className="flex flex-col items-center justify-center min-h-screen bg-blue-800">
+                      <div className="text-center text-white mb-6">
+                        <h1 className="text-2xl font-bold mb-2">
+                          Let AI Do Your SEO, While
+                        </h1>
+                        <h2 className="text-xl">You Grow Your Business!</h2>
+                      </div>
+                      <div className="grid grid-cols-3 gap-4">
+                        <div className="flex flex-col items-center justify-center bg-white rounded-full p-6">
+                          <i className="text-2xl fas fa-pen"></i>
+                          <p className="mt-2">Writes</p>
+                        </div>
+                        <div className="flex flex-col items-center justify-center bg-white rounded-full p-6">
+                          <i className="text-2xl fas fa-link"></i>
+                          <p className="mt-2">Links</p>
+                        </div>
+                        <div className="flex flex-col items-center justify-center bg-white rounded-full p-6">
+                          <i className="text-2xl fas fa-robot"></i>
+                          <p className="mt-2">Scouts</p>
+                        </div>
+                        <div className="flex flex-col items-center justify-center bg-white rounded-full p-6">
+                          <i className="text-2xl fas fa-cogs"></i>
+                          <p className="mt-2">Tweaks</p>
+                        </div>
+                      </div>
+                      <button className="mt-8 px-10 py-3 bg-white text-blue-800 rounded-full focus:outline-none">
+                        Automate My SEO
+                      </button>
+                    </div> */}
+                    {/* <div
+                      className="flex p-4  shadow-md  w-full align-items-center"
+                      style={{ background: "#131353", borderRadius: "20px" }}
+                    >
+                 
+                      <div className="flex-shrink-0">
+                        <img
+                          src="/images/4_steps.png"
+                          alt="SEO"
+                          className="w-300 h-300 object-cover rounded-md"
+                        />
+                      </div>
+
+         
+                      <div
+                        className="ml-4 flex flex-col justify-center w-100"
+                        style={{ color: "white" }}
+                      >
+                        <p className="text-lg font-bold mb-2">
+                          Let AI Do Your SEO,
+                        </p>
+                        <p className="text-lg font-semibold mb-2">
+                          While You Grow Your Business!
+                        </p>
+                        <button
+                          className="px-4 py-2 font-bold blue_gray_900_03 rounded-md "
+                          style={{ background: "white", color: "black" }}
+                        >
+                          Connect to{" "}
+                          {businessMetaData.name.charAt(0).toUpperCase() +
+                            businessMetaData.name.slice(1)}
+                        </button>
+                      </div>
+                    </div> */}
+                    <div className="flex flex-col items-start justify-start pt-[0.07px] w-[300px] pb-[50px]">
+                      <Button
+                        onClick={() => {
+                          handleClickNext();
+                        }}
+                        className="cursor-pointer font-semibold rounded-[14px] shadow-bs5 text-center text-lg w-[300px]"
+                        size="lg"
+                        variant="fill"
+                        // variant="gradient"
+                        // color="purple_800_indigo_800"
+                        color="indigo_900"
+                        // style={{ background: "#060640" }}
+                      >
+                        Load More Months
+                      </Button>
+                    </div>
+                    <div
+                      className="flex p-4 shadow-md w-full   h-600"
+                      style={{ background: "#131353", borderRadius: "20px" }}
+                    >
+                      <div className="flex p-4 shadow-md w-full items-center justify-around h-600">
+                        {/* Left Side - Image */}
+                        <div className="flex-shrink-0">
+                          <img
+                            src="/images/4_steps.png"
+                            alt="SEO"
+                            className="w-300 h-300 object-cover rounded-md"
+                          />
+                        </div>
+
+                        {/* Right Side - Text and Button */}
+                        <div className="flex flex-col justify-center w-100 text-white">
+                          <p
+                            className="text-xl font-bold mb-2"
+                            style={{ fontSize: "32px", color: "white" }}
+                          >
+                            Let AI Do Your SEO
+                          </p>
+                          <p
+                            className="text-xl font-semibold mb-2"
+                            style={{ color: "white" }}
+                          >
+                            While You Grow Your Business!
+                          </p>
+                          <button
+                            className="px-4 py-2 font-bold blue_gray_900_03 rounded-md"
+                            style={{
+                              background: "white",
+                              color: "black",
+                              fontSize: "18px",
+                            }}
+                            onClick={() => {
+                              handleClickNext();
+                            }}
+                          >
+                            Connect to{" "}
+                            {businessMetaData.name.charAt(0).toUpperCase() +
+                              businessMetaData.name.slice(1)}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
                   {/* <div className="absolute md:h-[198px] h-[234px] left-[16%] top-[35%] w-[36%] sm:w-full">
@@ -1160,7 +817,8 @@ const Dashboardv3 = () => {
                   </div>
                 </div> */}
               </div>
-              <List
+
+              {/* <List
                 className="sm:flex-col flex-row gap-5 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 justify-start w-auto md:w-full"
                 orientation="horizontal"
               >
@@ -1302,13 +960,15 @@ const Dashboardv3 = () => {
                     </div>
                   </div>
                 </div>
-              </List>
+              </List> */}
             </div>
+
             <div
-              style={{ backdropFilter: "blur(5px)" }}
-              className="absolute bg-white-A700_6d bottom-[0] flex flex-col font-inter h-[918px] md:h-auto inset-x-[0] items-center justify-start max-w-[1233px] mx-auto sm:px-5 px-6 py-8 rounded-[30px] w-full"
+              // style={{ backdropFilter: "blur(5px)" }}
+              // Blur bg-white-A700_6d
+              className="absolute  bottom-[0] flex flex-col font-inter h-[918px] md:h-auto inset-x-[0] items-center justify-start max-w-[1233px] mx-auto sm:px-5 px-6 py-8 rounded-[30px] w-full"
             >
-              <div className="flex flex-col items-start justify-start pt-[0.07px] w-[300px]">
+              {/* <div className="flex flex-col items-start justify-start pt-[0.07px] w-[300px]">
                 <Button
                   onClick={() => {
                     handleClickNext();
@@ -1323,24 +983,24 @@ const Dashboardv3 = () => {
                 >
                   Automate Your SEO
                 </Button>
-              </div>
-              <div className="w-full flex justify-end items-center">
+              </div> */}
+              {/* <div className="w-full flex justify-end items-center">
                 <Text
                   className="ml-2 md:ml-0 text-[15px] text-black-900"
                   size="txtDMSansBold15"
                 >
                   2023 December
                 </Text>
-              </div>
-              {/* <div>
+              </div> */}
+              <div>
                 <Text
-                  className="text-center mt-[100px] md:ml-[0] sm:text-[32px] md:text-[38px] text-[42px] text-black-900"
+                  className="text-center mt-[10px] md:ml-[0] sm:text-[32px] md:text-[38px] text-[42px] text-black-900"
                   size="txtHelveticaBold42"
                 >
                   What Busy Founders & Marketers Say...
                 </Text>
-              </div> */}
-              <div className="flex md:flex-col flex-row md:gap-10 items-start justify-between mt-[100px] w-full">
+              </div>
+              <div className="flex md:flex-col flex-row md:gap-10 items-start justify-between mt-[0px] w-full">
                 {/* <div className="bg-white-A700 flex md:flex-1 flex-col items-center justify-start mb-[41px] md:mt-0 mt-[76px] p-[17px] rounded-[12px] shadow-bs4 w-[26%] md:w-full">
                   <div className="flex flex-col justify-start mb-[3px] mt-3 w-full">
                     <div className="flex flex-row gap-2.5 items-center justify-start w-[62%] md:w-full">

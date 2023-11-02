@@ -671,7 +671,8 @@ const DataState = (props) => {
       console.log("Backend Reponse Summary: ", output);
       const submitDataBlogs = {
         summary: output.data.summary,
-        blogCount: 6,
+        // blogCount: 6,
+        blogCount: 3,
         wordCount: 2500,
       };
       setBusinessMetaDataFunction({ data: output.data });
