@@ -302,8 +302,9 @@ const LandingPagev2 = () => {
                           className="absolute h-full inset-[0] justify-center leading-[72.00px] m-auto sm:text-4xl md:text-[38px] text-[40px] text-black-900 tracking-[-2.00px] w-full"
                           size="txtHelveticaBold40"
                         >
-                          Let AI Drive Your Organic Traffic, While You Drive
-                          Your Business!
+                          {/* Let AI Drive Your Organic Traffic, While You Drive
+                          Your Business! */}
+                          Let AI Do Your SEO, While You Grow Your Business!
                         </Text>
                       </div>
                       <Text

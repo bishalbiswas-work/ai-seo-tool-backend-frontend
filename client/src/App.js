@@ -15,6 +15,7 @@ import ChatInterface_v2 from "./Dashboard/ChatInterface_v2";
 
 import Dashboard from "./Dashboardv2/Pages/Dashboard";
 import Dashboardv3 from "./Pages/Dashboardv3/Dashboardv3";
+import Dashboardv4 from "Pages/Dashboardv4/Dashboardv4";
 import BlogPage2 from "./Pages/BlogPage/BlogPage";
 // import Logout from "./Pages/Auth/Logout";
 import PaymentSuccess from "./Pages/Auth/PaymentSuccess";
@@ -114,7 +115,8 @@ class App extends Component {
                     <>
                       <WrapperComponent>
                         {/* <Dashboard /> */}
-                        <Dashboardv3 />
+                        {/* <Dashboardv3 /> */}
+                        <Dashboardv4 />
                       </WrapperComponent>
                     </>
                   }

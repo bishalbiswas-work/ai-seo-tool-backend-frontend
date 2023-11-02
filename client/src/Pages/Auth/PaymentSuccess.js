@@ -42,6 +42,8 @@ const PaymentSuccess = () => {
       <script
         dangerouslySetInnerHTML={{
           __html: `
+            <!-- Google -->
+
             gtag('event', 'conversion', {
               'send_to': 'AW-11300698155/-y-PCIDr4dUYEKvwy4wq',
               'transaction_id': ''
@@ -69,7 +71,37 @@ const PaymentSuccess = () => {
                   "value": 20
               });
             </script>
+            <!-- Google -->
 
+
+           <!-- Linkdin -->
+
+            <script type="text/javascript">
+            _linkedin_partner_id = "5454260";
+            window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+            window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+            </script><script type="text/javascript">
+            (function(l) {
+            if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
+            window.lintrk.q=[]}
+            var s = document.getElementsByTagName("script")[0];
+            var b = document.createElement("script");
+            b.type = "text/javascript";b.async = true;
+            b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+            s.parentNode.insertBefore(b, s);})(window.lintrk);
+            </script>
+            <noscript>
+            <img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=5454260&fmt=gif" />
+            </noscript>
+
+            <!-- Linkdin -->
+
+            <!-- Reddit Pixel -->
+            <script>
+            !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);rdt('init','a2_dx3sgu62ojsp', {"optOut":false,"useDecimalCurrencyValues":true});rdt('track', 'PageVisit');
+            </script>
+            <!-- DO NOT MODIFY UNLESS TO REPLACE A USER IDENTIFIER -->
+            <!-- End Reddit Pixel -->
           `,
         }}
       />
