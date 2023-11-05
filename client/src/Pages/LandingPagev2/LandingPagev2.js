@@ -513,7 +513,7 @@ const LandingPagev2 = () => {
                         color: "white",
                       }}
                     >
-                      Confirm
+                      GO
                     </Button>
                   )}
                   {!successUrl && !checkUrlStatus && (
