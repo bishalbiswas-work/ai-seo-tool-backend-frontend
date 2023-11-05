@@ -848,7 +848,11 @@ const Dashboardv4 = () => {
                                   handleClickNext();
                                 }}
                               >
-                                Connect to BeTimeful
+                                Connect to{" "}
+                                {(businessMetaData?.name
+                                  ?.charAt(0)
+                                  ?.toUpperCase() ?? "") +
+                                  (businessMetaData?.name?.slice(1) ?? "")}
                               </Button>
                             </div>
                           </div>

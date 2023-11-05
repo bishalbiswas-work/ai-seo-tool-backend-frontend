@@ -304,7 +304,8 @@ const LandingPagev2 = () => {
                         >
                           {/* Let AI Drive Your Organic Traffic, While You Drive
                           Your Business! */}
-                          Let AI Do Your SEO, While You Grow Your Business!
+                          Let AI Do Your SEO, While You Drive Your Business
+                          forward!
                         </Text>
                       </div>
                       <Text
@@ -331,6 +332,7 @@ const LandingPagev2 = () => {
                         >
                           Auto Pilot
                         </a>
+                        <span style={{ color: "black" }}> For Free</span>
                         <span className="text-gray-700 font-helvetica text-left font-light">
                           . Built by SEO Gurus.
                         </span>
@@ -552,7 +554,7 @@ const LandingPagev2 = () => {
             <img
               style={{ width: "100%", marginLeft: "3em" }}
               // src="/landing.png"
-              src="/images/showcase.png"
+              src="/images/showcase2.png"
               alt=""
             />
             <div className=""></div>
@@ -805,7 +807,7 @@ const LandingPagev2 = () => {
             {/* <div className="bg-gradient3  flex md:flex-1 flex-col gap-[53px] h-[633px] md:h-auto items-start justify-start pb-[59.54px] rounded-[20px] w-[600px] md:w-full"> */}
             <div className="  flex md:flex-1 flex-col gap-[53px] md:h-auto items-start justify-start  rounded-[20px] w-[580px] md:w-full">
               <img
-                src="/images/four-card3.png"
+                src="/images/four-card3-2.png"
                 style={{
                   maxWidth: "100%",
                   maxHeight: "100%",
