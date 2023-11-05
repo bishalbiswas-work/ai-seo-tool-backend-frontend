@@ -188,7 +188,7 @@ const LandingPagev2 = () => {
       <div className="bg-white-A700 flex flex-col font-helvetica gap-5 items-center justify-start mx-auto w-full">
         <header className="flex md:flex-col flex-row md:gap-5 items-start justify-start md:px-5 w-[1400px] m-auto pt-3">
           <Img
-            className="h-[70px] md:h-auto object-cover w-[70px]"
+            className="h-[50px] md:h-auto object-cover w-[50px]"
             src="/logo.png"
             alt="youtubeOne"
           />
@@ -290,8 +290,8 @@ const LandingPagev2 = () => {
         </header>
         <div className="flex flex-col items-center justify-start w-full">
           {/* <div className="flex md:flex-col flex-row md:gap-11 h-[621px] md:h-auto items-center justify-between max-w-[1440px] md:px-10 sm:px-5 px-[120px] py-[60px] w-full"> */}
-          <div className="flex md:flex-col flex-row md:gap-11 h-[621px] md:h-auto items-center justify-between max-w-[1440px] md:px-[10px] sm:px-5 px-[120px] mt-[-45px] w-full">
-            <div className="md:h-80 h-[540px] relative w-[53%] md:w-full">
+          <div className="flex md:flex-col flex-row md:gap-11 h-[521px] md:h-auto items-center justify-between max-w-[1440px] md:px-[10px] sm:px-5 px-[120px] mt-[-45px] w-full">
+            <div className="md:h-80 h-[440px] relative w-[53%] md:w-full">
               <div className="md:h-80 h-[540px] m-auto w-full">
                 <div className="absolute flex flex-col md:h-auto h-full inset-[0] items-center justify-start m-auto max-w-[627px] pt-8 w-full">
                   <div className="flex flex-col items-start justify-start w-full">
@@ -332,7 +332,10 @@ const LandingPagev2 = () => {
                         >
                           Auto Pilot
                         </a>
-                        <span style={{ color: "black" }}> For Free</span>
+                        <span style={{ color: "#414a4c", fontWeight: "700" }}>
+                          {" "}
+                          For Free
+                        </span>
                         <span className="text-gray-700 font-helvetica text-left font-light">
                           . Built by SEO Gurus.
                         </span>
@@ -552,7 +555,7 @@ const LandingPagev2 = () => {
             </div>
 
             <img
-              style={{ width: "100%", marginLeft: "3em" }}
+              style={{ width: "100%", marginLeft: "3em", maxWidth: "500px" }}
               // src="/landing.png"
               src="/images/showcase2.png"
               alt=""
