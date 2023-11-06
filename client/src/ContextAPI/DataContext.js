@@ -84,6 +84,49 @@ const DataState = (props) => {
   const [selectedPage, setSelectedPage] = useState();
   const [messageContext, setMessageContext] = useState();
   const [selectedBlog, setSelectedBlog] = useState(1);
+
+  // ===========================================
+
+  useEffect(() => {
+    const loadFromLocalStorage = () => {
+      console.log("LocalStorage Update!");
+      // Load blogs from local storage
+      const storedBlogs = localStorage.getItem("blogs1");
+      if (storedBlogs) {
+        try {
+          setBlogs(JSON.parse(storedBlogs));
+        } catch (e) {
+          console.error("Failed to parse blogs from localStorage", e);
+        }
+      }
+
+      // Load summary from local storage and update businessMetaData individually
+      const storedSummary = localStorage.getItem("summary1");
+      if (storedSummary) {
+        try {
+          const summaryData = JSON.parse(storedSummary);
+          console.log(summaryData);
+          setBusinessMetaData((prevMetaData) => ({
+            ...prevMetaData,
+            // Update only if the key exists in the summary data
+            ...Object.keys(prevMetaData).reduce((acc, key) => {
+              if (summaryData[key] !== undefined) {
+                acc[key] = summaryData[key];
+              }
+              return acc;
+            }, {}),
+          }));
+        } catch (e) {
+          console.error("Failed to parse summary from localStorage", e);
+        }
+      }
+    };
+    loadFromLocalStorage();
+  }, []); // The empty dependency array means this effect will only run once when the component mounts.
+  useEffect(() => {
+    console.log("Updated from localStorage: ", blogs, businessMetaData);
+  }, []);
+  // ==========================================
   const [businessMetaData, setBusinessMetaData] = useState({
     status: false,
     domain: "",
@@ -669,6 +712,8 @@ const DataState = (props) => {
     try {
       const output = await getSummary(submitData);
       console.log("Backend Reponse Summary: ", output);
+      localStorage.setItem("summary1", JSON.stringify(output.data));
+
       const submitDataBlogs = {
         summary: output.data.summary,
         // blogCount: 6,
@@ -679,6 +724,8 @@ const DataState = (props) => {
 
       const Blogs = await getBlog(submitDataBlogs);
       console.log("Backend Reponse Blogs: ", Blogs);
+
+      localStorage.setItem("blogs1", JSON.stringify(Blogs.data.blogs));
 
       setBlogsFunction({ data: Blogs.data.blogs });
       setDataLoaded(true);
@@ -742,6 +789,7 @@ const DataState = (props) => {
       console.error("Error updating document:", error);
     }
   };
+
   return (
     <DataContext.Provider
       value={{

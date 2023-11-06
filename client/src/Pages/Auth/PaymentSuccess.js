@@ -1,9 +1,11 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 // import ReactDOM from "react-dom/client";
-
+import Container from "@mui/material/Container";
 import { Grid, Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 //
 // import { useEffect } from "react";
@@ -12,6 +14,17 @@ import Typography from "@mui/material/Typography";
 // import DataContext from "../../context/DataContext";
 
 const PaymentSuccess = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    // Set a timeout to navigate after 1 second
+    const timer = setTimeout(() => {
+      navigate("/onboarding/dns-setup");
+    }, 2000);
+
+    // Clear the timeout if the component unmounts
+    return () => clearTimeout(timer);
+  }, [navigate]); // Dependencies array includes navigate and to, so if they change the effect will re-run
+
   return (
     <div>
       <Container
@@ -37,7 +50,6 @@ const PaymentSuccess = () => {
           </Typography>
         </Box>
       </Container>
-
       {/* Embed the script here */}
       <script
         dangerouslySetInnerHTML={{

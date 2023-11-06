@@ -40,6 +40,9 @@ const Dashboardv4 = () => {
     navigate("/pricing");
     // navigate("/onboarding/dns-setup");
   };
+  useEffect(() => {
+    setBusinessMetaData(dataContext.businessMetaData);
+  }, []);
   console.log("Blogs on Dashboard ", blogs);
   return (
     <>
@@ -60,8 +63,10 @@ const Dashboardv4 = () => {
                   >
                     {/* {businessMetaData.name.charAt(0).toUpperCase() +
                       businessMetaData.name.slice(1)} */}
-                    {(businessMetaData?.name?.charAt(0)?.toUpperCase() ?? "") +
-                      (businessMetaData?.name?.slice(1) ?? "")}
+                    {(dataContext.businessMetaData?.name
+                      ?.charAt(0)
+                      ?.toUpperCase() ?? "") +
+                      (dataContext.businessMetaData?.name?.slice(1) ?? "")}
                   </Text>
                 </div>
               </div>
@@ -107,8 +112,8 @@ const Dashboardv4 = () => {
               >
                 <>
                   About{" "}
-                  {businessMetaData.name.charAt(0).toUpperCase() +
-                    businessMetaData.name.slice(1)}
+                  {dataContext.businessMetaData.name.charAt(0).toUpperCase() +
+                    dataContext.businessMetaData.name.slice(1)}
                 </>
               </Text>
               <Img
@@ -122,7 +127,7 @@ const Dashboardv4 = () => {
                 className="leading-[30.00px] max-w-[1157px] md:max-w-full text-blue_gray-500 text-lg max-h-[11.625rem] overflow-y-scroll"
                 size="txtDMSansRegular18"
               >
-                {businessMetaData.summary}
+                {dataContext.businessMetaData.summary}
               </Text>
               {/* <div className="flex flex-col font-helvetica h-11 md:h-auto items-center justify-center sm:px-5 px-6 py-3 w-[78px]">
                 <div className="flex flex-col items-center justify-center w-auto">
@@ -221,21 +226,23 @@ const Dashboardv4 = () => {
                       <div className="flex md:flex-1 flex-col h-[650px] md:h-auto items-start justify-start my-0 w-auto md:w-full">
                         <div className="flex flex-col md:gap-10 gap-[147px] items-start justify-start w-full">
                           <div className="font-worksans gap-5 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 items-center justify-between w-full">
-                            {blogs.slice(0, 3).map((item, index) => (
-                              <div
-                                key={index}
-                                onClick={() => {
-                                  handleClickBlog(index);
-                                }}
-                              >
-                                <div className="bg-white-A700 border border-gray-200_05 border-solid flex flex-1 flex-col gap-4 items-center justify-center p-4 rounded-[12px] w-full">
-                                  <div className="h-60 relative w-full">
-                                    <Img
-                                      className="h-60 m-auto object-cover rounded-md w-full"
-                                      src={item.imagesUrl[0].imageUrl}
-                                      alt="rectangleThirtyEight"
-                                    />
-                                    {/* <div className="absolute bg-white-A700 flex flex-col h-[89px] items-center justify-start p-1.5 right-[3%] rounded-md top-[5%] w-[89px]">
+                            {dataContext.blogs
+                              .slice(0, 3)
+                              .map((item, index) => (
+                                <div
+                                  key={index}
+                                  onClick={() => {
+                                    handleClickBlog(index);
+                                  }}
+                                >
+                                  <div className="bg-white-A700 border border-gray-200_05 border-solid flex flex-1 flex-col gap-4 items-center justify-center p-4 rounded-[12px] w-full">
+                                    <div className="h-60 relative w-full">
+                                      <Img
+                                        className="h-60 m-auto object-cover rounded-md w-full"
+                                        src={item.imagesUrl[0].imageUrl}
+                                        alt="rectangleThirtyEight"
+                                      />
+                                      {/* <div className="absolute bg-white-A700 flex flex-col h-[89px] items-center justify-start p-1.5 right-[3%] rounded-md top-[5%] w-[89px]">
                                       <div className="flex flex-col font-dmsans gap-1.5 h-[50px] md:h-auto items-center justify-start w-auto">
                                         <Img
                                           className="h-8 md:h-auto object-cover w-16 sm:w-full"
@@ -266,13 +273,14 @@ const Dashboardv4 = () => {
                                         </span>
                                       </Text>
                                     </div> */}
-                                  </div>
-                                  <div className="flex flex-col gap-5 items-start justify-start p-2 w-full">
-                                    <div className="flex flex-col items-start justify-start w-full">
-                                      <div className="flex flex-col gap-4 items-start justify-start w-full">
-                                        <div className="flex flex-row gap-3 items-center justify-start w-[85%] md:w-full">
-                                          {blogs[index].seoKeywords.map(
-                                            (item, index) => (
+                                    </div>
+                                    <div className="flex flex-col gap-5 items-start justify-start p-2 w-full">
+                                      <div className="flex flex-col items-start justify-start w-full">
+                                        <div className="flex flex-col gap-4 items-start justify-start w-full">
+                                          <div className="flex flex-row gap-3 items-center justify-start w-[85%] md:w-full">
+                                            {dataContext.blogs[
+                                              index
+                                            ].seoKeywords.map((item, index) => (
                                               <>
                                                 <Button
                                                   className="cursor-pointer font-medium min-w-[97px] rounded-md text-center text-sm"
@@ -290,9 +298,8 @@ const Dashboardv4 = () => {
                                                   {item}
                                                 </Button>
                                               </>
-                                            )
-                                          )}
-                                          {/* <Button
+                                            ))}
+                                            {/* <Button
                                             className="cursor-pointer font-medium min-w-[97px] rounded-md text-center text-sm"
                                             shape="round"
                                             color="indigo_A200_0c"
@@ -306,168 +313,168 @@ const Dashboardv4 = () => {
                                           >
                                             Environmental Changes
                                           </Button> */}
-                                        </div>
-                                        <Text
-                                          className="leading-[28.00px] text-2xl md:text-[22px] text-gray-900_03 sm:text-xl w-full"
-                                          size="txtWorkSansSemiBold24"
-                                        >
-                                          {item.title}
-                                          {/* <Typewriter
+                                          </div>
+                                          <Text
+                                            className="leading-[28.00px] text-2xl md:text-[22px] text-gray-900_03 sm:text-xl w-full"
+                                            size="txtWorkSansSemiBold24"
+                                          >
+                                            {item.title}
+                                            {/* <Typewriter
                                             options={{
                                               strings: [item.title],
                                               autoStart: true,
                                               loop: true,
                                             }}
                                           /> */}
+                                          </Text>
+                                        </div>
+                                      </div>
+                                      <div className="flex flex-col items-center justify-start w-auto">
+                                        <Text
+                                          className="text-base text-gray-500_03 w-auto"
+                                          size="txtWorkSansRomanRegular16"
+                                        >
+                                          Novemeber {10 * (index + 1)}, 2022
                                         </Text>
                                       </div>
-                                    </div>
-                                    <div className="flex flex-col items-center justify-start w-auto">
-                                      <Text
-                                        className="text-base text-gray-500_03 w-auto"
-                                        size="txtWorkSansRomanRegular16"
-                                      >
-                                        Novemeber {10 * (index + 1)}, 2022
-                                      </Text>
-                                    </div>
-                                    <div>
-                                      {index == 0 && (
-                                        <div className="flex flex-col items-start justify-start w-auto">
-                                          <div className="flex flex-row gap-5 items-start justify-start w-auto">
-                                            <div className="bg-green-A100 border border-green-A700 border-solid flex flex-row gap-1 items-center justify-start px-2 py-[3px] rounded-md w-auto">
-                                              <Text
-                                                className="text-gray-900_04 text-xs w-auto"
-                                                size="txtDMSansRegular12"
-                                              >
-                                                16,000
-                                              </Text>
-                                              <Img
-                                                className="h-2.5 w-[11px]"
-                                                src="images/img_signal.svg"
-                                                alt="signal"
-                                              />
-                                              <Text
-                                                className="text-[11px] text-green-A700 w-auto"
-                                                size="txtPoppinsRegular11"
-                                              >
-                                                High
-                                              </Text>
-                                            </div>
-                                            <div className="bg-amber-100 border border-amber-A700 border-solid flex flex-row gap-0.5 items-center justify-start px-2 py-[3px] rounded-md w-auto">
-                                              <Text
-                                                className="text-gray-900_04 text-xs w-auto"
-                                                size="txtDMSansRegular12"
-                                              >
-                                                Competition
-                                              </Text>
-                                              <Img
-                                                className="h-2.5 w-[11px]"
-                                                src="images/img_trash.svg"
-                                                alt="trash"
-                                              />
-                                              <Text
-                                                className="text-[11px] text-amber-A700 w-auto"
-                                                size="txtPoppinsRegular11AmberA700"
-                                              >
-                                                Medium
-                                              </Text>
+                                      <div>
+                                        {index == 0 && (
+                                          <div className="flex flex-col items-start justify-start w-auto">
+                                            <div className="flex flex-row gap-5 items-start justify-start w-auto">
+                                              <div className="bg-green-A100 border border-green-A700 border-solid flex flex-row gap-1 items-center justify-start px-2 py-[3px] rounded-md w-auto">
+                                                <Text
+                                                  className="text-gray-900_04 text-xs w-auto"
+                                                  size="txtDMSansRegular12"
+                                                >
+                                                  16,000
+                                                </Text>
+                                                <Img
+                                                  className="h-2.5 w-[11px]"
+                                                  src="images/img_signal.svg"
+                                                  alt="signal"
+                                                />
+                                                <Text
+                                                  className="text-[11px] text-green-A700 w-auto"
+                                                  size="txtPoppinsRegular11"
+                                                >
+                                                  High
+                                                </Text>
+                                              </div>
+                                              <div className="bg-amber-100 border border-amber-A700 border-solid flex flex-row gap-0.5 items-center justify-start px-2 py-[3px] rounded-md w-auto">
+                                                <Text
+                                                  className="text-gray-900_04 text-xs w-auto"
+                                                  size="txtDMSansRegular12"
+                                                >
+                                                  Competition
+                                                </Text>
+                                                <Img
+                                                  className="h-2.5 w-[11px]"
+                                                  src="images/img_trash.svg"
+                                                  alt="trash"
+                                                />
+                                                <Text
+                                                  className="text-[11px] text-amber-A700 w-auto"
+                                                  size="txtPoppinsRegular11AmberA700"
+                                                >
+                                                  Medium
+                                                </Text>
+                                              </div>
                                             </div>
                                           </div>
-                                        </div>
-                                      )}
-                                      {index == 1 && (
-                                        <div className="flex flex-col items-start justify-start w-auto">
-                                          <div className="flex flex-row gap-5 items-start justify-start w-auto">
-                                            <div className="bg-amber-100 border border-amber-A700 border-solid flex flex-row gap-1 items-center justify-start px-2 py-[3px] rounded-md w-auto">
-                                              <Text
-                                                className="text-gray-900_04 text-xs w-auto"
-                                                size="txtDMSansRegular12"
-                                              >
-                                                10,000
-                                              </Text>
-                                              <Img
-                                                className="h-2.5 w-[11px]"
-                                                src="images/img_trash.svg"
-                                                alt="trash_One"
-                                              />
-                                              <Text
-                                                className="text-[11px] text-amber-A700 w-auto"
-                                                size="txtPoppinsRegular11AmberA700"
-                                              >
-                                                Medium
-                                              </Text>
-                                            </div>
-                                            <div className="bg-deep_orange-50 border border-deep_orange-A700 border-solid flex flex-row gap-0.5 items-center justify-start px-2 py-[3px] rounded-md w-auto">
-                                              <Text
-                                                className="text-gray-900_04 text-xs w-auto"
-                                                size="txtDMSansRegular12"
-                                              >
-                                                Competition
-                                              </Text>
-                                              <Img
-                                                className="h-2.5 w-[11px]"
-                                                src="images/img_skill.svg"
-                                                alt="skill"
-                                              />
-                                              <Text
-                                                className="text-[11px] text-deep_orange-A700 w-auto"
-                                                size="txtPoppinsRegular11DeeporangeA700"
-                                              >
-                                                High
-                                              </Text>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      )}
-                                      {index == 2 && (
-                                        <div className="flex flex-col items-start justify-start w-auto">
-                                          <div className="flex flex-row gap-5 items-start justify-start w-auto">
-                                            <div className="bg-green-A100 border border-green-A700 border-solid flex flex-row gap-1 items-center justify-start px-2 py-[3px] rounded-md w-auto">
-                                              <Text
-                                                className="text-gray-900_04 text-xs w-auto"
-                                                size="txtDMSansRegular12"
-                                              >
-                                                16,000
-                                              </Text>
-                                              <Img
-                                                className="h-2.5 w-[11px]"
-                                                src="images/img_signal.svg"
-                                                alt="signal_One"
-                                              />
-                                              <Text
-                                                className="text-[11px] text-green-A700 w-auto"
-                                                size="txtPoppinsRegular11"
-                                              >
-                                                High
-                                              </Text>
-                                            </div>
-                                            <div className="bg-amber-100 border border-amber-A700 border-solid flex flex-row gap-0.5 items-center justify-start px-2 py-[3px] rounded-md w-auto">
-                                              <Text
-                                                className="text-gray-900_04 text-xs w-auto"
-                                                size="txtDMSansRegular12"
-                                              >
-                                                Competition
-                                              </Text>
-                                              <Img
-                                                className="h-2.5 w-[11px]"
-                                                src="images/img_trash.svg"
-                                                alt="trash_Two"
-                                              />
-                                              <Text
-                                                className="text-[11px] text-amber-A700 w-auto"
-                                                size="txtPoppinsRegular11AmberA700"
-                                              >
-                                                Medium
-                                              </Text>
+                                        )}
+                                        {index == 1 && (
+                                          <div className="flex flex-col items-start justify-start w-auto">
+                                            <div className="flex flex-row gap-5 items-start justify-start w-auto">
+                                              <div className="bg-amber-100 border border-amber-A700 border-solid flex flex-row gap-1 items-center justify-start px-2 py-[3px] rounded-md w-auto">
+                                                <Text
+                                                  className="text-gray-900_04 text-xs w-auto"
+                                                  size="txtDMSansRegular12"
+                                                >
+                                                  10,000
+                                                </Text>
+                                                <Img
+                                                  className="h-2.5 w-[11px]"
+                                                  src="images/img_trash.svg"
+                                                  alt="trash_One"
+                                                />
+                                                <Text
+                                                  className="text-[11px] text-amber-A700 w-auto"
+                                                  size="txtPoppinsRegular11AmberA700"
+                                                >
+                                                  Medium
+                                                </Text>
+                                              </div>
+                                              <div className="bg-deep_orange-50 border border-deep_orange-A700 border-solid flex flex-row gap-0.5 items-center justify-start px-2 py-[3px] rounded-md w-auto">
+                                                <Text
+                                                  className="text-gray-900_04 text-xs w-auto"
+                                                  size="txtDMSansRegular12"
+                                                >
+                                                  Competition
+                                                </Text>
+                                                <Img
+                                                  className="h-2.5 w-[11px]"
+                                                  src="images/img_skill.svg"
+                                                  alt="skill"
+                                                />
+                                                <Text
+                                                  className="text-[11px] text-deep_orange-A700 w-auto"
+                                                  size="txtPoppinsRegular11DeeporangeA700"
+                                                >
+                                                  High
+                                                </Text>
+                                              </div>
                                             </div>
                                           </div>
-                                        </div>
-                                      )}
+                                        )}
+                                        {index == 2 && (
+                                          <div className="flex flex-col items-start justify-start w-auto">
+                                            <div className="flex flex-row gap-5 items-start justify-start w-auto">
+                                              <div className="bg-green-A100 border border-green-A700 border-solid flex flex-row gap-1 items-center justify-start px-2 py-[3px] rounded-md w-auto">
+                                                <Text
+                                                  className="text-gray-900_04 text-xs w-auto"
+                                                  size="txtDMSansRegular12"
+                                                >
+                                                  16,000
+                                                </Text>
+                                                <Img
+                                                  className="h-2.5 w-[11px]"
+                                                  src="images/img_signal.svg"
+                                                  alt="signal_One"
+                                                />
+                                                <Text
+                                                  className="text-[11px] text-green-A700 w-auto"
+                                                  size="txtPoppinsRegular11"
+                                                >
+                                                  High
+                                                </Text>
+                                              </div>
+                                              <div className="bg-amber-100 border border-amber-A700 border-solid flex flex-row gap-0.5 items-center justify-start px-2 py-[3px] rounded-md w-auto">
+                                                <Text
+                                                  className="text-gray-900_04 text-xs w-auto"
+                                                  size="txtDMSansRegular12"
+                                                >
+                                                  Competition
+                                                </Text>
+                                                <Img
+                                                  className="h-2.5 w-[11px]"
+                                                  src="images/img_trash.svg"
+                                                  alt="trash_Two"
+                                                />
+                                                <Text
+                                                  className="text-[11px] text-amber-A700 w-auto"
+                                                  size="txtPoppinsRegular11AmberA700"
+                                                >
+                                                  Medium
+                                                </Text>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        )}
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
-                              </div>
-                            ))}
+                              ))}
                           </div>
 
                           {/* <div
@@ -849,10 +856,12 @@ const Dashboardv4 = () => {
                                 }}
                               >
                                 Connect to{" "}
-                                {(businessMetaData?.name
+                                {(dataContext.businessMetaData?.name
                                   ?.charAt(0)
                                   ?.toUpperCase() ?? "") +
-                                  (businessMetaData?.name?.slice(1) ?? "")}
+                                  (dataContext.businessMetaData?.name?.slice(
+                                    1
+                                  ) ?? "")}
                               </Button>
                             </div>
                           </div>

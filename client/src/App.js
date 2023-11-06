@@ -129,14 +129,14 @@ class App extends Component {
                     </WrapperComponent>
                   }
                 />
-                <Route
+                {/* <Route
                   path="dashboard/chat"
                   element={
                     <WrapperComponent>
                       <ChatInterface_v2 />
                     </WrapperComponent>
                   }
-                />
+                /> */}
                 {/* <Route
                   path="/pricing"
                   element={
@@ -153,14 +153,14 @@ class App extends Component {
                     </WrapperComponent>
                   }
                 />
-                <Route
+                {/* <Route
                   path="dashboard/connect-domain"
                   element={
                     <WrapperComponent>
                       <ConnectDomain />
                     </WrapperComponent>
                   }
-                />
+                /> */}
                 <Route
                   path="onboarding/dns-setup"
                   element={
