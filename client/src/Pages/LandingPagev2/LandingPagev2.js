@@ -72,6 +72,7 @@ const LandingPagev2 = () => {
   const [isValidUrl, setIsValidUrl] = useState(false);
   const [confirmClick, setConfirmClick] = useState(false);
   const [confirmButton, setConfirmButton] = useState(false);
+  const [nexStepButton, setNextStepButton] = useState(false);
   const [number, setNumber] = useState(null);
   const [validNumber, setValidNumber] = useState({
     valid: false,
@@ -292,18 +293,16 @@ const LandingPagev2 = () => {
           {/* <div className="flex md:flex-col flex-row md:gap-11 h-[621px] md:h-auto items-center justify-between max-w-[1440px] md:px-10 sm:px-5 px-[120px] py-[60px] w-full"> */}
           <div className="flex md:flex-col flex-row md:gap-11 h-[521px] md:h-auto items-center justify-between max-w-[1440px] md:px-[10px] sm:px-5 px-[120px] mt-[-45px] w-full">
             <div className="md:h-80 h-[440px] relative w-[53%] md:w-full">
-              <div className="md:h-80 h-[540px] m-auto w-full">
+              <div className="md:h-80 h-[490px] m-auto w-full">
                 <div className="absolute flex flex-col md:h-auto h-full inset-[0] items-center justify-start m-auto max-w-[627px] pt-8 w-full">
                   <div className="flex flex-col items-start justify-start w-full">
-                    <div className="flex flex-col gap-6 items-start justify-start w-full">
+                    <div className="flex flex-col gap-2 items-start justify-start w-full">
                       <div className="h-36 relative w-full">
                         <div className="backdrop-opacity-[0.5] blur-[1.00px] h-36 m-auto w-[99%]"></div>
                         <Text
-                          className="absolute h-full inset-[0] justify-center leading-[72.00px] m-auto sm:text-4xl md:text-[38px] text-[40px] text-black-900 tracking-[-2.00px] w-full"
+                          className="absolute h-full inset-[0] justify-center leading-[64.00px] m-auto sm:text-4xl md:text-[38px] text-[40px] text-black-900 tracking-[-2.00px] w-full"
                           size="txtHelveticaBold40"
                         >
-                          {/* Let AI Drive Your Organic Traffic, While You Drive
-                          Your Business! */}
                           Let AI Do Your SEO, While You Drive Your Business
                           forward!
                         </Text>
@@ -399,19 +398,38 @@ const LandingPagev2 = () => {
                                 onClick={() => {
                                   handelGetStarted();
                                   setConfirmButton(true);
+                                  setNextStepButton(true);
                                 }}
+                                disabled={nexStepButton} // This will disable the button if nextStepButton is true
+                                // style={{
+                                //   position: "absolute",
+                                //   left: "-157px",
+                                //   top: "7px",
+                                //   width: "150px",
+                                //   height: "35px",
+                                //   background:
+                                //     "linear-gradient(180deg, rgb(105.08, 50, 131) 0%, rgb(50.16, 50.16, 130.74) 100%)",
+                                //   padding: "8px 15px", // Adjust padding as needed
+                                //   borderRadius: "8px", // Adjust border radius as needed
+                                //   color: "white",
+                                //   fontSize: "12px",
+                                // }}
                                 style={{
                                   position: "absolute",
                                   left: "-157px",
                                   top: "7px",
                                   width: "150px",
                                   height: "35px",
-                                  background:
-                                    "linear-gradient(180deg, rgb(105.08, 50, 131) 0%, rgb(50.16, 50.16, 130.74) 100%)",
-                                  padding: "8px 15px", // Adjust padding as needed
-                                  borderRadius: "8px", // Adjust border radius as needed
-                                  color: "white",
+                                  background: nexStepButton
+                                    ? "grey" // This sets the background to grey when the button is disabled
+                                    : "linear-gradient(180deg, rgb(105.08, 50, 131) 0%, rgb(50.16, 50.16, 130.74) 100%)",
+                                  padding: "8px 15px",
+                                  borderRadius: "8px",
+                                  color: nexStepButton ? "darkgrey" : "white", // This sets the text color to dark grey when the button is disabled
                                   fontSize: "12px",
+                                  pointerEvents: nexStepButton
+                                    ? "none"
+                                    : "auto", // Ensures the button doesn't respond to events when disabled
                                 }}
                               >
                                 GO!
