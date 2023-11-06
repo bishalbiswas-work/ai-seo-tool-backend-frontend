@@ -144,7 +144,7 @@ const LandingPagev2 = () => {
     setValidNumber({ valid: true, click: true });
     dataContext.updateOrCreateFirebaseDoc();
 
-    delay(2000).then(() => {
+    delay(500).then(() => {
       // navigate("/auth");
       dataContext.fetchData();
       navigate("/extract-data");
@@ -303,8 +303,10 @@ const LandingPagev2 = () => {
                           className="absolute h-full inset-[0] justify-center leading-[64.00px] m-auto sm:text-4xl md:text-[38px] text-[40px] text-black-900 tracking-[-2.00px] w-full"
                           size="txtHelveticaBold40"
                         >
-                          Let AI Do Your SEO, While You Drive Your Business
-                          forward!
+                          Let AI Do Your SEO, While You{" "}
+                          <span style={{ display: "block" }}>
+                            Drive Your Business forward!
+                          </span>
                         </Text>
                       </div>
                       <Text
