@@ -29,8 +29,8 @@ const BlogPage = () => {
   const [blog, setBlog] = useState(dataContext.blogs[dataContext.selectedBlog]);
   // console.log("Blog: ", blog);
   const handleClickNext = () => {
-    // navigate("/pricing");
-    navigate("/onboarding/dns-setup");
+    navigate("/pricing");
+    // navigate("/onboarding/dns-setup");
   };
   useEffect(() => {
     // window.scrollTo({ top: 0, behavior: "smooth" });
@@ -167,7 +167,7 @@ const BlogPage = () => {
                         className="text-gray-600 text-sm w-auto"
                         size="txtWorkSansRomanRegular14"
                       >
-                        August 20, 2022
+                        November 8, 2023
                       </Text>
                     </div>
                   </div>
