@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -24,6 +24,38 @@ const AddWebsiteCode = () => {
     };
     pushBlogs();
   }, []);
+
+  const [copySuccess, setCopySuccess] = useState("");
+
+  // Use template literals to insert variables into the HTML string
+  const htmlContent = `
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+    </style>
+    <div
+        style="background-color: #f0f0f0; width: 100%; height: 50px; display: flex; justify-content: center; align-items: center; font-family: 'Lato', sans-serif !important;">
+        <p style="font-size:  14px;font-weight: 700; color: #1F2732; margin: 0 !important; ">
+            Checkout our
+            <a href="${dataContext.businessMetaData.domain}"
+                style="font-weight: 700; color: #1F2732; text-decoration: none !important;  border-bottom: 1px solid #1F2732;">Blog</a>
+            <span
+                style="display: inline-flex; align-items: center; height: 20px; background-color: #7B68EE; color: white; font-size: 10px; padding: 0 5px; border-radius: 10px; margin-left: 5px; font-weight: 700;">NEW</span>
+            to Learn More About ${
+              dataContext.businessMetaData.name.charAt(0).toUpperCase() +
+              dataContext.businessMetaData.name.slice(1)
+            }.
+        </p>
+    </div>
+  `;
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(htmlContent);
+      setCopySuccess("Copied!");
+    } catch (err) {
+      setCopySuccess("Failed to copy!");
+    }
+  };
   return (
     <>
       <div className="bg-white-A700 flex flex-col font-poppins items-center justify-start mx-auto pb-4 w-full">
@@ -102,6 +134,9 @@ const AddWebsiteCode = () => {
                       alt="Frame"
                     />
                   }
+                  onClick={() => {
+                    copyToClipboard();
+                  }}
                   shape="round"
                   size="md"
                   variant="gradient"
