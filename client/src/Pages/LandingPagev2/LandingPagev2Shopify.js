@@ -317,12 +317,16 @@ const LandingPagev2Shopify = () => {
               </button>
               <button
                 href="mailto:daniel@247support.club"
-                className="text-white bg-purple-600 font-semibold py-1 px-4 "
-                style={{ color: "white", borderRadius: "25px" }}
+                className="text-white font-semibold py-1 px-4 "
+                style={{
+                  color: "white",
+                  borderRadius: "25px",
+                  background: "#7B68EE",
+                }}
               >
                 <a
                   href="mailto:daniel@247support.club?subject=Agencies&body=Please write your message here."
-                  className="..."
+                  className="font-lato"
                 >
                   Agencies
                 </a>
