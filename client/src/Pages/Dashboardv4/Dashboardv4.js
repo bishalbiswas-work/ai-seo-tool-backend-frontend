@@ -13,6 +13,8 @@ import PagerIndicator from "./PageIndicator";
 import Text from "./Text";
 import Typewriter from "typewriter-effect";
 
+import InsertLinkIcon from "@mui/icons-material/InsertLink";
+
 // Import ContextAPI
 import { useContext } from "react";
 import DataContext from "ContextAPI/DataState";
@@ -88,7 +90,12 @@ const Dashboardv4 = () => {
                     color="indigo_900"
                     size="md"
                   >
-                    Start Free Trial
+                    Connect to{" "}
+                    {(dataContext.businessMetaData?.name
+                      ?.charAt(0)
+                      ?.toUpperCase() ?? "") +
+                      (dataContext.businessMetaData?.name?.slice(1) ?? "")}{" "}
+                    <InsertLinkIcon sx={{ marginBottom: "1px" }} />
                   </Button>
                 </div>
               </div>
@@ -182,22 +189,22 @@ const Dashboardv4 = () => {
               </Text>
               <div className="flex flex-col items-center justify-start">
                 <div className="flex flex-row gap-2 items-center justify-between w-full">
-                  <Img
+                  {/* <Img
                     className="h-6 w-6"
                     src="images/img_arrowleft_gray_900.svg"
                     alt="arrowleft"
-                  />
+                  /> */}
                   <Text
                     className="text-[22px] text-black-900 sm:text-lg md:text-xl"
                     size="txtDMSansMedium22"
                   >
                     2023
                   </Text>
-                  <Img
+                  {/* <Img
                     className="h-6 w-6"
                     src="images/img_arrowright.svg"
                     alt="arrowright"
-                  />
+                  /> */}
                 </div>
               </div>
             </div>
@@ -342,7 +349,8 @@ const Dashboardv4 = () => {
                                           {/* Novemeber {10 * (index + 1)}, 2022 */}
                                           {new Date(
                                             new Date().setDate(
-                                              new Date().getDate() + index + 10
+                                              new Date().getDate() +
+                                                (index + 1) * 6
                                             )
                                           ).toLocaleDateString("en-US", {
                                             year: "numeric",
@@ -875,7 +883,8 @@ const Dashboardv4 = () => {
                                   ?.toUpperCase() ?? "") +
                                   (dataContext.businessMetaData?.name?.slice(
                                     1
-                                  ) ?? "")}
+                                  ) ?? "")}{" "}
+                                <InsertLinkIcon sx={{ marginBottom: "1px" }} />
                               </Button>
                             </div>
                           </div>

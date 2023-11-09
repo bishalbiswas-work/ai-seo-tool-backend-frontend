@@ -100,7 +100,17 @@ const BlogPage = () => {
 
           <LoaderBar />
         </div>
-        <div className="mt-[3rem] font-worksans md:h-[3747px] h-[3811px] max-w-[1241px] mx-auto md:px-5 relative w-full">
+        {/* <div className="mt-[3rem] font-worksans md:h-[3747px] h-[3811px] max-w-[1241px] mx-auto md:px-5 relative w-full"> */}
+        <div
+          className={`mt-[3rem] font-worksans max-w-[1241px] mx-auto md:h-[3747px]  md:px-5 relative w-full ${
+            navigator.userAgent.includes("Firefox") ? "" : "h-[3811px]"
+          }`}
+          style={
+            navigator.userAgent.includes("Firefox")
+              ? { height: "3951px" }
+              : { height: "3311px" }
+          }
+        >
           <div className="absolute md:h-[3747px] h-[3811px] inset-y-[0] my-auto right-[13%] w-[66%] md:w-full">
             <div className="absolute flex flex-col h-max inset-[0] items-center justify-start m-auto w-auto">
               <div className="flex flex-col gap-8 items-center justify-start max-w-[800px] w-full">
@@ -167,7 +177,7 @@ const BlogPage = () => {
                         className="text-gray-600 text-sm w-auto"
                         size="txtWorkSansRomanRegular14"
                       >
-                        November 8, 2023
+                        November 20, 2023
                       </Text>
                     </div>
                   </div>

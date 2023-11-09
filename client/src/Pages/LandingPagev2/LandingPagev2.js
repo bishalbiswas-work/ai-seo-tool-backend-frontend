@@ -1395,7 +1395,7 @@ const LandingPagev2 = () => {
                 >
                   Get started
                 </Button>
-
+                {/* 
                 <div className="flex flex-row items-start justify-center w-full">
                   <Text
                     className="text-[15px] text-white-A700 tracking-[-0.20px]"
@@ -1419,14 +1419,14 @@ const LandingPagev2 = () => {
                     src="images/img_logo.svg"
                     alt="logo"
                   />
-                </div>
+                </div> */}
               </div>
-              <Text
+              {/* <Text
                 className="mt-[27px] text-[15px] text-white-A700_87 tracking-[-0.20px]"
                 size="txtDMSansRegular15WhiteA70087"
               >
                 Copyright © 2020. LogoIpsum. All rights reserved.
-              </Text>
+              </Text> */}
             </div>
           </div>
         </div>
