@@ -362,9 +362,10 @@ async function generateBlogs(contentObject, topicCount, wordLimit) {
 
   let topicsRaw1 = await writeTitleAndImageKeyword(contentObject, topicCount);
   console.log(topicsRaw1);
-  let topicsRaw = await checkContentRepeation(topicsRaw1);
-  console.log(topicsRaw);
-  let topics = convertBlobToJSONMain(topicsRaw);
+  // let topicsRaw = await checkContentRepeation(topicsRaw1);
+  // console.log(topicsRaw);
+  // let topics = convertBlobToJSONMain(topicsRaw);
+  let topics = convertBlobToJSONMain(topicsRaw1);
 
   // Helper function to ensure content meets criteria
   async function ensureContent(title, retryCount = 0) {
@@ -377,7 +378,7 @@ async function generateBlogs(contentObject, topicCount, wordLimit) {
 
     let blogRaw = await writeBlog(title, `${wordLimit}`);
     let blog = convertBlobToJSONBlog(blogRaw);
-
+    console.log();
     // Check if content contains all required sections
     if (blog.title && blog.intro && blog.paragraphs && blog.conclusion) {
       return blog;
@@ -395,7 +396,10 @@ async function generateBlogs(contentObject, topicCount, wordLimit) {
 
     let imagesUrl = [];
     for (let ix = 0; ix < topics[i].imageKeywords.length; ix++) {
-      let imageUrl = await getImageFromUnsplash(topics[i].imageKeywords[ix]);
+      // let imageUrl = await getImageFromUnsplash(topics[i].imageKeywords[ix]);
+      // let imageUrl =
+      //   "https://images.unsplash.com/photo-1507099985932-87a4520ed1d5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w1MTM3NDR8MHwxfHNlYXJjaHwxfHxwcm9kdWN0aXZpdHl8ZW58MHx8fHwxNjk5NTQyMzUzfDA&ixlib=rb-4.0.3&q=85";
+      let imageUrl = await generateDalleImage(topics[i].imageKeywords[ix]);
       imagesUrl.push({ imageUrl });
       await delay(150); // Assuming delay() returns a promise
     }
@@ -411,6 +415,34 @@ async function generateBlogs(contentObject, topicCount, wordLimit) {
   }
 
   return blogs;
+}
+
+async function generateDalleImage(prompt) {
+  try {
+    const response = await axios.post(
+      "https://api.openai.com/v1/images/generations",
+      {
+        model: "dall-e-3",
+        prompt: prompt,
+        n: 1,
+        size: "1024x1024",
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${OPENAI_API_KEY}`,
+        },
+      }
+    );
+
+    // Assuming the API responds with a JSON that includes the images as URLs
+    const imageUrls = response.data.data.map((generation) => generation.url);
+
+    return imageUrls.length > 0 ? imageUrls[0] : null;
+  } catch (error) {
+    console.error("Error generating image:", error.message);
+    return null;
+  }
 }
 
 // (async () => {

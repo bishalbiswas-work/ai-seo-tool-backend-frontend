@@ -187,13 +187,14 @@ const LandingPagev2 = () => {
   return (
     <>
       <div className="bg-white-A700 flex flex-col font-helvetica gap-5 items-center justify-start mx-auto w-full">
-        <header className="flex md:flex-col flex-row md:gap-5 items-start justify-start md:px-5 w-[1400px] m-auto pt-3">
+        {/* <header className="flex md:flex-col flex-row md:gap-5 items-start justify-start md:px-5 w-[1400px] m-auto pt-3">
           <Img
             className="h-[50px] md:h-auto object-cover w-[50px]"
             src="/logo.png"
             alt="youtubeOne"
           />
-          {/* <div className="flex md:flex-1 md:flex-col flex-row md:gap-10 items-center justify-between mb-[9px] ml-8 md:ml-[0] md:mt-0 mt-5 pl-3 w-[87%] md:w-full">
+       
+          <div className="flex md:flex-1 md:flex-col flex-row md:gap-10 items-center justify-between mb-[9px] ml-8 md:ml-[0] md:mt-0 mt-5 pl-3 w-[87%] md:w-full">
             <ul className="flex sm:flex-col flex-row sm:hidden items-center justify-start pr-[13px] py-[13px] w-[48%] md:w-full common-row-list">
               <li>
                 <a href="javascript:">
@@ -287,8 +288,72 @@ const LandingPagev2 = () => {
                 </a>
               </div>
             </div>
-          </div> */}
+          </div>
+        </header> */}
+        <header className="flex items-center  md:px-5 w-[1400px] m-auto pt-3">
+          <Img
+            className="h-[50px] md:h-auto object-cover w-[50px]"
+            src="/logo.png"
+            alt="Company Logo"
+          />
+
+          <div className="w-full font-lato">
+            <div className="flex items-center justify-center space-x-2">
+              <button
+                onClick={() => {
+                  navigate("/");
+                }}
+                className="text-gray-800 bg-transparent hover:text-white font-semibold py-2 px-4  "
+              >
+                Home
+              </button>
+              <button className="text-gray-800 bg-transparent  font-semibold py-2 px-4 ">
+                <a
+                  href="mailto:daniel@247support.club?subject= White Label&body=Please write your message here."
+                  className="..."
+                >
+                  White Label
+                </a>
+              </button>
+              <button
+                href="mailto:daniel@247support.club"
+                className="text-white font-semibold py-1 px-4 "
+                style={{
+                  color: "white",
+                  borderRadius: "25px",
+                  background: "#7B68EE",
+                }}
+              >
+                <a
+                  href="mailto:daniel@247support.club?subject=Agencies&body=Please write your message here."
+                  className="font-lato"
+                >
+                  Agencies
+                </a>
+              </button>
+              <button className="text-gray-800 bg-transparent font-semibold py-2 px-4 ">
+                <a
+                  href="mailto:daniel@247support.club?subject=Reason For Contact&body=Please write your message here."
+                  className="..."
+                >
+                  Contact Us
+                </a>
+              </button>
+              <button
+                href="mailto:daniel@247support.club"
+                className="text-gray-800 bg-transparent h font-semibold py-2 px-4 "
+              >
+                <a
+                  href="mailto:daniel@247support.club?subject=Feature Request&body=Please write your message here."
+                  className="..."
+                >
+                  Feature Request
+                </a>
+              </button>
+            </div>
+          </div>
         </header>
+
         <div className="flex flex-col items-center justify-start w-full">
           {/* <div className="flex md:flex-col flex-row md:gap-11 h-[621px] md:h-auto items-center justify-between max-w-[1440px] md:px-10 sm:px-5 px-[120px] py-[60px] w-full"> */}
           <div className="flex md:flex-col flex-row md:gap-11 h-[521px] md:h-auto items-center justify-between max-w-[1440px] md:px-[10px] sm:px-5 px-[120px] mt-[-45px] w-full">

@@ -41,6 +41,7 @@ import DNSSetup from "pages/DNSSetup";
 import VoiceSetup from "pages/VoiceSetup";
 import AddSocialMediaLinks from "pages/AddSocialMediaLinks";
 import AddWebsiteCode from "pages/AddWebsiteCode";
+import LandingPagev2Shopify from "Pages/LandingPagev2/LandingPagev2Shopify";
 class App extends Component {
   render() {
     return (
@@ -69,6 +70,14 @@ class App extends Component {
                     </WrapperComponent>
                   }
                 /> */}
+                <Route
+                  path="/shopify"
+                  element={
+                    <WrapperComponent>
+                      <LandingPagev2Shopify />
+                    </WrapperComponent>
+                  }
+                />
                 <Route
                   path="/auth"
                   element={

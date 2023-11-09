@@ -215,7 +215,12 @@ const Dashboardv4 = () => {
                     }}
                     size="txtDMSansBold20"
                   >
-                    Novemeber
+                    {/* Novemeber */}
+                    {new Date(
+                      new Date().setDate(new Date().getDate())
+                    ).toLocaleDateString("en-US", {
+                      month: "long",
+                    })}
                   </Text>
                   <div className="flex flex-col h-full items-center justify-start m-auto w-full">
                     <List
@@ -334,7 +339,16 @@ const Dashboardv4 = () => {
                                           className="text-base text-gray-500_03 w-auto"
                                           size="txtWorkSansRomanRegular16"
                                         >
-                                          Novemeber {10 * (index + 1)}, 2022
+                                          {/* Novemeber {10 * (index + 1)}, 2022 */}
+                                          {new Date(
+                                            new Date().setDate(
+                                              new Date().getDate() + index + 10
+                                            )
+                                          ).toLocaleDateString("en-US", {
+                                            year: "numeric",
+                                            month: "long",
+                                            day: "numeric",
+                                          })}
                                         </Text>
                                       </div>
                                       <div>
