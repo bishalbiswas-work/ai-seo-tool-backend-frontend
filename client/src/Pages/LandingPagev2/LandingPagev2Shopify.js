@@ -303,11 +303,11 @@ const LandingPagev2Shopify = () => {
                 onClick={() => {
                   navigate("/");
                 }}
-                className="text-gray-800 bg-transparent hover:text-white font-semibold py-2 px-4  "
+                className="text-gray-800 bg-transparent hover:text-white  py-2 px-4  "
               >
                 Home
               </button>
-              <button className="text-gray-800 bg-transparent  font-semibold py-2 px-4 ">
+              <button className="text-gray-800 bg-transparent  py-2 px-4 ">
                 <a
                   href="mailto:daniel@247support.club?subject= White Label&body=Please write your message here."
                   className="..."
@@ -317,7 +317,7 @@ const LandingPagev2Shopify = () => {
               </button>
               <button
                 href="mailto:daniel@247support.club"
-                className="text-white font-semibold py-1 px-4 "
+                className="text-white  py-1 px-4 "
                 style={{
                   color: "white",
                   borderRadius: "25px",
@@ -331,7 +331,7 @@ const LandingPagev2Shopify = () => {
                   Agencies
                 </a>
               </button>
-              <button className="text-gray-800 bg-transparent font-semibold py-2 px-4 ">
+              <button className="text-gray-800 bg-transparent  py-2 px-4 ">
                 <a
                   href="mailto:daniel@247support.club?subject=Reason For Contact&body=Please write your message here."
                   className="..."
@@ -341,7 +341,7 @@ const LandingPagev2Shopify = () => {
               </button>
               <button
                 href="mailto:daniel@247support.club"
-                className="text-gray-800 bg-transparent h font-semibold py-2 px-4 "
+                className="text-gray-800 bg-transparent h  py-2 px-4 "
               >
                 <a
                   href="mailto:daniel@247support.club?subject=Feature Request&body=Please write your message here."
