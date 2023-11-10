@@ -110,8 +110,8 @@ const BlogPage = () => {
           className={`mt-[3rem] font-worksans max-w-[1241px] mx-auto md:h-[3747px]  md:px-5 relative w-full`}
           style={
             navigator.userAgent.includes("Firefox")
-              ? { height: "4251px" }
-              : { height: "3511px" }
+              ? { height: "3851px" }
+              : { height: "3811px" }
           }
         >
           <div className="absolute md:h-[3747px] h-[3811px] inset-y-[0] my-auto right-[13%] w-[66%] md:w-full">

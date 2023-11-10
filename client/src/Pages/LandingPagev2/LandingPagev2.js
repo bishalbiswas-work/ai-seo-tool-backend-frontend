@@ -82,6 +82,9 @@ const LandingPagev2 = () => {
     const currentURL = window.location.href;
     return currentURL;
   }
+  // useEffect(() => {
+  //   setContactNumber("+1000000");
+  // }, []);
 
   useEffect(() => {
     dataContext.setPhoneNumberFunction({
@@ -119,8 +122,9 @@ const LandingPagev2 = () => {
       dataContext.setWebsiteFunction({ data: response.data.rootUrl });
       const url = getCurrentURL();
       dataContext.setSourceUrlFunction({ data: url });
-      dataContext.fetchData();
-      navigate("/extract-data");
+
+      // dataContext.fetchData();
+      // navigate("/extract-data");
     } else {
       setCheckUrlStatus(true);
       setIsValidUrl(false);
