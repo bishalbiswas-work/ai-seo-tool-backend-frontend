@@ -740,6 +740,81 @@ const DataState = (props) => {
     }
   };
   // ==================================================================
+
+  // =====================================================
+  const fetchData2 = async ({ data }) => {
+    console.log("Fetch is called: ", data.phoneNumber, data.website);
+    // await createNewFirebaseDoc();
+    const getSummary = async (submitData) => {
+      try {
+        const response = await axios.post(
+          `${API_BASE_URL}/api/get-summary`,
+          // "http://localhost:5000/api/get-access-token",
+          submitData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        return response;
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    const getBlog = async (submitData) => {
+      try {
+        const response = await axios.post(
+          `${API_BASE_URL}/api/get-blogs`,
+          // "http://localhost:5000/api/get-access-token",
+          submitData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        return response;
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    const submitData = {
+      websiteUrl: data.website,
+      UserPhoneNumber: data.phoneNumber,
+    };
+    // const output = await getLogin(submitData);
+    try {
+      const output = await getSummary(submitData);
+      console.log("Backend Reponse Summary: ", output);
+      localStorage.setItem("summary1", JSON.stringify(output.data));
+
+      const submitDataBlogs = {
+        summary: output.data.summary,
+        // blogCount: 6,
+        blogCount: 3,
+        wordCount: 2500,
+      };
+      setBusinessMetaDataFunction({ data: output.data });
+
+      const Blogs = await getBlog(submitDataBlogs);
+      console.log("Backend Reponse Blogs: ", Blogs);
+
+      localStorage.setItem("blogs1", JSON.stringify(Blogs.data.blogs));
+
+      setBlogsFunction({ data: Blogs.data.blogs });
+      setDataLoaded(true);
+
+      // delay(2000);
+      //  navigate("/dashboard");
+    } catch (error) {
+      //  setstate(false);
+      console.error("There was an error with getLogin:", error);
+      // Handle the error or set some state here if necessary
+    }
+  };
+  // ==================================================================
   const pushBlogs = async (docId) => {
     const targetDoc = doc(db, "AutoSEO_Blogs", docId);
 
@@ -821,6 +896,7 @@ const DataState = (props) => {
         selectedBlog,
         businessMetaData,
         fetchData,
+        fetchData2,
         setBusinessMetaDataFunction,
         setProfileUrlFunction,
         setAuthTokenFunction,

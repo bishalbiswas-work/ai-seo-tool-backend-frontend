@@ -106,6 +106,7 @@ app.post("/api/get-access-token", async (req, res) => {
 
     let websiteUrl = req.body.websiteUrl;
     let UserPhoneNumber = req.body.UserPhoneNumber;
+    // let UserPhoneNumber = "+10000";
     // let urlLevel = req.body.urlLevel;
     console.log(websiteUrl, UserPhoneNumber);
 
@@ -193,7 +194,8 @@ app.post("/api/get-access-token", async (req, res) => {
 app.post("/api/get-summary", async (req, res) => {
   try {
     let websiteUrl = req.body.websiteUrl;
-    let UserPhoneNumber = req.body.UserPhoneNumber;
+    // let UserPhoneNumber = req.body.UserPhoneNumber;
+    let UserPhoneNumber = "0000000000000";
     // let urlLevel = req.body.urlLevel;
     console.log(websiteUrl, UserPhoneNumber);
     let name = await extractDomainName(websiteUrl);
