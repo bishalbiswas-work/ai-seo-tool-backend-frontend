@@ -119,6 +119,8 @@ const LandingPagev2Shopify = () => {
       dataContext.setWebsiteFunction({ data: response.data.rootUrl });
       const url = getCurrentURL();
       dataContext.setSourceUrlFunction({ data: url });
+      dataContext.fetchData();
+      navigate("/extract-data");
     } else {
       setCheckUrlStatus(true);
       setIsValidUrl(false);

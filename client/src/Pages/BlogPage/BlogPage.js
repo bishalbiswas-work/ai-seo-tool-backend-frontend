@@ -36,6 +36,7 @@ const BlogPage = () => {
     // window.scrollTo({ top: 0, behavior: "smooth" });
     window.scrollTo({ top: 0 });
   }, []);
+  // console.log("icon : ", dataContext.businessMetaData.faviconUrl);
   return (
     <>
       <div className="bg-gray-200_04 flex flex-col font-inter gap-[51px] items-center justify-start mx-auto w-full">
@@ -56,11 +57,15 @@ const BlogPage = () => {
                     <div className="flex flex-col items-center justify-start w-auto">
                       <div className="flex flex-col items-start justify-start w-auto">
                         <div className="flex items-center">
-                          <Img
-                            className="h-14 md:h-auto sm:mt-0  object-cover"
-                            src={dataContext.businessMetaData.faviconUrl}
-                            alt="imageSixtySeven"
-                          />
+                          {dataContext.businessMetaData.faviconUrl &&
+                          dataContext.businessMetaData.faviconUrl.length > 0 ? (
+                            <Img
+                              className="h-14 md:h-auto sm:mt-0 object-cover"
+                              src={dataContext.businessMetaData.faviconUrl}
+                              alt="imageSixtySeven"
+                            />
+                          ) : null}
+
                           <div className="flex  items-center">
                             <Text
                               className="text-[24px]  text-blue_gray-900_04 sm:text-xl md:text-2xl ml-4"
@@ -102,13 +107,11 @@ const BlogPage = () => {
         </div>
         {/* <div className="mt-[3rem] font-worksans md:h-[3747px] h-[3811px] max-w-[1241px] mx-auto md:px-5 relative w-full"> */}
         <div
-          className={`mt-[3rem] font-worksans max-w-[1241px] mx-auto md:h-[3747px]  md:px-5 relative w-full ${
-            navigator.userAgent.includes("Firefox") ? "" : "h-[3811px]"
-          }`}
+          className={`mt-[3rem] font-worksans max-w-[1241px] mx-auto md:h-[3747px]  md:px-5 relative w-full`}
           style={
             navigator.userAgent.includes("Firefox")
-              ? { height: "3951px" }
-              : { height: "3311px" }
+              ? { height: "4251px" }
+              : { height: "3511px" }
           }
         >
           <div className="absolute md:h-[3747px] h-[3811px] inset-y-[0] my-auto right-[13%] w-[66%] md:w-full">

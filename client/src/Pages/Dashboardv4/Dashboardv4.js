@@ -53,11 +53,14 @@ const Dashboardv4 = () => {
           <div className="flex flex-col items-start justify-start w-[99%] md:w-full">
             <div className="flex sm:flex-col flex-row md:gap-10 items-start justify-between w-full mb-[50px]">
               <div className="flex items-center">
-                <Img
-                  className="h-14 md:h-auto sm:mt-0 mt-[35px] object-cover"
-                  src={dataContext.businessMetaData.faviconUrl}
-                  alt="imageSixtySeven"
-                />
+                {dataContext.businessMetaData.faviconUrl &&
+                dataContext.businessMetaData.faviconUrl.length > 0 ? (
+                  <Img
+                    className="h-14 md:h-auto sm:mt-0 object-cover"
+                    src={dataContext.businessMetaData.faviconUrl}
+                    alt="imageSixtySeven"
+                  />
+                ) : null}
                 <div className="flex  items-center">
                   <Text
                     className="text-[24px] pt-[30px] text-blue_gray-900_04 sm:text-xl md:text-2xl ml-4"

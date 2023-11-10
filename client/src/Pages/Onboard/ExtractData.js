@@ -38,17 +38,27 @@ const ExtractData = () => {
   const [progress, setProgress] = React.useState(1);
 
   const texts = [
-    "Fetching the magic for you! ✨",
-    "Diving deep into the digital realm... 🌐",
-    "Crafting your personalized experience... 🛠️",
-    "Hold tight! Greatness is unfolding... 🚀",
-    "Almost there! Can you feel the excitement? 🎉",
-    "Revolutionizing your digital journey... ⏳",
-    "Sculpting the perfect interface just for you! 🎨",
-    "Bringing out the best from the web... 🕸️",
-    "Stay tuned! Wonders are on their way... 💡",
-    "Your tailored experience is moments away... ⏰",
+    // "Fetching the magic for you! ✨",
+    // "Diving deep into the digital realm... 🌐",
+    // "Crafting your personalized experience... 🛠️",
+    // "Hold tight! Greatness is unfolding... 🚀",
+    // "Almost there! Can you feel the excitement? 🎉",
+    // "Revolutionizing your digital journey... ⏳",
+    // "Sculpting the perfect interface just for you! 🎨",
+    // "Bringing out the best from the web... 🕸️",
+    // "Stay tuned! Wonders are on their way... 💡",
+    // "Your tailored experience is moments away... ⏰",
+    "Uncovering high-volume, low-competition keywords.......⏰",
+    "Crafting blogs your customers want to read......⏰",
+    "Boosting SEO via relevant backlinks......⏰",
+    "Optimizing keywords for you to rank on Google......⏰",
   ]; // Add more texts as required
+  const images = [
+    "/assets/loadAnimation1.png",
+    "/assets/loadAnimation2.png",
+    "/assets/loadAnimation3.png",
+    "/assets/loadAnimation4.png",
+  ];
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -181,13 +191,16 @@ const ExtractData = () => {
 
         {state ? (
           <>
-            <div>
+            {/* <div>
               <Lottie
                 animationData={animationData}
                 loop
                 autoplay
                 style={{ width: 250, height: 250 }}
               />
+            </div> */}
+            <div>
+              <img src={images[index]} style={{ height: 250 }} />
             </div>
             <Typography variant="h6">{texts[index]}</Typography>
           </>
@@ -309,17 +322,26 @@ const ExtractData = () => {
 function LinearProgressWithLabel(props) {
   return (
     <Box sx={{ display: "flex", alignItems: "center" }}>
-      <Box sx={{ width: "100%", mr: 1 }}>
-        {/* <LinearProgress
-          variant="determinate"
-          {...props}
+      <Box
+        sx={{
+          width: "100%",
+          mr: 1,
+          position: "relative",
+          filter: "drop-shadow(0 0 12px rgba(105, 50, 131, .5))",
+        }}
+      >
+        {/* Skeleton behind the progress bar to indicate the end point */}
+        <Box
           sx={{
-            height: "20px",
+            position: "absolute",
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
             borderRadius: "25px",
-            color:
-              "linear-gradient(180deg, rgb(105.08, 50, 131) 0%, rgb(50.16, 50.16, 130.74) 100%) !important",
+            backgroundColor: "rgba(250, 217, 255, 0.5)", // Lighter shade for the skeleton
           }}
-        /> */}
+        />
         <LinearProgress
           variant="determinate"
           {...props}
@@ -327,21 +349,35 @@ function LinearProgressWithLabel(props) {
             height: "20px",
             borderRadius: "25px",
             "& .MuiLinearProgress-bar": {
-              background:
-                "linear-gradient(180deg, rgb(105.08, 50, 131) 0%, rgb(50.16, 50.16, 130.74) 100%)",
+              backgroundImage:
+                "linear-gradient(to right, rgba(131, 105, 195, 1) 0%, rgba(177, 156, 217, 1) 50%, rgba(250, 217, 255, 1) 100%)",
+              boxShadow: "0 0 12px rgba(105, 50, 131, .5)",
             },
           }}
         />
       </Box>
-      <Box sx={{ minWidth: 35 }}>
-        <Typography variant="body2" color="text.secondary">{`${Math.round(
-          props.value
-        )}%`}</Typography>
+      <Box sx={{ minWidth: 35, ml: 2 }}>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{
+            fontWeight: "bold", // Increase font weight
+            fontSize: "1rem", // Increase font size
+            filter: "drop-shadow(0 0 8px rgba(105, 50, 131, .5))",
+            background:
+              "linear-gradient(to bottom, rgba(131, 105, 195, 1) 0%, rgba(177, 156, 217, 1) 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          }}
+        >
+          {`${Math.round(props.value)}%`}
+        </Typography>
       </Box>
     </Box>
   );
 }
 
+//  style={{ fontWeight: "900", fontSize: "22px" }}
 LinearProgressWithLabel.propTypes = {
   /**
    * The value of the progress indicator for the determinate and buffer variants.
