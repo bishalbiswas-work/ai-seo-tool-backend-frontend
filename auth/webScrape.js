@@ -38,7 +38,7 @@ async function fetchFavicon(url) {
     )
     .catch(() => {
       // If no favicon found, return a default message
-      return "No favicon found!";
+      return "";
     });
 
   await browser.close();
