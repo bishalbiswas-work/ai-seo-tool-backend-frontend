@@ -1,3 +1,14 @@
+var admin = require("firebase-admin");
+// var serviceAccount = require("./messangergpt-firebase-adminsdk-b3qv7-42edd05227.json");
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+//   databaseURL: "https://messangergpt-default-rtdb.firebaseio.com",
+// });
+const db = admin.database();
+const ref = db.ref("AutoSEO-Blogs");
+
+// ==================================================================
+
 const { getImageFromUnsplash } = require("./OtherApi");
 
 const axios = require("axios");
@@ -417,6 +428,85 @@ async function generateBlogs(contentObject, topicCount, wordLimit) {
   return blogs;
 }
 
+async function generateBlogsLazy(uid, contentObject, topicCount, wordLimit) {
+  let blogs = [];
+
+  const usersRef = ref.child(uid);
+
+  // New function to save data to Firebase under the specific user ID
+  async function saveToFirebase(blogData, index) {
+    const blogRef = usersRef.child(index.toString());
+    await blogRef.set(blogData);
+    console.log(`Blog saved to Firebase at index: ${index}`);
+  }
+
+  let topicsRaw1 = await writeTitleAndImageKeyword(contentObject, topicCount);
+  console.log(topicsRaw1);
+  // let topicsRaw = await checkContentRepeation(topicsRaw1);
+  // console.log(topicsRaw);
+  // let topics = convertBlobToJSONMain(topicsRaw);
+  let topics = convertBlobToJSONMain(topicsRaw1);
+
+  // Helper function to ensure content meets criteria
+  async function ensureContent(title, retryCount = 0) {
+    if (retryCount > 3) {
+      // Limit retries to avoid infinite loops
+      throw new Error(
+        "Failed to generate desired content after multiple attempts"
+      );
+    }
+
+    let blogRaw = await writeBlog(title, `${wordLimit}`);
+    let blog = convertBlobToJSONBlog(blogRaw);
+    console.log();
+    // Check if content contains all required sections
+    if (blog.title && blog.intro && blog.paragraphs && blog.conclusion) {
+      return blog;
+    } else {
+      await delay(1000); // Wait for a second before retrying
+      return await ensureContent(title, retryCount + 1); // Retry
+    }
+  }
+  let index = 0; // Initialize index
+
+  for (let i = 0; i < topics.length; i++) {
+    console.log("Title:", topics[i].title);
+    console.log("Image Keywords:", topics[i].imageKeywords.join(", "));
+
+    let blog = await ensureContent(topics[i].title);
+
+    let imagesUrl = [];
+    for (let ix = 0; ix < topics[i].imageKeywords.length; ix++) {
+      // let imageUrl = await getImageFromUnsplash(topics[i].imageKeywords[ix]);
+      // let imageUrl =
+      //   "https://images.unsplash.com/photo-1507099985932-87a4520ed1d5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w1MTM3NDR8MHwxfHNlYXJjaHwxfHxwcm9kdWN0aXZpdHl8ZW58MHx8fHwxNjk5NTQyMzUzfDA&ixlib=rb-4.0.3&q=85";
+      let imageUrl = await generateDalleImage(topics[i].imageKeywords[ix]);
+      imagesUrl.push({ imageUrl });
+      await delay(150); // Assuming delay() returns a promise
+    }
+    await saveToFirebase(
+      {
+        title: topics[i].title,
+        seoKeywords: topics[i].seoKeywords,
+        imageKeywords: topics[i].imageKeywords,
+        imagesUrl: imagesUrl,
+        content: blog,
+      },
+      index
+    );
+    index++; // Increment the index for the next blog
+    blogs.push({
+      title: topics[i].title,
+      seoKeywords: topics[i].seoKeywords,
+      imageKeywords: topics[i].imageKeywords,
+      imagesUrl: imagesUrl,
+      content: blog,
+    });
+    await delay(150);
+  }
+
+  return blogs;
+}
 async function generateDalleImage(prompt) {
   try {
     const response = await axios.post(
@@ -452,10 +542,25 @@ async function generateDalleImage(prompt) {
 //   const data = convertBlobToJSONMain(blob);
 //   console.log(data);
 // })();
+// const temp = () => {
+//   const usersRef = ref.child("users");
+//   usersRef.set({
+//     alanisawesome: {
+//       date_of_birth: "June 23, 1912",
+//       full_name: "Alan Turing",
+//     },
+//     gracehop: {
+//       date_of_birth: "December 9, 1906",
+//       full_name: "Grace Hopper",
+//     },
+//   });
+// };
+// temp();
 module.exports = {
   writeBlog,
   convertBlobToJSONBlog,
   writeTitleAndImageKeyword,
   convertBlobToJSONMain,
   generateBlogs,
+  generateBlogsLazy,
 };

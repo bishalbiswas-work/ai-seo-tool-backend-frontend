@@ -23,10 +23,13 @@ import Text from "./Text";
 import PInput from "./PInput";
 import useGeoLocation from "react-ipgeolocation";
 import { getCountryCallingCode } from "libphonenumber-js";
+import Hidden from "@mui/material/Hidden";
 
 // import Desktop6MixpanelGenerateTextToVideoRowcreateainstareeOne from "components/Desktop6MixpanelGenerateTextToVideoRowcreateainstareeOne";
 import { Box, CircularProgress, TextField, Typography } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
 
@@ -64,7 +67,7 @@ const LandingPagev2 = () => {
     process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
   const navigate = useNavigate();
   const dataContext = useContext(DataContext);
-
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [contactNumber, setContactNumber] = useState("");
   const [input, setInput] = useState("");
   const [successUrl, setSuccessUrl] = useState(false);
@@ -123,8 +126,10 @@ const LandingPagev2 = () => {
       const url = getCurrentURL();
       dataContext.setSourceUrlFunction({ data: url });
       const temp = { phoneNumber: "000000", website: response.data.rootUrl };
-      dataContext.fetchData2({ data: temp });
-      navigate("/extract-data");
+      // dataContext.fetchData2({ data: temp });
+      dataContext.generateSummary({ data: temp });
+      // navigate("/extract-data");
+      navigate("/auth");
     } else {
       setCheckUrlStatus(true);
       setIsValidUrl(false);
@@ -296,7 +301,7 @@ const LandingPagev2 = () => {
             </div>
           </div>
         </header> */}
-        <header className="flex items-center  md:px-5 w-[1400px] m-auto pt-3">
+        {/* <header className="flex items-center  md:px-5 w-full m-auto pt-3">
           <Img
             className="h-[50px] md:h-auto object-cover w-[50px]"
             src="/logo.png"
@@ -358,6 +363,116 @@ const LandingPagev2 = () => {
               </button>
             </div>
           </div>
+        </header> */}
+        <header className="w-full pt-3 px-5">
+          <div className="flex items-center justify-between">
+            <img
+              className="h-[50px] w-[50px] object-cover"
+              src="/logo.png"
+              alt="Company Logo"
+            />
+
+            {/* Desktop Menu - shown on md screens and larger */}
+            <div className="w-full font-lato md:hidden">
+              <div className="flex items-center justify-center space-x-2">
+                <button
+                  onClick={() => {
+                    navigate("/");
+                  }}
+                  className="text-gray-800 bg-transparent hover:text-white  py-2 px-4  "
+                >
+                  Home
+                </button>
+                <button className="text-gray-800 bg-transparent   py-2 px-4 ">
+                  <a
+                    href="mailto:daniel@247support.club?subject= White Label&body=Please write your message here."
+                    className="..."
+                  >
+                    White Label
+                  </a>
+                </button>
+                <button
+                  href="mailto:daniel@247support.club"
+                  className="text-white py-1 px-4 "
+                  style={{
+                    color: "white",
+                    borderRadius: "25px",
+                    background: "#7B68EE",
+                  }}
+                >
+                  <a
+                    href="mailto:daniel@247support.club?subject=Agencies&body=Please write your message here."
+                    className="font-lato"
+                  >
+                    Agencies
+                  </a>
+                </button>
+                <button className="text-gray-800 bg-transparent  py-2 px-4 ">
+                  <a
+                    href="mailto:daniel@247support.club?subject=Reason For Contact&body=Please write your message here."
+                    className="..."
+                  >
+                    Contact Us
+                  </a>
+                </button>
+                <button
+                  href="mailto:daniel@247support.club"
+                  className="text-gray-800 bg-transparent h  py-2 px-4 "
+                >
+                  <a
+                    href="mailto:daniel@247support.club?subject=Feature Request&body=Please write your message here."
+                    className="..."
+                  >
+                    Feature Request
+                  </a>
+                </button>
+              </div>
+            </div>
+
+            {/* Hamburger Icon - shown on small screens */}
+            <Hidden lgUp implementation="css">
+              <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                {isMenuOpen ? (
+                  <CloseIcon className="h-6 w-6 text-gray-800" />
+                ) : (
+                  <MenuIcon className="h-6 w-6 text-gray-800" />
+                )}
+              </button>
+            </Hidden>
+          </div>
+
+          {/* Mobile Menu - shown when hamburger icon is clicked */}
+          <div className={`lg:hidden ${isMenuOpen ? "block" : "hidden"}`}>
+            <nav className="flex flex-col items-center py-4">
+              <a href="/" className="py-2 px-4 text-gray-800 hover:text-white">
+                Home
+              </a>
+              <a
+                href="mailto:daniel@247support.club?subject= White Label&body=Please write your message here."
+                className="py-2 px-4 text-gray-800 hover:text-white"
+              >
+                White Label
+              </a>
+              <a
+                href="mailto:daniel@247support.club?subject=Agencies&body=Please write your message here."
+                className="py-2 px-4 text-gray-800 hover:text-white"
+              >
+                Agencies
+              </a>
+              <a
+                href="mailto:daniel@247support.club?subject=Reason For Contact&body=Please write your message here."
+                className="py-2 px-4 text-gray-800 hover:text-white"
+              >
+                Contact Us
+              </a>
+              <a
+                href="mailto:daniel@247support.club?subject=Feature Request&body=Please write your message here."
+                className="py-2 px-4 text-gray-800 hover:text-white"
+              >
+                Feature Request
+              </a>
+            </nav>
+          </div>
         </header>
 
         <div className="flex flex-col items-center justify-start w-full">
@@ -371,7 +486,7 @@ const LandingPagev2 = () => {
                       <div className="h-36 relative w-full">
                         <div className="backdrop-opacity-[0.5] blur-[1.00px] h-36 m-auto w-[99%]"></div>
                         <Text
-                          className="absolute h-full inset-[0] justify-center leading-[64.00px] m-auto sm:text-4xl md:text-[38px] text-[40px] text-black-900 tracking-[-2.00px] w-full"
+                          className="absolute h-full inset-[0] justify-center leading-[64.00px] m-auto sm:text-4xl md:text-[38px] text-[40px] text-black-900 tracking-[-2.00px] w-full "
                           size="txtHelveticaBold40"
                         >
                           Let AI Do Your SEO, While You{" "}
@@ -381,7 +496,7 @@ const LandingPagev2 = () => {
                         </Text>
                       </div>
                       <Text
-                        className="leading-[40.00px] max-w-[613px] md:max-w-full text-[22px] text-gray-700 sm:text-lg md:text-xl"
+                        className="leading-[40.00px] max-w-[613px] md:max-w-full text-[22px] text-gray-700 sm:text-lg md:text-xl mb-2 mt-4"
                         size="txtHelveticaLight22"
                       >
                         <span className="text-gray-700 font-helvetica text-left font-light">
@@ -415,18 +530,8 @@ const LandingPagev2 = () => {
                     </div>
                   </div>
                 </div>
-                {/* {successUrl && (
-                  <PInput className="absolute bottom-[6%] flex flex-col font-opensans gap-1 items-center justify-start left-[0] w-[425px] sm:w-full" />
-                )} */}
-                <div className="absolute bottom-[6%] flex flex-col font-opensans gap-1 items-center justify-start left-[0] w-[425px] sm:w-full">
-                  {/* <PInput
-                    successUrl={successUrl}
-                    validNumber={validNumber}
-                    dataContext={dataContext}
-                    handleChangeNumber={handleChangeNumber}
-                    handleGetStarted={handelGetStarted} // Note: The function name in your original code is "handelGetStarted"
-                  /> */}
-                  {/* <div className="flex flex-col h-12 md:h-auto items-start justify-start  py-3 rounded-lg shadow-bs1 w-full"> */}
+
+                {/* <div className="absolute bottom-[6%] flex flex-col font-opensans gap-1 items-center justify-start left-[0] w-[425px] sm:w-full">
                   <div className="flex flex-col h-6 md:h-auto items-start justify-start w-full">
                     <div className="flex sm:flex-col flex-row gap-2 h-6 md:h-auto items-center justify-start w-full">
                       <div className="flex flex-row items-center justify-start w-auto">
@@ -438,7 +543,6 @@ const LandingPagev2 = () => {
                               marginTop: "2rem",
                             }}
                           >
-                            {/* <StyledPhoneInput> */}
                             <Box>
                               <PhoneInput
                                 placeholder="Phone Number"
@@ -474,19 +578,6 @@ const LandingPagev2 = () => {
                                   setNextStepButton(true);
                                 }}
                                 disabled={nexStepButton} // This will disable the button if nextStepButton is true
-                                // style={{
-                                //   position: "absolute",
-                                //   left: "-157px",
-                                //   top: "7px",
-                                //   width: "150px",
-                                //   height: "35px",
-                                //   background:
-                                //     "linear-gradient(180deg, rgb(105.08, 50, 131) 0%, rgb(50.16, 50.16, 130.74) 100%)",
-                                //   padding: "8px 15px", // Adjust padding as needed
-                                //   borderRadius: "8px", // Adjust border radius as needed
-                                //   color: "white",
-                                //   fontSize: "12px",
-                                // }}
                                 style={{
                                   position: "absolute",
                                   left: "-157px",
@@ -532,37 +623,21 @@ const LandingPagev2 = () => {
                       </div>
                     )}
                   </div>
-                  {/* </div> */}
-                </div>
+                </div> */}
               </div>
               <Box
-                style={{
+                sx={{
                   display: "flex",
-                  marginTop: "-200px",
-                  width: "679px",
-
-                  // background: "grey",
+                  mt: {
+                    xs: "-10px", // mobile
+                    md: "-200px", // desktop
+                  },
+                  // You can add more styles as needed here
                 }}
               >
-                <Box width="70%">
+                <Box width="100%">
                   <p className="url-text">Your website URL</p>
-                  {/* <TextField
-                    variant="outlined"
-                    type="text"
-                    fullWidth
-                    disabled={successUrl}
-                    value={input}
-                    onChange={handleChange}
-                    placeholder="example.com"
-                    error={confirmClick && !isValidUrl}
-                    sx={{
-                      borderRadius: "15px !important",
-                      "&.MuiTextField-root.Mui-error": {
-                        borderColor: "red",
-                        height: "3.5rem !important",
-                      },
-                    }}
-                  /> */}
+
                   <TextField
                     variant="outlined"
                     type="text"
@@ -586,7 +661,10 @@ const LandingPagev2 = () => {
                     }}
                   />
                 </Box>
-                <Box width="30%" style={{ position: "relative" }}>
+                <Box
+                  // width="30%"
+                  style={{ position: "relative" }}
+                >
                   {!successUrl && checkUrlStatus && (
                     <Button
                       variant="contained"
@@ -645,7 +723,15 @@ const LandingPagev2 = () => {
               )}
             </div>
 
+            {/* <img
+              className="lg:hidden"
+              style={{ width: "100%", marginLeft: "3em", maxWidth: "300px" }}
+              // src="/landing.png"
+              src="/images/showcase2.png"
+              alt=""
+            /> */}
             <img
+              className="md:hidden"
               style={{ width: "100%", marginLeft: "3em", maxWidth: "500px" }}
               // src="/landing.png"
               src="/images/showcase2.png"

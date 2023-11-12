@@ -1,5 +1,10 @@
-// const { admin } = require("./auth/firebaseConfig"); // Your firebase configuration
-// const { facebookSDK } = require("./auth/facebookConfig"); // Your facebook SDK configuration
+var admin = require("firebase-admin");
+var serviceAccount = require("./auth/messangergpt-firebase-adminsdk-b3qv7-42edd05227.json");
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://messangergpt-default-rtdb.firebaseio.com",
+});
+const firestore = admin.firestore();
 const {
   getLongLivedToken,
   getPageAccessToken,
@@ -38,18 +43,12 @@ const {
   writeTitleAndImageKeyword,
   convertBlobToJSONMain,
   generateBlogs,
+  generateBlogsLazy,
 } = require("./auth/openAiv3");
 //
 //
 //
 const dns = require("dns");
-
-var admin = require("firebase-admin");
-var serviceAccount = require("./auth/messangergpt-firebase-adminsdk-b3qv7-42edd05227.json");
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-});
-const firestore = admin.firestore();
 
 //
 const path = require("path");
@@ -239,6 +238,24 @@ app.post("/api/get-blogs", async (req, res) => {
 
 // =========================================================
 
+app.post("/api/get-blogs-lazy", async (req, res) => {
+  try {
+    let summary = req.body.summary;
+    let blogCount = req.body.blogCount;
+    let wordCount = req.body.wordCount;
+    let uid = req.body.uid;
+
+    let blogs = await generateBlogsLazy(uid, summary, blogCount, wordCount);
+    res.json({
+      message: "success",
+      blogs: blogs,
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// =========================================================
 // ========================================================
 //                    Start Chec Url
 // ========================================================

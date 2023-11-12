@@ -39,6 +39,7 @@ const BlogPage = () => {
   // console.log("icon : ", dataContext.businessMetaData.faviconUrl);
   return (
     <>
+      <div className="md:h-[900px]"></div>
       <div className="bg-gray-200_04 flex flex-col font-inter gap-[51px] items-center justify-start mx-auto w-full">
         <div className="bg-gray-200_04 flex flex-col items-center justify-start max-w-[1440px] w-full">
           <div className="flex flex-col items-start justify-start max-w-[1253px] mx-auto md:px-5 w-full">
@@ -51,7 +52,7 @@ const BlogPage = () => {
                     top: 0,
                     zIndex: 2,
                   }}
-                  className="flex md:flex-col flex-row md:gap-10 items-center justify-between w-[1200px] py-[25px] "
+                  className="flex md:flex-col flex-row md:gap-10 items-center justify-between w-[1200px] py-[25px] md:hidden "
                 >
                   <div className="flex flex-col items-start justify-center pr-4 w-auto">
                     <div className="flex flex-col items-center justify-start w-auto">
@@ -98,7 +99,7 @@ const BlogPage = () => {
             </div>
           </div>
           <Img
-            className="h-1 sm:h-auto object-cover w-[1440px] md:w-full"
+            className="h-1 sm:h-auto object-cover w-[1440px] md:hidden"
             src="/images/img_group42311.png"
             alt="group42311"
           />
@@ -114,10 +115,10 @@ const BlogPage = () => {
               : { height: "3811px" }
           }
         >
-          <div className="absolute md:h-[3747px] h-[3811px] inset-y-[0] my-auto right-[13%] w-[66%] md:w-full">
-            <div className="absolute flex flex-col h-max inset-[0] items-center justify-start m-auto w-auto">
-              <div className="flex flex-col gap-8 items-center justify-start max-w-[800px] w-full">
-                <div className="flex flex-col gap-8 items-center justify-start max-w-[695px] w-full">
+          <div className="absolute md:h-[3747px] h-[3811px] inset-y-[0] my-auto right-[13%] w-[66%] md:w-full md:w-[300px]">
+            <div className="absolute flex flex-col h-max inset-[0] items-center justify-start m-auto w-auto ">
+              <div className="flex flex-col gap-8 items-center justify-start max-w-[800px] w-full ">
+                <div className="flex flex-col gap-8 items-center justify-start max-w-[695px] w-full ">
                   <div className="flex flex-col gap-5 items-start justify-start w-full">
                     <div className="flex flex-col gap-4 items-start justify-start w-full">
                       <div
@@ -407,7 +408,7 @@ const BlogPage = () => {
             </div> */}
             <div
               style={{ backdropFilter: "blur(10px)" }}
-              className="absolute bg-white-A700_6d bottom-[0] flex flex-col font-inter h-[2202px] md:h-auto inset-x-[0] items-center justify-start max-w-[804px] mx-auto sm:px-5 px-6 py-8 rounded-[16px] w-full"
+              className="absolute bg-white-A700_6d bottom-[0] flex flex-col font-inter h-[2202px] md:h-[2802px] inset-x-[0] items-center justify-start max-w-[804px] mx-auto sm:px-5 px-6 py-8 rounded-[16px] w-full"
             >
               <div className="flex flex-col items-center justify-start pt-[0.07px] w-[300px]">
                 <Button
@@ -808,7 +809,8 @@ const BlogPage = () => {
                             Daniyal
                           </Text>
                           <Text
-                            className="text-lg text-white-A700 whitespace-nowrap overflow-hidden"
+                            className="text-lg text-white-A700 whitespace-nowrap                             
+                            " // overflow-hidden
                             display="block"
                             width="300px"
                             size="txtHelvetica18"
@@ -932,7 +934,8 @@ const BlogPage = () => {
                           Marketer @FMF
                         </Text> */}
                         <Text
-                          className="text-xs text-black-900 whitespace-nowrap overflow-hidden"
+                          className="text-xs text-black-900 whitespace-nowrap"
+                          // overflow-hidden
                           display="block"
                           size="txtHelvetica12"
                           style={{
@@ -1043,7 +1046,7 @@ const BlogPage = () => {
               </div> */}
             </div>
           </div>
-          <div className="absolute bg-white-A700 border border-gray-300_01 border-solid flex flex-col font-worksans gap-2.5 items-center justify-start p-4 right-[0] rounded-[12px] top-[0] w-auto">
+          <div className="absolute bg-white-A700 border border-gray-300_01 border-solid flex flex-col font-worksans gap-2.5 items-center justify-start p-4 right-[0] rounded-[12px] top-[0] w-auto md:hidden">
             {/* <div className="flex flex-col gap-4 items-center justify-start w-auto">
               <div className="bg-white-A700 flex flex-col gap-[7.5px] items-center justify-start px-3 py-[9px] rounded-[9px] w-[132px]">
                 <div className="flex flex-col font-dmsans gap-[9px] h-[75px] md:h-auto items-center justify-start w-auto">
@@ -1120,7 +1123,7 @@ const BlogPage = () => {
               src="/images/img_frame1000002924.svg"
               alt="frame1000002924"
             />
-            <div className="flex flex-col items-start justify-start w-auto">
+            <div className="flex flex-col items-start justify-start w-auto ">
               <List
                 className="flex flex-col gap-[23px] items-center w-full"
                 orientation="vertical"
@@ -1250,7 +1253,7 @@ const BlogPage = () => {
               </div>
             </div>
           </div> */}
-          <div className="absolute bg-white-A700 border border-gray-300_01 border-solid flex flex-col font-worksans gap-6 items-start justify-start left-[0] px-4 py-6 rounded-[12px] top-[0] w-[303px]">
+          <div className="absolute bg-white-A700 border border-gray-300_01 border-solid flex flex-col font-worksans gap-6 items-start justify-start left-[0] px-4 py-6 rounded-[12px] top-[0] w-[303px] md:hidden">
             <Text
               className="text-gray-900_03 text-lg w-auto"
               size="txtWorkSansSemiBold18"

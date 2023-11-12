@@ -12,6 +12,7 @@ import {
   addDoc,
   serverTimestamp,
 } from "firebase/firestore";
+import { getDatabase, ref, onValue, off } from "firebase/database";
 
 // End Firebase
 const DataState = (props) => {
@@ -27,7 +28,10 @@ const DataState = (props) => {
   // const [appSecret, setAppSecret] = useState(
   //   "2cbf96cf1d16da97da365d9964d585bf"
   // );
-
+  const [userDetails, setUserDetails] = useState({
+    email: "",
+    name: "",
+  });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authToken, setAuthToken] = useState("");
 
@@ -397,7 +401,19 @@ const DataState = (props) => {
     },
   ]);
   const delay = (time) => new Promise((resolve) => setTimeout(resolve, time));
-
+  useEffect(() => {
+    const userEmail = localStorage.getItem("email");
+    if (userEmail) {
+      setIsLoggedIn(true);
+      console.log("User Logged In");
+    }
+  }, []);
+  const setonboardingUserDetails = ({ email, name }) => {
+    setUserDetails({
+      email: email,
+      name: name,
+    });
+  };
   const login = () => {
     setIsLoggedIn(true);
   };
@@ -815,6 +831,167 @@ const DataState = (props) => {
     }
   };
   // ==================================================================
+
+  // =====================================================
+  const [summaryLoad, setSummaryLoad] = useState(false);
+
+  const generateSummary = async ({ data }) => {
+    console.log("Fetch is called: ", data.phoneNumber, data.website);
+    // await createNewFirebaseDoc();
+    const getSummary = async (submitData) => {
+      try {
+        const response = await axios.post(
+          `${API_BASE_URL}/api/get-summary`,
+          // "http://localhost:5000/api/get-access-token",
+          submitData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        return response;
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    const submitData = {
+      websiteUrl: data.website,
+      UserPhoneNumber: data.phoneNumber,
+    };
+    // const output = await getLogin(submitData);
+    try {
+      const output = await getSummary(submitData);
+      console.log("Backend Reponse Summary: ", output);
+      localStorage.setItem("summary1", JSON.stringify(output.data));
+      setSummaryLoad(true);
+
+      setBusinessMetaDataFunction({ data: output.data });
+      // delay(2000);
+      //  navigate("/dashboard");
+    } catch (error) {
+      //  setstate(false);
+      console.error("There was an error with getLogin:", error);
+      // Handle the error or set some state here if necessary
+    }
+  };
+  useEffect(() => {
+    const generateBlogs = async () => {
+      const getBlog = async (submitData) => {
+        try {
+          const response = await axios.post(
+            `${API_BASE_URL}/api/get-blogs-lazy`,
+            // "http://localhost:5000/api/get-access-token",
+            submitData,
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          return response;
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      try {
+        const submitDataBlogs = {
+          summary: businessMetaData.summary,
+          uid: uid,
+          blogCount: 3,
+          wordCount: 2500,
+        };
+
+        const Blogs = await getBlog(submitDataBlogs);
+        console.log("Backend Reponse Blogs: ", Blogs);
+
+        localStorage.setItem("blogs1", JSON.stringify(Blogs.data.blogs));
+
+        setBlogsFunction({ data: Blogs.data.blogs });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    if (uid && summaryLoad) {
+      console.log("blog Generation Started");
+      generateBlogs();
+    }
+  }, [uid, summaryLoad]);
+
+  // ==================================================================
+
+  useEffect(() => {
+    if (uid) {
+      const db = getDatabase();
+      const dbRef = ref(db, `AutoSEO-Blogs/${uid}`);
+
+      // Subscribe to the database changes
+      const unsubscribe = onValue(
+        dbRef,
+        (snapshot) => {
+          const dbData = snapshot.val();
+          console.log("Realtime DB: ", dbData);
+
+          if (dbData) {
+            setBlogs(dbData);
+            setDataLoaded(true);
+          }
+        },
+        {
+          onlyOnce: false, // If you want to listen to the changes only once
+        }
+      );
+
+      // Cleanup subscription on component unmount
+      // return () => off(dbRef);
+    }
+  }, [uid]); // This effect will run whenever the `uid` state changes.
+
+  // useEffect(() => {
+  //   const db = getDatabase();
+  //   const handleNewData = (snapshot) => {
+  //     const dbData = snapshot.val();
+  //     // Use the current value of the uid ref to decide whether to update the state
+  //     if (dbData && uid) {
+  //       console.log("Realtime DB: ", dbData);
+  //       setBlogs(dbData);
+  //       setDataLoaded(true);
+  //     }
+  //   };
+
+  //   // Since we're subscribing for any updates, we don't use a specific uid here
+  //   const unsubscribe = onValue(ref(db, `AutoSEO-Blogs`), handleNewData);
+
+  //   // Cleanup subscription on component unmount
+  //   // return () => off(ref(db, `AutoSEO-Blogs`), handleNewData);
+  // }, []); // Empty dependency array means this effect will only run once on mount
+  // useEffect(() => {
+  //   // Create a reference to the specific path in the Realtime Database
+  //   const dbRef = ref(database, "AutoSEO-Blogs/uid");
+
+  //   // Subscribe to the path, and this will listen to all changes in real-time
+  //   const unsubscribe = onValue(
+  //     dbRef,
+  //     (snapshot) => {
+  //       if (snapshot.exists()) {
+  //         console.log("Data: ", snapshot.val());
+  //       } else {
+  //         console.log("No data available");
+  //       }
+  //     },
+  //     {
+  //       onlyOnce: false, // This will make sure the subscription stays alive
+  //     }
+  //   );
+
+  //   // Normally you would return unsubscribe to stop listening to changes
+  //   // when the component unmounts, but since you specified not to unsubscribe,
+  //   // we'll leave it out. This will cause a memory leak if the component unmounts,
+  //   // so it's typically not recommended unless you have a specific reason.
+  // }, []);
+  // ==================================================================
+
   const pushBlogs = async (docId) => {
     const targetDoc = doc(db, "AutoSEO_Blogs", docId);
 
@@ -875,6 +1052,7 @@ const DataState = (props) => {
         uid,
         name,
         email,
+        setonboardingUserDetails,
         profileUrl,
         docId,
         phoneNumber,
@@ -938,6 +1116,7 @@ const DataState = (props) => {
         updateKnowledgeBase,
         pushBlogs,
         verifiyDomainIP,
+        generateSummary,
       }}
     >
       {props.children}

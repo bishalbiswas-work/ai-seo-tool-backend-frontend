@@ -9,7 +9,9 @@ import LandingPagev2 from "./Pages/LandingPagev2/LandingPagev2";
 
 // import { Prebuild_LandingPage } from "./Pages/Components/Prebuild_LandingPage/Prebuild_LandingPage";
 import ExtractData from "./Pages/Onboard/ExtractData";
-import Signup from "./Pages/Auth/Signup";
+// import Signup from "./Pages/Auth/Signup";
+import GoogleSignup from "Pages/Auth/GoogleSignup";
+import GoogleSignupv2 from "Pages/Auth/GoogleSignupv2";
 import ChatInterface from "./Dashboard/ChatInterface";
 import ChatInterface_v2 from "./Dashboard/ChatInterface_v2";
 
@@ -82,7 +84,7 @@ class App extends Component {
                   path="/auth"
                   element={
                     <WrapperComponent>
-                      <Signup />
+                      <GoogleSignupv2 />
                     </WrapperComponent>
                   }
                 />

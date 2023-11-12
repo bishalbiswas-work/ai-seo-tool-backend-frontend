@@ -15,6 +15,9 @@ import Typewriter from "typewriter-effect";
 
 import InsertLinkIcon from "@mui/icons-material/InsertLink";
 
+import Skeleton from "@mui/material/Skeleton";
+import Stack from "@mui/material/Stack";
+
 // Import ContextAPI
 import { useContext } from "react";
 import DataContext from "ContextAPI/DataState";
@@ -500,6 +503,83 @@ const Dashboardv4 = () => {
                                   </div>
                                 </div>
                               ))}
+                            {
+                              ((maxSkeletons) => {
+                                const skeletonsToShow = Math.max(
+                                  maxSkeletons - dataContext.blogs.length,
+                                  0
+                                );
+                                return Array.from(
+                                  { length: skeletonsToShow },
+                                  (_, index) => (
+                                    <div className="bg-white-A700 border border-gray-200_05 border-solid flex flex-1 flex-col gap-4 items-center justify-center p-4 rounded-[12px] w-full">
+                                      <div className="h-400 relative w-full">
+                                        <Stack spacing={1}>
+                                          {/* For variant="text", adjust the height via font-size */}
+                                          <Skeleton
+                                            variant="rectangular"
+                                            width="100%"
+                                            height={240}
+                                          />
+                                          {/* For other variants, adjust the size with `width` and `height` */}
+
+                                          <Skeleton
+                                            variant="rectangular"
+                                            width="50%"
+                                            height={10}
+                                          />
+                                          <Skeleton
+                                            variant="rectangular"
+                                            width="100%"
+                                            height={10}
+                                          />
+                                          <Skeleton
+                                            variant="rectangular"
+                                            width="100%"
+                                            height={10}
+                                          />
+                                          <Skeleton
+                                            variant="rectangular"
+                                            width="100%"
+                                            height={10}
+                                          />
+                                          <Skeleton
+                                            variant="rounded"
+                                            width="100%"
+                                            height={40}
+                                          />
+                                          <Skeleton
+                                            variant="rounded"
+                                            width="100%"
+                                            height={40}
+                                          />
+                                          <Skeleton
+                                            variant="rectangular"
+                                            width="100%"
+                                            height={10}
+                                          />
+                                          <Skeleton
+                                            variant="rectangular"
+                                            width="80%"
+                                            height={10}
+                                          />
+                                          <Skeleton
+                                            variant="rectangular"
+                                            width="70%"
+                                            height={10}
+                                          />
+                                          <Skeleton
+                                            variant="rectangular"
+                                            width="100%"
+                                            height={10}
+                                          />
+                                        </Stack>
+                                      </div>
+                                    </div>
+                                  )
+                                );
+                              })(3) // maxSkeletons is 3
+                            }
                           </div>
 
                           {/* <div
@@ -813,7 +893,7 @@ const Dashboardv4 = () => {
                         Load More Months
                       </Button>
                     </div>
-                    <div
+                    {/* <div
                       className="flex p-4 shadow-md w-full h-600 flex md:flex-col flex-row md:gap-10 items-center justify-between p-0.5 rounded-[20px] w-full"
                       style={{
                         borderRadius: "20px",
@@ -829,38 +909,6 @@ const Dashboardv4 = () => {
                             className="w-300 h-300 object-cover rounded-md"
                           />
                         </div>
-
-                        {/* <div className="flex flex-col justify-center w-100 text-white">
-                          <p
-                            className="text-xl font-bold mb-2"
-                            style={{ fontSize: "32px", color: "white" }}
-                          >
-                            Let AI Do Your SEO
-                          </p>
-                          <p
-                            className="text-xl font-semibold mb-2"
-                            style={{ color: "white" }}
-                          >
-                            While You Grow Your Business!
-                          </p>
-                          <button
-                            className="px-4 py-2 font-bold blue_gray_900_03 rounded-md"
-                            style={{
-                              background: "white",
-                              color: "black",
-                              fontSize: "18px",
-                            }}
-                            onClick={() => {
-                              handleClickNext();
-                            }}
-                          >
-                            Connect to{" "}
-                            {businessMetaData.name.charAt(0).toUpperCase() +
-                              businessMetaData.name.slice(1)}
-                          </button>
-                        </div> */}
-                        {/* <div className="bg-gradient1  flex md:flex-col flex-row md:gap-10 items-center justify-between p-0.5 rounded-[20px] w-full"> */}
-                        {/* <DesktopFiftyOneStackvector className="flex sm:h-[1202px] h-[414px] md:h-[492px] justify-end md:ml-[0] ml-[94px] md:mt-0 my-[78px] relative w-[33%] md:w-full" /> */}
                         <div className="flex md:flex-1 flex-col gap-[35px] items-center justify-start w-[49%] md:w-full">
                           <div>
                             <Text
@@ -892,9 +940,60 @@ const Dashboardv4 = () => {
                             </div>
                           </div>
                         </div>
-                        {/* </div> */}
+                      </div>
+                    </div> */}
+                    <div
+                      className="flex p-4 shadow-md w-full h-600 md:flex-col items-center justify-between rounded-[20px]"
+                      style={{
+                        borderRadius: "20px",
+                        background:
+                          "linear-gradient(45deg ,#2d2d7a,#121252,#0e0e4c)",
+                      }}
+                    >
+                      <div className="flex p-4 shadow-md w-full items-center justify-around h-600 md:flex-col md:items-center md:justify-center">
+                        <div className="flex-shrink-0 md:w-full md:flex md:justify-center">
+                          <img
+                            src="/images/4_steps.png"
+                            alt="SEO"
+                            className="w-300 h-300 object-cover rounded-md md:w-full md:h-auto"
+                          />
+                        </div>
+                        <div className="flex md:flex-1 flex-col gap-[35px] items-center justify-start w-[49%] md:w-full">
+                          <div>
+                            <Text
+                              className="leading-[50.00px] md:text-3xl sm:text-[28px] text-[32px] text-white-A700 tracking-[-2.00px]"
+                              size="txtHelveticaBold32"
+                            >
+                              <>
+                                Let AI Do Your SEO, While
+                                <br />
+                                You Grow Your Business!
+                              </>
+                            </Text>
+                            <div className="flex flex-col font-inter items-start justify-start w-[300px] mt-[40px] md:items-center">
+                              <Button
+                                className="bg-white-A700 cursor-pointer font-semibold py-5 rounded-[14px] shadow-bs2 text-black-900 text-center text-lg w-[300px]"
+                                onClick={() => {
+                                  handleClickNext();
+                                }}
+                                style={{ fontSize: "16px" }}
+                              >
+                                Connect to{" "}
+                                {(dataContext.businessMetaData?.name
+                                  ?.charAt(0)
+                                  ?.toUpperCase() ?? "") +
+                                  (dataContext.businessMetaData?.name?.slice(
+                                    1
+                                  ) ?? "")}{" "}
+                                <InsertLinkIcon sx={{ marginBottom: "1px" }} />
+                              </Button>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
+
+                    {/*  */}
                   </div>
 
                   {/* <div className="absolute md:h-[198px] h-[234px] left-[16%] top-[35%] w-[36%] sm:w-full">
