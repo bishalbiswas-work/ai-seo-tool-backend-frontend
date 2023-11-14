@@ -1012,7 +1012,7 @@ const DataState = (props) => {
       console.error("Error updating document:", error);
     }
   };
-  const verifiyDomainIP = async (domain) => {
+  const verifiyDomainIP = async (submitData) => {
     const getIp = async (submitData) => {
       try {
         const response = await axios.post(
@@ -1031,10 +1031,6 @@ const DataState = (props) => {
       }
     };
     try {
-      let submitData = {
-        domain: domain,
-        ip: "159.223.182.225",
-      };
       const response = await getIp(submitData);
       console.log("Backend Check Domain: ", response);
       return response;

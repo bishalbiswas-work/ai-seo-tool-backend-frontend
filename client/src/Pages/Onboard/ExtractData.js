@@ -56,7 +56,7 @@ const ExtractData = () => {
   const images = [
     "/assets/loadAnimation1.png",
     "/assets/loadAnimation2.png",
-    "/assets/loadAnimation3.png",
+    "/assets/loadAnimation3.svg",
     "/assets/loadAnimation4.png",
   ];
   const [index, setIndex] = useState(0);

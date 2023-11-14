@@ -26,12 +26,13 @@ const DNSSetup = () => {
   const dataContext = useContext(DataContext);
   const navigate = useNavigate();
   const steps = ["Step 1", "Step 2", "Step 3"];
-  const ipAddress = "159.223.182.225";
-  const copyText = ["A", "blog", "159.223.182.225"];
+  const ipAddress = "146.190.186.6";
+  const copyText = ["A", "blog", "146.190.186.6"];
   const [inputUrl, setInputUrl] = useState("");
   const [blogActive, setBlogActive] = useState(false);
   const [blogProcess, setBLogProcess] = useState(true);
   const [isValidUrl, setIsValidUrl] = useState(false);
+  const [errorText, setErrorText] = useState("");
   const [domainVerify, setDomainVerify] = useState(false);
   const [selectedDomain, setSelectedDomain] = useState(null);
   const [domainVerifyVidoe, setDomainVerifyVideo] = useState([
@@ -76,21 +77,29 @@ const DNSSetup = () => {
       setIsValidUrl(false);
 
       try {
-        const response = await dataContext.verifiyDomainIP("blog." + inputUrl);
+        const submitData = { domain: "blog." + inputUrl, ip: copyText[2] };
+        const response = await dataContext.verifiyDomainIP(submitData);
         console.log(response);
-        if (response && response.status) {
+        if (response.status == true) {
           await dataContext.pushBlogs("blog." + inputUrl);
           console.log("Blog Uploaded");
           navigate("/onboarding/voice-setup");
+        } else {
+          setIsValidUrl(true);
+          setErrorText(
+            `Given Url is not point to our IP: ${copyText[2]}! It might 24-48hr for your dns to update!`
+          );
         }
       } catch (error) {
         console.error("Error pushing blogs:", error);
+
         // handle any errors here
       }
 
       setBLogProcess(false);
     } else {
       setIsValidUrl(true);
+      setErrorText("Please enter a valid url");
     }
   };
   const handleCopyButtonClick = async (index) => {
@@ -573,6 +582,13 @@ const DNSSetup = () => {
                     </Box>
                   </div>
                   {blogActive && blogProcess && <CircularProgress />}
+                  {isValidUrl && (
+                    <>
+                      <div style={{ color: "red", marginLeft: "5px" }}>
+                        {errorText}
+                      </div>
+                    </>
+                  )}
                   {!blogActive && (
                     <Button
                       className="common-pointer cursor-pointer flex items-center justify-center min-w-[170px]"
@@ -594,7 +610,28 @@ const DNSSetup = () => {
                       </div>
                     </Button>
                   )}
-                  {blogActive && !blogProcess && (
+                  {blogActive && !blogProcess && isValidUrl && (
+                    <Button
+                      className="common-pointer cursor-pointer flex items-center justify-center min-w-[170px]"
+                      onClick={() => handelVerifyDomain()}
+                      rightIcon={
+                        <Img
+                          className="h-4 ml-1.5"
+                          src="/images/img_checkmark.svg"
+                          alt="checkmark"
+                        />
+                      }
+                      shape="round"
+                      size="lg"
+                      variant="gradient"
+                      color="purple_800_indigo_800"
+                    >
+                      <div className="font-medium font-poppins text-center text-sm">
+                        Verify Domain Again
+                      </div>
+                    </Button>
+                  )}
+                  {/* {blogActive && !blogProcess && !isValidUrl && (
                     <Button
                       disabled
                       className="common-pointer cursor-pointer flex items-center justify-center min-w-[170px]"
@@ -615,7 +652,7 @@ const DNSSetup = () => {
                         Domain Verified
                       </div>
                     </Button>
-                  )}
+                  )} */}
                 </>
               )}
             </div>

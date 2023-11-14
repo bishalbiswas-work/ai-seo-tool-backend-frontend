@@ -375,14 +375,14 @@ const LandingPagev2 = () => {
             {/* Desktop Menu - shown on md screens and larger */}
             <div className="w-full font-lato md:hidden">
               <div className="flex items-center justify-center space-x-2">
-                <button
+                {/* <button
                   onClick={() => {
                     navigate("/");
                   }}
                   className="text-gray-800 bg-transparent hover:text-white  py-2 px-4  "
                 >
                   Home
-                </button>
+                </button> */}
                 <button className="text-gray-800 bg-transparent   py-2 px-4 ">
                   <a
                     href="mailto:daniel@247support.club?subject= White Label&body=Please write your message here."
@@ -444,9 +444,9 @@ const LandingPagev2 = () => {
           {/* Mobile Menu - shown when hamburger icon is clicked */}
           <div className={`lg:hidden ${isMenuOpen ? "block" : "hidden"}`}>
             <nav className="flex flex-col items-center py-4">
-              <a href="/" className="py-2 px-4 text-gray-800 hover:text-white">
+              {/* <a href="/" className="py-2 px-4 text-gray-800 hover:text-white">
                 Home
-              </a>
+              </a> */}
               <a
                 href="mailto:daniel@247support.club?subject= White Label&body=Please write your message here."
                 className="py-2 px-4 text-gray-800 hover:text-white"
@@ -630,7 +630,11 @@ const LandingPagev2 = () => {
                   display: "flex",
                   mt: {
                     xs: "-10px", // mobile
-                    md: "-200px", // desktop
+                    md: "-150px", // desktop
+                  },
+                  width: {
+                    xs: "100%",
+                    md: "500px",
                   },
                   // You can add more styles as needed here
                 }}
@@ -675,8 +679,16 @@ const LandingPagev2 = () => {
                         padding: "8px 15px",
                         borderRadius: "8px",
                         position: "absolute",
+                        // width: {
+                        //   xs: "50px",
+                        //   md: "150px",
+                        // },
                         width: "150px",
                         top: "32px",
+                        // left: {
+                        //   xs: "-150px",
+                        //   md: "-155px",
+                        // },
                         left: "-155px",
                         height: "38px",
                         color: "white",
@@ -730,13 +742,28 @@ const LandingPagev2 = () => {
               src="/images/showcase2.png"
               alt=""
             /> */}
-            <img
+            {/* <img
               className="md:hidden"
               style={{ width: "100%", marginLeft: "3em", maxWidth: "500px" }}
               // src="/landing.png"
               src="/images/showcase2.png"
               alt=""
+            /> */}
+            {/* <video
+              className="md:hidden"
+              style={{ width: "100%", marginLeft: "3em", maxWidth: "500px" }}
+              src="/assets/AI ConverterNew.mp4"
+            /> */}
+            <video
+              className="md:hidden"
+              style={{ width: "100%", marginLeft: "3em", maxWidth: "500px" }}
+              src="/assets/AI ConverterNew.mp4"
+              autoPlay
+              muted
+              loop
+              controls
             />
+
             <div className=""></div>
           </div>
           {/* <HeroSectionv3 /> */}

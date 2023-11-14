@@ -301,14 +301,14 @@ const LandingPagev2Shopify = () => {
 
           <div className="w-full font-lato">
             <div className="flex items-center justify-center space-x-2">
-              <button
+              {/* <button
                 onClick={() => {
                   navigate("/");
                 }}
                 className="text-gray-800 bg-transparent hover:text-white  py-2 px-4  "
               >
                 Home
-              </button>
+              </button> */}
               <button className="text-gray-800 bg-transparent  py-2 px-4 ">
                 <a
                   href="mailto:daniel@247support.club?subject= White Label&body=Please write your message here."

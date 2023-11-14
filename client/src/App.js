@@ -38,7 +38,7 @@ import DataState from "./ContextAPI/DataContext";
 // ContentAPI End
 
 // Onboarding Pages
-
+import SignupPage from "pages/SignupPage";
 import DNSSetup from "pages/DNSSetup";
 import VoiceSetup from "pages/VoiceSetup";
 import AddSocialMediaLinks from "pages/AddSocialMediaLinks";
@@ -84,7 +84,8 @@ class App extends Component {
                   path="/auth"
                   element={
                     <WrapperComponent>
-                      <GoogleSignupv2 />
+                      {/* <GoogleSignupv2 /> */}
+                      <SignupPage />
                     </WrapperComponent>
                   }
                 />

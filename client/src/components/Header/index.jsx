@@ -20,7 +20,7 @@ const Header = (props) => {
             className="bg-clip-text bg-gradient  text-base text-center text-transparent w-auto"
             size="txtPoppinsSemiBold16"
           >
-            Website Name
+            AutoSEO
           </Text>
         </div>
         <Button
