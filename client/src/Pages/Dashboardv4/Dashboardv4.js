@@ -21,6 +21,7 @@ import Stack from "@mui/material/Stack";
 // Import ContextAPI
 import { useContext } from "react";
 import DataContext from "ContextAPI/DataState";
+import { Box } from "@mui/material";
 // End Import ContextAPI
 const Dashboardv4 = () => {
   const API_BASE_URL =
@@ -215,7 +216,7 @@ const Dashboardv4 = () => {
               </div>
             </div>
           </div>
-          <div className="font-worksans h-[2358px] md:h-[3240px] sm:h-[4988px] relative w-full">
+          <div className="font-worksans h-[3258px] md:h-[5240px] sm:h-[5688px] relative w-full">
             <div className="absolute flex flex-col gap-5 inset-x-[0] items-center justify-start mx-auto top-[0] w-auto">
               <div className="h-[1419px] md:h-[2224px] sm:h-[3464px] relative w-full">
                 <div className="h-[1419px] md:h-[2224px] sm:h-[3464px] m-auto w-full">
@@ -892,6 +893,179 @@ const Dashboardv4 = () => {
                       >
                         Load More Months
                       </Button>
+                    </div>
+                    <div className="mt-[50px]">
+                      <div className="md:hidden">
+                        <div
+                          style={{
+                            textAlign: "center",
+                            backgroundColor: "white",
+                            borderRadius: "15px",
+                            marginBottom: "50px",
+                          }}
+                        >
+                          <div
+                            style={{
+                              paddingTop: "20px",
+                              paddingLeft: "20px",
+                              marginBottom: "50px",
+                              textAlign: "left",
+                            }}
+                          >
+                            <h3
+                              style={{
+                                fontSize: "22px",
+                                fontWeight: "500",
+                              }}
+                            >
+                              Your Technical SEO Issues Ready to Be Tackled...
+                            </h3>
+                            <p style={{ color: "grey" }}>
+                              Leave your website worries behind, Once connected
+                              to{" "}
+                              {(dataContext.businessMetaData?.name
+                                ?.charAt(0)
+                                ?.toUpperCase() ?? "") +
+                                (dataContext.businessMetaData?.name?.slice(1) ??
+                                  "")}{" "}
+                              , our AI will handle everything and resolve your
+                              concerns seamlessly
+                            </p>
+                          </div>
+                          <Img
+                            style={{
+                              marginBottom: "10px",
+                              borderRadius: "15px",
+                            }}
+                            src="/assets/website-report.png"
+                          />
+                          <div style={{ textAlign: "center", padding: "50px" }}>
+                            <p
+                              className="mb-[10px]"
+                              style={{ color: "#7C3AED", fontWeight: "700" }}
+                              size="txtHelveticaBold32"
+                            >
+                              Leave your website SEO worries behind 🎯
+                            </p>
+                            <p
+                              className="mb-[10px]"
+                              style={{ color: "#7C3AED", fontWeight: "700" }}
+                              size="txtHelveticaBold32"
+                            >
+                              Add Plugin For{" "}
+                              <span style={{ textDecoration: "underline" }}>
+                                Free
+                              </span>{" "}
+                              So SEO Makes You Money, Not Costs You Money.
+                            </p>
+                            <Button
+                              className="bg-gradient cursor-pointer font-semibold py-5 rounded-[50px] shadow-bs2  text-center text-lg w-[300px] mt-[10px]"
+                              onClick={() => {
+                                handleClickNext();
+                              }}
+                              style={{ fontSize: "16px", color: "white" }}
+                            >
+                              Connect to{" "}
+                              {(dataContext.businessMetaData?.name
+                                ?.charAt(0)
+                                ?.toUpperCase() ?? "") +
+                                (dataContext.businessMetaData?.name?.slice(1) ??
+                                  "")}{" "}
+                              <InsertLinkIcon sx={{ marginBottom: "1px" }} />
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                      <Box
+                        className=""
+                        sx={{
+                          display: {
+                            xs: "block", // 'block' for extra-small to small screens
+                            lg: "none", // 'none' for large screens and up
+                          },
+                        }}
+                        style={{
+                          backgroundColor: "white",
+                          padding: "10px",
+                          borderRadius: "25px",
+                          marginBottom: "10px",
+                        }}
+                      >
+                        <div
+                          style={{ marginTop: "20px", marginBottom: "50px" }}
+                        >
+                          <h3
+                            style={{
+                              fontSize: "22px",
+                              fontWeight: "bold",
+                              marginBottom: "100px",
+                            }}
+                          >
+                            Your Technical SEO Issues Ready to Be Tackled...
+                          </h3>
+                          <p style={{ color: "grey" }}>
+                            Leave your website worries behind, Once connected to{" "}
+                            {(dataContext.businessMetaData?.name
+                              ?.charAt(0)
+                              ?.toUpperCase() ?? "") +
+                              (dataContext.businessMetaData?.name?.slice(1) ??
+                                "")}{" "}
+                            , our AI will handle everything and resolve your
+                            concerns seamlessly
+                          </p>
+                        </div>
+                        <Img
+                          style={{ marginBottom: "10px" }}
+                          src="/assets/percent.png"
+                        />
+                        <Img
+                          style={{ marginBottom: "10px" }}
+                          src="/assets/frame1.png"
+                        />
+                        <Img
+                          style={{ marginBottom: "10px" }}
+                          src="/assets/frame2.png"
+                        />
+                        <Img
+                          style={{ marginBottom: "10px" }}
+                          src="/assets/frame3.png"
+                        />
+                        <div style={{ textAlign: "center", padding: "50px" }}>
+                          <p
+                            className="mb-[10px]"
+                            style={{ color: "#7C3AED", fontWeight: "700" }}
+                            size="txtHelveticaBold32"
+                          >
+                            Leave your website SEO worries behind 🎯
+                          </p>
+                          <p
+                            className="mb-[10px]"
+                            style={{ color: "#7C3AED", fontWeight: "700" }}
+                            size="txtHelveticaBold32"
+                          >
+                            Add Plugin For{" "}
+                            <span style={{ textDecoration: "underline" }}>
+                              Free
+                            </span>{" "}
+                            So SEO Makes You Money, Not Costs You Money.
+                          </p>
+                          <Button
+                            className="bg-gradient cursor-pointer font-semibold py-5 rounded-[50px] shadow-bs2  text-center text-lg w-[300px] mt-[10px]"
+                            onClick={() => {
+                              handleClickNext();
+                            }}
+                            style={{ fontSize: "16px", color: "white" }}
+                          >
+                            Connect to{" "}
+                            {(dataContext.businessMetaData?.name
+                              ?.charAt(0)
+                              ?.toUpperCase() ?? "") +
+                              (dataContext.businessMetaData?.name?.slice(1) ??
+                                "")}{" "}
+                            <InsertLinkIcon sx={{ marginBottom: "1px" }} />
+                          </Button>
+                        </div>
+                      </Box>
                     </div>
                     {/* <div
                       className="flex p-4 shadow-md w-full h-600 flex md:flex-col flex-row md:gap-10 items-center justify-between p-0.5 rounded-[20px] w-full"

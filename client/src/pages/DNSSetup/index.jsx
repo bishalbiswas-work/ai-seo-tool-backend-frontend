@@ -75,27 +75,36 @@ const DNSSetup = () => {
     if (inputUrl) {
       setBlogActive(true);
       setIsValidUrl(false);
-
+      setBLogProcess(true);
       try {
         const submitData = { domain: "blog." + inputUrl, ip: copyText[2] };
         const response = await dataContext.verifiyDomainIP(submitData);
         console.log(response);
-        if (response.status == true) {
-          await dataContext.pushBlogs("blog." + inputUrl);
-          console.log("Blog Uploaded");
-          navigate("/onboarding/voice-setup");
+        if (response) {
+          if (response.data.status == true) {
+            await dataContext.pushBlogs("blog." + inputUrl);
+            console.log("Blog Uploaded");
+            navigate("/onboarding/voice-setup");
+          } else {
+            setIsValidUrl(true);
+            // setErrorText(
+            //   `Given Url is not point to our IP: ${copyText[2]}! It might 24-48hr for your dns to update!`
+            // );
+            setErrorText(
+              `Please enter a valid url! ( It sometimes take 24-48hr for your dns to update! )`
+            );
+          }
         } else {
           setIsValidUrl(true);
-          setErrorText(
-            `Given Url is not point to our IP: ${copyText[2]}! It might 24-48hr for your dns to update!`
-          );
+
+          setErrorText(`Please enter a valid url!`);
         }
       } catch (error) {
         console.error("Error pushing blogs:", error);
 
         // handle any errors here
       }
-
+      setBlogActive(false);
       setBLogProcess(false);
     } else {
       setIsValidUrl(true);
@@ -540,7 +549,7 @@ const DNSSetup = () => {
                   <div>
                     <Box
                       style={{
-                        border: "1px solid lightgrey",
+                        border: `1px solid ${isValidUrl ? "red" : "lightgrey"}`,
                         padding: "5px 25px",
                         borderRadius: "15px",
                         width: "550px",
@@ -589,8 +598,35 @@ const DNSSetup = () => {
                       </div>
                     </>
                   )}
-                  {!blogActive && (
+                  {!blogActive && !inputUrl && (
                     <Button
+                      // disabled={inputUrl === "" ? false : true}
+                      // disabled={true}
+                      className="common-pointer cursor-pointer flex items-center justify-center min-w-[170px]"
+                      // onClick={() => handelVerifyDomain()}
+                      rightIcon={
+                        <Img
+                          className="h-4 ml-1.5"
+                          src="/images/img_checkmark.svg"
+                          alt="checkmark"
+                        />
+                      }
+                      shape="round"
+                      size="lg"
+                      // variant="fill"
+                      // color="purple_800_indigo_800"
+                      // background="grey"
+                      style={{ backgroundColor: "grey" }}
+                    >
+                      <div className="font-medium font-poppins text-center text-sm">
+                        Verify Domain
+                      </div>
+                    </Button>
+                  )}
+                  {!blogActive && inputUrl && (
+                    <Button
+                      // disabled={inputUrl === "" ? false : true}
+                      // disabled={true}
                       className="common-pointer cursor-pointer flex items-center justify-center min-w-[170px]"
                       onClick={() => handelVerifyDomain()}
                       rightIcon={
