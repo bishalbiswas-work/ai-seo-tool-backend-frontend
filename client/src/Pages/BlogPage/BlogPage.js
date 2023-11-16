@@ -12,6 +12,8 @@ import PagerIndicator from "./PageIndicator";
 import Text from "./Text";
 import Typewriter from "typewriter-effect";
 
+import InsertLinkIcon from "@mui/icons-material/InsertLink";
+
 import DesktopFiveOconclusion from "./DesktopFiveOconclusion";
 import LoaderBar from "./LoaderBar";
 // Import ContextAPI
@@ -37,6 +39,7 @@ const BlogPage = () => {
     window.scrollTo({ top: 0 });
   }, []);
   // console.log("icon : ", dataContext.businessMetaData.faviconUrl);
+  // console.log(blog.imagesUrl[1].imageUrl);
   return (
     <>
       <div className="md:h-[900px]"></div>
@@ -286,7 +289,7 @@ const BlogPage = () => {
                       </>
                     </Text>
                   </div> */}
-                  <div className="bg-gray-100 border-gray-200_05 border-l-4 border-solid flex flex-col font-sourceserifpro items-center justify-start p-8 sm:px-5 rounded-[12px] w-full">
+                  {/* <div className="bg-gray-100 border-gray-200_05 border-l-4 border-solid flex flex-col font-sourceserifpro items-center justify-start p-8 sm:px-5 rounded-[12px] w-full">
                     <Text
                       className="leading-[32.00px] max-w-[631px] md:max-w-full text-2xl md:text-[22px] text-gray-900_03 sm:text-xl"
                       size="txtSourceSerifProIt24"
@@ -297,12 +300,14 @@ const BlogPage = () => {
                         precautions to stay safe and healthy. ”
                       </>
                     </Text>
-                  </div>
-                  <Img
-                    className="h-[462px] md:h-auto object-cover rounded-[12px] w-full"
-                    src="images/img_image_2.png"
-                    alt="image_Two"
-                  />
+                  </div> */}
+                  {blog.imagesUrl[1].imageUrl && (
+                    <Img
+                      className="h-[462px] md:h-auto object-cover rounded-[12px] w-full"
+                      src={blog.imagesUrl[1].imageUrl}
+                      alt="image_Two"
+                    />
+                  )}
                   <div className="flex flex-col gap-4 items-start justify-start w-full">
                     <Text
                       className="text-2xl md:text-[22px] text-gray-900_03 sm:text-xl w-full"
@@ -408,10 +413,10 @@ const BlogPage = () => {
             </div> */}
             <div
               style={{ backdropFilter: "blur(10px)" }}
-              className="absolute bg-white-A700_6d bottom-[0] flex flex-col font-inter h-[2202px] md:h-[2802px] inset-x-[0] items-center justify-start max-w-[804px] mx-auto sm:px-5 px-6 py-8 rounded-[16px] w-full"
+              className="absolute bg-white-A700_6d bottom-[0] flex flex-col font-inter h-[1802px] md:h-[2802px] inset-x-[0] items-center justify-start max-w-[804px] mx-auto sm:px-5 px-6 py-8 rounded-[16px] w-full"
             >
               <div className="flex flex-col items-center justify-start pt-[0.07px] w-[300px]">
-                <Button
+                {/* <Button
                   onClick={() => {
                     handleClickNext();
                   }}
@@ -425,11 +430,25 @@ const BlogPage = () => {
                   }}
                 >
                   Get Started
+                </Button> */}
+                <Button
+                  className="bg-gradient cursor-pointer font-semibold py-5 rounded-[50px] shadow-bs2  text-center text-lg w-[300px] mt-[10px]"
+                  onClick={() => {
+                    handleClickNext();
+                  }}
+                  style={{ fontSize: "16px", color: "white" }}
+                >
+                  Connect to{" "}
+                  {(dataContext.businessMetaData?.name
+                    ?.charAt(0)
+                    ?.toUpperCase() ?? "") +
+                    (dataContext.businessMetaData?.name?.slice(1) ?? "")}{" "}
+                  <InsertLinkIcon sx={{ marginBottom: "1px" }} />
                 </Button>
               </div>
             </div>
           </div>
-          <div className="absolute  bottom-1/4 flex flex-col font-helvetica inset-x-[0] items-start justify-end mx-auto p-[25px] sm:px-5 rounded-[25px] w-[99%]">
+          <div className="absolute  bottom-1/4 flex flex-col font-helvetica inset-x-[0] items-center justify-end mx-auto p-[25px] sm:px-5 rounded-[25px] w-[99%]">
             <div className="flex flex-col justify-start ml-3 md:ml-[0] mt-5 w-[93%] md:w-full">
               <Text
                 className="md:ml-[0] ml-[182px] sm:text-[32px] md:text-[38px] text-[42px] text-black-900"
@@ -673,7 +692,7 @@ const BlogPage = () => {
                   </div>
                 </div>
               </div> */}
-              <div className="flex md:flex-col flex-row md:gap-10 items-start justify-between mt-[116px] w-full">
+              <div className="flex md:flex-col flex-row md:gap-10 items-center justify-between mt-[116px] w-full">
                 <div className="bg-white-A700 flex md:flex-1 flex-col items-center justify-start mb-[41px] md:mt-0 mt-[76px] p-[17px] rounded-[12px] shadow-bs4 w-[26%] md:w-full">
                   <div className="flex flex-col justify-start mb-[3px] mt-3 w-full">
                     <div className="flex flex-row gap-2.5 items-center justify-start w-[62%] md:w-full">

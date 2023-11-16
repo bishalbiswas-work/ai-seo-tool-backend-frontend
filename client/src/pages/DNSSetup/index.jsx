@@ -523,7 +523,7 @@ const DNSSetup = () => {
               )}
               {domainVerify && (
                 <>
-                  <div className="flex flex-col font-lato gap-5 items-start justify-start w-full">
+                  {/* <div className="flex flex-col font-lato gap-5 items-start justify-start w-full">
                     <div className="flex flex-col gap-1 items-start justify-start w-full">
                       <Text
                         className="text-blue_gray-900 text-lg w-full"
@@ -545,7 +545,7 @@ const DNSSetup = () => {
                         alt="p"
                       />
                     </div>
-                  </div>
+                  </div> */}
                   <div>
                     <Box
                       style={{

@@ -66,17 +66,16 @@ const Dashboardv4 = () => {
                   />
                 ) : null}
                 <div className="flex  items-center">
-                  <Text
+                  {/* <Text
                     className="text-[24px] pt-[30px] text-blue_gray-900_04 sm:text-xl md:text-2xl ml-4"
                     size="txtDMSansMedium24"
                   >
-                    {/* {businessMetaData.name.charAt(0).toUpperCase() +
-                      businessMetaData.name.slice(1)} */}
+             
                     {(dataContext.businessMetaData?.name
                       ?.charAt(0)
                       ?.toUpperCase() ?? "") +
                       (dataContext.businessMetaData?.name?.slice(1) ?? "")}
-                  </Text>
+                  </Text> */}
                 </div>
               </div>
               {/* <Img
@@ -894,7 +893,7 @@ const Dashboardv4 = () => {
                         Load More Months
                       </Button>
                     </div>
-                    <div className="mt-[50px]">
+                    <div className="mt-[50px] w-full">
                       <div className="md:hidden">
                         <div
                           style={{
@@ -939,17 +938,23 @@ const Dashboardv4 = () => {
                             }}
                             src="/assets/website-report.png"
                           />
-                          <div style={{ textAlign: "center", padding: "50px" }}>
+                          <div
+                            style={{
+                              textAlign: "center",
+                              padding: "50px",
+                              paddingTop: "0",
+                            }}
+                          >
                             <p
                               className="mb-[10px]"
-                              style={{ color: "#7C3AED", fontWeight: "700" }}
+                              style={{ color: "#7C3AED", fontWeight: "500" }}
                               size="txtHelveticaBold32"
                             >
                               Leave your website SEO worries behind 🎯
                             </p>
                             <p
                               className="mb-[10px]"
-                              style={{ color: "#7C3AED", fontWeight: "700" }}
+                              style={{ color: "#7C3AED", fontWeight: "500" }}
                               size="txtHelveticaBold32"
                             >
                               Add Plugin For{" "}
@@ -959,7 +964,7 @@ const Dashboardv4 = () => {
                               So SEO Makes You Money, Not Costs You Money.
                             </p>
                             <Button
-                              className="bg-gradient cursor-pointer font-semibold py-5 rounded-[50px] shadow-bs2  text-center text-lg w-[300px] mt-[10px]"
+                              className="bg-gradient cursor-pointer font-semibold py-5 rounded-[50px] shadow-bs2  text-center text-lg w-[300px] mt-[20px]"
                               onClick={() => {
                                 handleClickNext();
                               }}

@@ -773,7 +773,8 @@ const LandingPagev2 = () => {
               className="text-base text-blue_gray-900_01 text-center tracking-[1.00px]"
               size="txtMontserratRomanBold16"
             >
-              Easily integrates with
+              {/* Easily */}
+              Plugin integrates with
             </Text>
             <div className="flex flex-col font-avenirnext items-center justify-end pt-6 sm:px-5 px-6 w-full">
               <div className="flex md:flex-col flex-row md:gap-10 gap-[72.82px] items-center justify-start max-w-[1230px] mx-auto md:px-5 w-full">
