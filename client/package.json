@@ -27,6 +27,7 @@
     "react-ipgeolocation": "^1.4.0",
     "react-jwt": "^1.2.0",
     "react-phone-input-2": "^2.15.1",
+    "react-pro-sidebar": "^1.1.0-alpha.1",
     "react-router-dom": "^6.16.0",
     "react-scripts": "5.0.1",
     "react-shadow-dom": "^1.0.0",
