@@ -39,7 +39,7 @@ import HeroSectionv3 from "Pages/Components/HeroSectionv3";
 import { useContext } from "react";
 import DataContext from "ContextAPI/DataState";
 // End Import ContextAPI
-const LandingPagev2 = () => {
+const LandingPagev2 = ({ prop }) => {
   const geoLocation = useGeoLocation();
   let countryCode = "";
   // const [countryCode, setCountryCode] = useState("");
@@ -521,7 +521,7 @@ const LandingPagev2 = () => {
                         </a>
                         <span style={{ color: "#414a4c", fontWeight: "700" }}>
                           {" "}
-                          For Free
+                          {dataContext.urlStored ? "" : "For Free"}
                         </span>
                         <span className="text-gray-700 font-helvetica text-left font-light">
                           . Built by SEO Gurus.

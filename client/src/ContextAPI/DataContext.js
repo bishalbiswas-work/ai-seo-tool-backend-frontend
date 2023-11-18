@@ -88,7 +88,7 @@ const DataState = (props) => {
   const [selectedPage, setSelectedPage] = useState();
   const [messageContext, setMessageContext] = useState();
   const [selectedBlog, setSelectedBlog] = useState(1);
-
+  const [urlStored, setUrlStored] = useState("");
   // ===========================================
 
   useEffect(() => {
@@ -414,12 +414,16 @@ const DataState = (props) => {
       name: name,
     });
   };
+
   const login = () => {
     setIsLoggedIn(true);
   };
 
   const logout = () => {
     setIsLoggedIn(false);
+  };
+  const setUrlStoredFunction = ({ data }) => {
+    setUrlStored(data);
   };
   const setBlogsFunction = ({ data }) => {
     setBlogs(data);
@@ -1045,6 +1049,7 @@ const DataState = (props) => {
         appID,
         appSecret,
         authToken,
+        urlStored,
         uid,
         name,
         email,
@@ -1071,6 +1076,8 @@ const DataState = (props) => {
         businessMetaData,
         fetchData,
         fetchData2,
+
+        setUrlStoredFunction,
         setBusinessMetaDataFunction,
         setProfileUrlFunction,
         setAuthTokenFunction,

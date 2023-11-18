@@ -25,6 +25,7 @@ import Blogpagev3 from "pages/Blogpagev3";
 import PaymentSuccess from "./Pages/Auth/PaymentSuccess";
 import Pricing from "./Pages/Pricing";
 import NewPricing from "Pages/NewPricing";
+import PricingWithCookie from "Pages/PricingWithCookie";
 import ConnectDomain from "Pages/ConnectDomain";
 // End Pages Imports
 // Components Import
@@ -62,6 +63,46 @@ class App extends Component {
                       {/* <LandingPage /> */}
                       {/* <Desktop6MixpanelGenerateTextToVideoPage /> */}
                       {/* <Prebuild_LandingPage /> */}
+                    </WrapperComponent>
+                  }
+                />
+                <Route
+                  path="/try"
+                  element={
+                    <WrapperComponent>
+                      <LandingPagev2 />
+                    </WrapperComponent>
+                  }
+                />
+                <Route
+                  path="/try-now"
+                  element={
+                    <WrapperComponent>
+                      <LandingPagev2 />
+                    </WrapperComponent>
+                  }
+                />
+                <Route
+                  path="/try-for-now"
+                  element={
+                    <WrapperComponent>
+                      <LandingPagev2 />
+                    </WrapperComponent>
+                  }
+                />
+                <Route
+                  path="/try-it"
+                  element={
+                    <WrapperComponent>
+                      <LandingPagev2 />
+                    </WrapperComponent>
+                  }
+                />
+                <Route
+                  path="/try-it-now"
+                  element={
+                    <WrapperComponent>
+                      <LandingPagev2 />
                     </WrapperComponent>
                   }
                 />
@@ -187,6 +228,55 @@ class App extends Component {
                     </WrapperComponent>
                   }
                 />
+                <Route
+                  path="/price"
+                  element={
+                    <WrapperComponent>
+                      <PricingWithCookie />
+                    </WrapperComponent>
+                  }
+                />
+                <Route
+                  path="/price/try"
+                  element={
+                    <WrapperComponent>
+                      <PricingWithCookie />
+                    </WrapperComponent>
+                  }
+                />
+                <Route
+                  path="/price/try-now"
+                  element={
+                    <WrapperComponent>
+                      <PricingWithCookie />
+                    </WrapperComponent>
+                  }
+                />
+                <Route
+                  path="/price/try-for-now"
+                  element={
+                    <WrapperComponent>
+                      <PricingWithCookie />
+                    </WrapperComponent>
+                  }
+                />
+                <Route
+                  path="/price/try-it"
+                  element={
+                    <WrapperComponent>
+                      <PricingWithCookie />
+                    </WrapperComponent>
+                  }
+                />
+                <Route
+                  path="/price/try-it-now"
+                  element={
+                    <WrapperComponent>
+                      <PricingWithCookie />
+                    </WrapperComponent>
+                  }
+                />
+
                 {/* <Route
                   path="dashboard/connect-domain"
                   element={

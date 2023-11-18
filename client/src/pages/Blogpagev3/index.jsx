@@ -503,8 +503,13 @@ const Blogpagev3 = () => {
                       >
                         <>
                           <br />
-                          Connect your website to Betimeful, and watch your
-                          business soar to new heights!
+                          Connect your website to{" "}
+                          {(dataContext.businessMetaData?.name
+                            ?.charAt(0)
+                            ?.toUpperCase() ?? "") +
+                            (dataContext.businessMetaData?.name?.slice(1) ??
+                              "")}
+                          , and watch your business soar to new heights!
                         </>
                       </Text>
                     </div>
@@ -526,7 +531,7 @@ const Blogpagev3 = () => {
                         </div>
                       </Button> */}
                       <Button
-                        className="bg-gradient cursor-pointer font-semibold py-2 rounded-[50px] shadow-bs2  text-center text-lg w-[200px] mt-[10px]"
+                        className="bg-gradient cursor-pointer font-semibold py-2 rounded-[50px] shadow-bs2  text-center text-lg w-[230px] mt-[10px]"
                         onClick={() => {
                           handleClickNext();
                         }}
@@ -548,7 +553,7 @@ const Blogpagev3 = () => {
                 className="bg-white-A700 flex flex-1 flex-col h-[718px] md:h-auto items-start justify-start pl-5 md:pr-5 pr-[100px] py-10 w-full"
                 style={{ maxWidth: "300px" }}
               >
-                <div className="bg-white-A700 border border-gray-900_0c border-solid flex flex-col gap-5 items-center justify-start p-4 rounded-[12px] w-auto ">
+                <div className="bg-white-A700 border border-gray-200_01 border-solid flex flex-col gap-5 items-center justify-start p-4 rounded-[12px] w-auto ">
                   {/* <div className="flex flex-col gap-3 items-center justify-start w-auto">
                     <div className="bg-white-A700 flex flex-col gap-3 items-center justify-start px-3 py-[9px] rounded-[9px] w-[132px]">
                       <div className="flex flex-col font-dmsans gap-[9px] h-[75px] md:h-auto items-center justify-start w-auto">
@@ -623,7 +628,7 @@ const Blogpagev3 = () => {
                     </div>
                   </div> */}
                   <Line className="bg-gray-900_0c h-px w-[90%]" />
-                  <div className="flex flex-col gap-4 items-start justify-start w-auto">
+                  {/* <div className="flex flex-col gap-4 items-start justify-start w-auto">
                     <Text
                       className="text-[13px] text-gray-600 w-auto"
                       size="txtLatoRegular13Gray600"
@@ -632,41 +637,6 @@ const Blogpagev3 = () => {
                     </Text>
                     <div className="flex flex-row gap-3 items-start justify-start w-auto">
                       <div className="flex flex-row gap-3 items-start justify-start w-auto">
-                        {/* <Button
-                          className="flex h-8 items-center justify-center rounded-[50%] w-8"
-                          shape="circle"
-                          color="blue_gray_50"
-                          size="sm"
-                          variant="fill"
-                        >
-                          <Img
-                            className="h-4"
-                            src="images/img_instagram.svg"
-                            alt="instagram"
-                          />
-                        </Button>
-                        <Button
-                          className="flex h-8 items-center justify-center rounded-[50%] w-8"
-                          shape="circle"
-                          color="blue_gray_50"
-                          size="sm"
-                          variant="fill"
-                        >
-                          <Img src="images/img_youtube.svg" alt="youtube" />
-                        </Button>
-                        <Button
-                          className="flex h-8 items-center justify-center rounded-[50%] w-8"
-                          shape="circle"
-                          color="blue_gray_50"
-                          size="sm"
-                          variant="fill"
-                        >
-                          <Img
-                            className="h-4"
-                            src="images/img_whatsapp.svg"
-                            alt="whatsapp"
-                          />
-                        </Button> */}
                         <Button
                           className="flex items-center justify-center rounded-[25px] w-8 h-8"
                           color="white_A700"
@@ -712,20 +682,69 @@ const Blogpagev3 = () => {
                           />
                         </Button>
                       </div>
-                      {/* <Button
-                        className="flex h-8 items-center justify-center rounded-[50%] w-8"
-                        shape="circle"
-                        color="blue_gray_50"
-                        size="sm"
-                        variant="fill"
-                      >
-                        <Img
-                          className="h-[15px]"
-                          src="images/img_pinterest.svg"
-                          alt="pinterest"
-                        />
-                      </Button> */}
+               
                     </div>
+                  </div> */}
+                  <div className="flex flex-col items-start justify-start w-auto ">
+                    <List
+                      className="flex flex-col gap-[23px] items-center w-full"
+                      orientation="vertical"
+                    >
+                      <Text
+                        className="text-[13.5px] text-center text-gray-900_03 w-auto"
+                        size="txtWorkSansRomanRegular135"
+                      >
+                        Share this blog:
+                      </Text>
+                      <div className="flex flex-row gap-[17.29px] items-start justify-start w-auto">
+                        <Button
+                          className="flex h-[51px] items-center justify-center rounded-[25px] w-[51px]"
+                          color="white_A700"
+                          size="sm"
+                        >
+                          <Img
+                            className="h-[34px]"
+                            src="/images/img_facebook.svg"
+                            alt="facebook"
+                          />
+                        </Button>
+                        <Button
+                          className="flex h-[51px] items-center justify-center rounded-[25px] w-[51px]"
+                          color="white_A700"
+                          size="sm"
+                        >
+                          <Img
+                            className="h-[34px]"
+                            src="/images/img_linkedin.svg"
+                            alt="linkedin"
+                          />
+                        </Button>
+                      </div>
+                      <div className="flex flex-row gap-[17.29px] items-start justify-start w-auto">
+                        <Button
+                          className="flex h-[51px] items-center justify-center rounded-[25px] w-[51px]"
+                          color="white_A700"
+                          size="sm"
+                        >
+                          <Img
+                            className="h-[34px]"
+                            src="/images/img_twitter.svg"
+                            alt="twitter"
+                          />
+                        </Button>
+                        <Button
+                          className="flex h-[51px] items-center justify-center rounded-[25px] w-[51px]"
+                          color="white_A700"
+                          size="sm"
+                        >
+                          <Img
+                            className="h-[34px]"
+                            src="/images/img_reddit.svg"
+                            alt="reddit"
+                          />
+                        </Button>
+                      </div>
+                    </List>
                   </div>
                 </div>
               </div>

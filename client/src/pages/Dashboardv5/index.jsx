@@ -130,14 +130,14 @@ const Dashboardv5 = () => {
                 >
                   {dataContext.businessMetaData.summary}
                 </Text>
-                <Button
+                {/* <Button
                   className="!text-purple-800 bg-transparent cursor-pointer font-bold min-w-[78px] rounded-lg text-center text-sm"
                   size="md"
                   variant="outline"
                   color="purple_800_indigo_800"
                 >
                   Update
-                </Button>
+                </Button> */}
               </div>
             </div>
           </div>
@@ -151,7 +151,8 @@ const Dashboardv5 = () => {
               </Text>
             </div>
             <List
-              className="sm:flex-col flex-row font-inter md:gap-6 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 justify-between max-w-[1166px] mx-auto w-full"
+              // className="sm:flex-col flex-row font-inter md:gap-6 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3  max-w-[1166px] mx-auto w-full"
+              className="sm:flex-col flex-row font-inter md:gap-6 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 justify-around max-w-[1166px] mx-auto w-full"
               orientation="horizontal"
             >
               {dataContext.blogs.slice(0, 3).map((item, index) => (
@@ -161,7 +162,7 @@ const Dashboardv5 = () => {
                     handleClickBlog(index);
                   }}
                 >
-                  <div className="pb-3 px-3 relative w-[298px] ">
+                  <div className="pb-3 px-3 mx-auto relative w-[298px] ">
                     <div className="h-[400px] m-auto w-[98%]">
                       <div className="bg-white-A700 border border-gray-200_01 border-solid h-full m-auto rounded-[14px] w-full h-[420px]"></div>
                       <div className="absolute inset-x-[0] mx-auto top-[0] w-full">
