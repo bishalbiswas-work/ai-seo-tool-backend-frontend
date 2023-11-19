@@ -57,10 +57,11 @@ function GoogleSignupv2() {
     justifyContent: "center",
   };
   const [value, setvalue] = useState("");
-  const handelClick = () => {
+  const handelClick = async () => {
     signInWithPopup(auth, provider).then((data) => {
       setvalue(data.user.email);
       console.log(data.user.uid); // This will print the UID to the console.
+
       dataContext.setUidFunction({ data: data.user.uid });
       localStorage.setItem("email", data.user.email);
       localStorage.setItem("name", data.user.displayName);
@@ -70,8 +71,9 @@ function GoogleSignupv2() {
         email: data.user.email,
         name: data.user.displayName,
       });
-      navigate("/extract-data");
     });
+    // await dataContext.deleteUidIfExists({ uid: data.user.uid });
+    navigate("/extract-data");
   };
 
   useEffect(() => {

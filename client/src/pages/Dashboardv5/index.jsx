@@ -107,14 +107,14 @@ const Dashboardv5 = () => {
             </div>
           </div>
         </header>
-        <div className="flex flex-col font-lato h-[2419px] md:h-auto items-start justify-start w-auto md:w-full mt-[20px]">
+        <div className="flex flex-col font-lato h-[2019px] md:h-auto items-start justify-start w-auto md:w-full mt-[20px]">
           <div className="bg-white-A700 flex flex-col items-start justify-start max-w-[1440px] md:px-10 sm:px-5 px-[140px] py-8 w-full">
             <div className="flex flex-col gap-5 items-start justify-start max-w-[1160px] mx-auto w-full">
               <div className="flex flex-col items-center justify-center w-auto">
                 <Text
                   className="text-black-900 text-lg w-auto"
                   size="txtLatoSemiBold18"
-                  style={{ fontWeight: "500" }}
+                  style={{ fontWeight: "700", fontFamily: "lato" }}
                 >
                   <>
                     About{" "}
@@ -127,6 +127,7 @@ const Dashboardv5 = () => {
                 <Text
                   className="text-blue_gray-500_bf text-sm w-auto"
                   size="txtLatoRegular14Bluegray500bf"
+                  style={{ fontFamily: "lato" }}
                 >
                   {dataContext.businessMetaData.summary}
                 </Text>
@@ -146,6 +147,7 @@ const Dashboardv5 = () => {
               <Text
                 className="text-black-900 text-lg w-auto"
                 size="txtLatoSemiBold18"
+                style={{ fontWeight: "700", fontFamily: "lato" }}
               >
                 Your SEO-Optimized Blogs Ready to Roll Out.... ⏳
               </Text>
@@ -168,7 +170,11 @@ const Dashboardv5 = () => {
                       <div className="absolute inset-x-[0] mx-auto top-[0] w-full">
                         <Img
                           className="h-48 m-auto object-cover rounded-tl-[14px] rounded-tr-[14px] w-[269px]"
-                          src={item.imagesUrl[0].imageUrl}
+                          src={
+                            item.imagesUrl[0].imageUrl
+                              ? item.imagesUrl[0].imageUrl
+                              : ""
+                          }
                           alt="rectangleThirtyEight"
                         />
                         {/* <div className="absolute bg-white-A700 flex flex-col h-16 items-center justify-start pt-1 px-1 right-[3%] rounded-md top-[5%] w-16">
@@ -223,6 +229,9 @@ const Dashboardv5 = () => {
                                 <Text
                                   className="bg-indigo-A200_0c justify-center px-[7px] rounded text-indigo-A200 text-sm w-auto"
                                   size="txtWorkSansRomanMedium14"
+                                  style={{
+                                    fontFamily: "lato",
+                                  }}
                                 >
                                   {`${item.split(" ").slice(0, 3).join(" ")}${
                                     item.split(" ").length > 3 ? "..." : ""
@@ -235,6 +244,7 @@ const Dashboardv5 = () => {
                         <Text
                           className="leading-[20.00px] max-w-[248px] md:max-w-full text-[14.7px] text-gray-900"
                           size="txtLatoSemiBold147"
+                          style={{ fontWeight: "500", fontFamily: "lato" }}
                         >
                           {item.title}
                         </Text>
@@ -322,7 +332,13 @@ const Dashboardv5 = () => {
                           {index == 0 && (
                             <div className="flex flex-col items-start justify-start w-auto">
                               <div className="flex flex-row gap-5 items-start justify-start w-auto">
-                                <div className="bg-green-A100 border border-green-A700 border-solid flex flex-row gap-1 items-center justify-start px-2 py-[3px] rounded-md w-auto">
+                                <div
+                                  className="bg-green-A100 border border-green-A700 border-solid flex flex-row gap-1 items-center justify-start px-2 py-[3px] rounded-md w-auto"
+                                  style={{
+                                    paddingRight: "5px",
+                                    paddingLeft: "5px",
+                                  }}
+                                >
                                   <Text
                                     className="text-gray-900_04 text-xs w-auto"
                                     size="txtDMSansRegular12"
@@ -341,7 +357,13 @@ const Dashboardv5 = () => {
                                     High
                                   </Text>
                                 </div>
-                                <div className="bg-amber-100 border border-amber-A700 border-solid flex flex-row gap-0.5 items-center justify-start px-2 py-[3px] rounded-md w-auto">
+                                <div
+                                  className="bg-amber-100 border border-amber-A700 border-solid flex flex-row gap-0.5 items-center justify-start px-2 py-[3px] rounded-md w-auto"
+                                  style={{
+                                    paddingRight: "5px",
+                                    paddingLeft: "5px",
+                                  }}
+                                >
                                   <Text
                                     className="text-gray-900_04 text-xs w-auto"
                                     size="txtDMSansRegular12"
@@ -366,7 +388,13 @@ const Dashboardv5 = () => {
                           {index == 1 && (
                             <div className="flex flex-col items-start justify-start w-auto">
                               <div className="flex flex-row gap-5 items-start justify-start w-auto">
-                                <div className="bg-amber-100 border border-amber-A700 border-solid flex flex-row gap-1 items-center justify-start px-2 py-[3px] rounded-md w-auto">
+                                <div
+                                  className="bg-amber-100 border border-amber-A700 border-solid flex flex-row gap-1 items-center justify-start px-2 py-[3px] rounded-md w-auto"
+                                  style={{
+                                    paddingRight: "5px",
+                                    paddingLeft: "5px",
+                                  }}
+                                >
                                   <Text
                                     className="text-gray-900_04 text-xs w-auto"
                                     size="txtDMSansRegular12"
@@ -385,7 +413,13 @@ const Dashboardv5 = () => {
                                     Medium
                                   </Text>
                                 </div>
-                                <div className="bg-deep_orange-50 border border-deep_orange-A700 border-solid flex flex-row gap-0.5 items-center justify-start px-2 py-[3px] rounded-md w-auto">
+                                <div
+                                  className="bg-deep_orange-50 border border-deep_orange-A700 border-solid flex flex-row gap-0.5 items-center justify-start px-2 py-[3px] rounded-md w-auto"
+                                  style={{
+                                    paddingRight: "5px",
+                                    paddingLeft: "5px",
+                                  }}
+                                >
                                   <Text
                                     className="text-gray-900_04 text-xs w-auto"
                                     size="txtDMSansRegular12"
@@ -410,7 +444,13 @@ const Dashboardv5 = () => {
                           {index == 2 && (
                             <div className="flex flex-col items-start justify-start w-auto">
                               <div className="flex flex-row gap-5 items-start justify-start w-auto">
-                                <div className="bg-green-A100 border border-green-A700 border-solid flex flex-row gap-1 items-center justify-start px-2 py-[3px] rounded-md w-auto">
+                                <div
+                                  className="bg-green-A100 border border-green-A700 border-solid flex flex-row gap-1 items-center justify-start px-2 py-[3px] rounded-md w-auto"
+                                  style={{
+                                    paddingRight: "5px",
+                                    paddingLeft: "5px",
+                                  }}
+                                >
                                   <Text
                                     className="text-gray-900_04 text-xs w-auto"
                                     size="txtDMSansRegular12"
@@ -429,7 +469,13 @@ const Dashboardv5 = () => {
                                     High
                                   </Text>
                                 </div>
-                                <div className="bg-amber-100 border border-amber-A700 border-solid flex flex-row gap-0.5 items-center justify-start px-2 py-[3px] rounded-md w-auto">
+                                <div
+                                  className="bg-amber-100 border border-amber-A700 border-solid flex flex-row gap-0.5 items-center justify-start px-2 py-[3px] rounded-md w-auto"
+                                  style={{
+                                    paddingRight: "5px",
+                                    paddingLeft: "5px",
+                                  }}
+                                >
                                   <Text
                                     className="text-gray-900_04 text-xs w-auto"
                                     size="txtDMSansRegular12"
@@ -990,19 +1036,24 @@ const Dashboardv5 = () => {
                 onClick={() => {
                   handleClickNext();
                 }}
-                style={{ borderRadius: "25px" }}
+                style={{
+                  borderRadius: "25px",
+                  fontWeight: "700",
+                  fontFamily: "lato",
+                }}
               >
                 Load More
               </Button>
             </div>
           </div>
-          <div className="bg-white-A700 flex flex-col md:gap-10 gap-[60px] h-[1574px] md:h-auto items-start justify-center max-w-[1440px] pb-11 pt-8 md:px-10 sm:px-5 px-[140px] w-full">
+          <div className="bg-white-A700 flex flex-col md:gap-10 gap-[60px] h-[1000px] md:h-auto items-start justify-center max-w-[1440px] pb-11 pt-8 md:px-10 sm:px-5 px-[140px] w-full">
             <div className="flex flex-col gap-10 h-[595px] md:h-auto items-start justify-center max-w-[1160px] mx-auto w-full">
               <div className="flex flex-col gap-2 items-start justify-center w-full">
                 <div className="flex sm:flex-col flex-row gap-1 items-center justify-start w-full">
                   <Text
                     className="text-black-900 text-lg w-auto"
                     size="txtLatoSemiBold18"
+                    style={{ fontWeight: "700", fontFamily: "lato" }}
                   >
                     Your Technical SEO Issues Ready to Be Tackled...{" "}
                   </Text>
@@ -1015,6 +1066,7 @@ const Dashboardv5 = () => {
                 <Text
                   className="text-gray-500 text-sm w-auto"
                   size="txtLatoMedium14"
+                  style={{ fontFamily: "lato" }}
                 >
                   Leave your website worries behind, Once connected to{" "}
                   {(dataContext.businessMetaData?.name
@@ -1029,15 +1081,19 @@ const Dashboardv5 = () => {
                 <div className="flex md:flex-col flex-row gap-8 items-start justify-start w-full">
                   <div className="bg-white-A700 border border-gray-200_01 border-solid flex flex-col items-start justify-start sm:px-5 px-8 py-6 rounded-[20px] w-auto">
                     <div className="flex flex-col gap-7 items-start justify-start w-auto">
-                      <div className="md:h-[200px] h-[221px] relative w-full">
+                      <div
+                        className="md:h-[200px] h-[221px] relative w-full"
+                        style={{ fontFamily: "lato" }}
+                      >
                         <Text
                           className="absolute flex-1 right-[4%] text-base text-blue_gray-900 top-[0] w-full"
                           size="txtLatoBold16Bluegray900"
+                          style={{ fontWeight: "600" }}
                         >
                           Site Health
                         </Text>
                         <div
-                          className="absolute bg-cover bg-no-repeat bottom-[0] flex flex-col h-[190px] inset-x-[0] items-center justify-center mx-auto p-[71px] md:px-10 sm:px-5 w-[190px] md:w-[160px] md:h-[160px]"
+                          className="absolute bg-cover bg-no-repeat bottom-[0] flex flex-col h-[180px] inset-x-[0] items-center justify-center mx-auto p-[71px] md:px-10 sm:px-5 w-[180px] md:w-[160px] md:h-[160px]"
                           style={{
                             backgroundImage:
                               "url('images/img_frame2609114.svg')",
@@ -1064,6 +1120,7 @@ const Dashboardv5 = () => {
                       <Text
                         className="text-base text-blue_gray-900 w-full"
                         size="txtLatoBold16Bluegray900"
+                        style={{ fontWeight: "600" }}
                       >
                         Crawled Pages
                       </Text>
@@ -1071,6 +1128,7 @@ const Dashboardv5 = () => {
                         <Text
                           className="sm:text-2xl md:text-[26px] text-[28px] text-blue_gray-900 text-center w-auto"
                           size="txtLatoExtraBold28"
+                          style={{ fontWeight: "600" }}
                         >
                           1800
                         </Text>
@@ -1145,6 +1203,7 @@ const Dashboardv5 = () => {
                       <Text
                         className="text-base text-blue_gray-900 w-auto"
                         size="txtLatoBold16Bluegray900"
+                        style={{ fontWeight: "600" }}
                       >
                         Error
                       </Text>
@@ -1176,6 +1235,7 @@ const Dashboardv5 = () => {
                       <Text
                         className="text-base text-blue_gray-900 w-auto"
                         size="txtLatoBold16Bluegray900"
+                        style={{ fontWeight: "600" }}
                       >
                         Warning
                       </Text>
@@ -1207,6 +1267,7 @@ const Dashboardv5 = () => {
                       <Text
                         className="text-base text-blue_gray-900 w-auto"
                         size="txtLatoBold16Bluegray900"
+                        style={{ fontWeight: "600" }}
                       >
                         Health
                       </Text>
@@ -1241,7 +1302,7 @@ const Dashboardv5 = () => {
                 <Text
                   className="bg-clip-text bg-gradient  leading-[170.00%] text-base text-center text-transparent "
                   size="txtLatoBold16DeeppurpleA20001"
-                  style={{ fontWeight: "500" }}
+                  style={{ fontWeight: "700", fontFamily: "lato" }}
                 >
                   <>
                     Ready to Rank without Breaking the Bank?

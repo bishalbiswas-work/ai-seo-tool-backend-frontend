@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import InsertLinkIcon from "@mui/icons-material/InsertLink";
 
+//
+import LoaderBarv2 from "components/LoaderBarv2/LoaderBarv2";
 import { Menu, MenuItem, Sidebar } from "react-pro-sidebar";
 
 import { Button, Img, Line, List, Text } from "components";
@@ -38,6 +40,7 @@ const Blogpagev3 = () => {
   return (
     <>
       <div className="bg-white-A700 flex flex-col font-poppins items-center justify-end mx-auto w-full">
+        <LoaderBarv2 />
         <header className="bg-white-A700 flex md:gap-10 items-center justify-between px-10 md:px-5 py-5 rounded-tl-[20px] rounded-tr-[20px] shadow-bs2 w-full">
           <Button
             className="flex h-[46px] items-center justify-center w-[46px]"
@@ -65,11 +68,11 @@ const Blogpagev3 = () => {
               </div>
             </Button> */}
             <Button
-              className="bg-gradient cursor-pointer font-semibold py-2 rounded-[50px] shadow-bs2  text-center text-lg w-[200px] mt-[10px]"
+              className="bg-gradient cursor-pointer font-semibold py-2 rounded-[50px] shadow-bs2  text-center text-xs md:text-md  w-[200px] mt-[10px]"
               onClick={() => {
                 handleClickNext();
               }}
-              style={{ fontSize: "12px", color: "white" }}
+              style={{ fontSize: "10px", color: "white" }}
             >
               Connect to{" "}
               {(dataContext.businessMetaData?.name?.charAt(0)?.toUpperCase() ??
@@ -78,6 +81,7 @@ const Blogpagev3 = () => {
             </Button>
           </div>
         </header>
+
         <div className="flex flex-col font-lato h-[2516px] md:h-auto items-center justify-start w-auto md:w-full mt-[20px]">
           <div
             className="bg-white-A700 flex flex-col items-start justify-start max-w-[1440px] w-full"
@@ -122,6 +126,7 @@ const Blogpagev3 = () => {
                   <Text
                     className="text-gray-900_03 text-lg w-auto"
                     size="txtWorkSansSemiBold18"
+                    style={{ fontWeight: "500" }}
                   >
                     Table of Content
                   </Text>
@@ -138,6 +143,7 @@ const Blogpagev3 = () => {
                     <Text
                       className="text-gray-900_03 text-sm w-auto"
                       size="txtWorkSansSemiBold18"
+                      style={{ fontWeight: "600" }}
                     >
                       Introduction
                     </Text>
@@ -161,6 +167,7 @@ const Blogpagev3 = () => {
                           <Text
                             className="text-gray-900_03 text-sm w-auto"
                             size="txtWorkSansSemiBold18"
+                            style={{ fontWeight: "600" }}
                           >
                             Conclusion
                           </Text>
@@ -215,6 +222,7 @@ const Blogpagev3 = () => {
                       <Text
                         className="leading-[150.00%] text-2xl md:text-[22px] text-black-900 sm:text-xl"
                         size="txtLatoBold24"
+                        style={{ fontWeight: "500" }}
                       >
                         <>{blog.title}</>
                       </Text>
@@ -268,23 +276,41 @@ const Blogpagev3 = () => {
                   </div>
                   <Img
                     className="h-[398px] sm:h-auto object-cover rounded-[12px] w-[708px] md:w-full"
-                    src={blog.imagesUrl[0].imageUrl}
+                    src={
+                      blog.imagesUrl[0].imageUrl
+                        ? blog.imagesUrl[0].imageUrl
+                        : ""
+                    }
                     alt="rectangleThirtyEight"
                   />
-                  {/* <div className="bg-gray-50 border border-black-900_0c border-solid flex md:flex-col flex-row font-roboto gap-3 items-center justify-start px-2 py-3 rounded-[12px] w-full">
+                  <div
+                    onClick={() => {
+                      handleClickNext();
+                    }}
+                    className=" border  border-solid flex  flex-row font-roboto gap-3 items-center justify-start px-2 py-3 rounded-[12px] w-full"
+                    style={{ borderColor: "lightgray" }}
+                  >
                     <Img
                       className="h-8 w-8"
-                      src="images/img_play.svg"
+                      src="/images/img_play.svg"
                       alt="play"
                     />
-                    <Img
-                      className="h-[31px] w-[447px]"
-                      src="images/img_waveform.svg"
-                      alt="waveform"
-                    />
+                    <div className="flex-1">
+                      <Img
+                        className="h-[31px] w-full"
+                        src="/images/img_waveform.svg"
+                        alt="waveform"
+                      />
+                    </div>
+
                     <Text
                       className="text-base text-black-900_01 w-auto"
                       size="txtRobotoRomanRegular16"
+                      style={{
+                        display: "block",
+                        width: "80px",
+                        fontSize: "10px",
+                      }}
                     >
                       <span className="text-black-900_01 font-roboto text-left font-normal">
                         0:00{" "}
@@ -295,10 +321,10 @@ const Blogpagev3 = () => {
                     </Text>
                     <Img
                       className="h-[22px] w-[22px]"
-                      src="images/img_volume_black_900_01.svg"
+                      src="/images/img_volume_black_900_01.svg"
                       alt="volume"
                     />
-                    <div className="md:h-[15px] h-[5px] relative w-[8%] md:w-full">
+                    {/* <div className="md:h-[15px] h-[5px] relative w-[8%] md:w-full md:hidden">
                       <div className="absolute bottom-[0] h-[5px] overflow-hidden right-[0] w-full">
                         <div className="w-full h-full absolute bg-blue_gray_100 rounded-[2px]"></div>
                         <div
@@ -307,8 +333,8 @@ const Blogpagev3 = () => {
                         ></div>
                       </div>
                       <div className="absolute bg-black-900_01 bottom-[0] h-[15px] right-[6%] rounded-[7px] w-[15px]"></div>
-                    </div>
-                  </div> */}
+                    </div> */}
+                  </div>
                   <div className="flex flex-col gap-4 items-start justify-start w-full">
                     <Text
                       className="text-2xl md:text-[22px] text-gray-900_03 sm:text-xl w-full"
@@ -535,7 +561,7 @@ const Blogpagev3 = () => {
                         onClick={() => {
                           handleClickNext();
                         }}
-                        style={{ fontSize: "12px", color: "white" }}
+                        style={{ fontSize: "10px", color: "white" }}
                       >
                         Connect to{" "}
                         {(dataContext.businessMetaData?.name

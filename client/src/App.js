@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // Pages Import
 import LandingPage from "./Pages/LandingPage";
 import LandingPagev2 from "./Pages/LandingPagev2/LandingPagev2";
+import LandingPagev3 from "Pages/LandingPagev3/LandingPagev3";
 // import Desktop6MixpanelGenerateTextToVideoPage from "./Pages/Desktop6MixpanelGenerateTextToVideo";
 
 // import { Prebuild_LandingPage } from "./Pages/Components/Prebuild_LandingPage/Prebuild_LandingPage";
@@ -106,6 +107,14 @@ class App extends Component {
                     </WrapperComponent>
                   }
                 />
+                <Route
+                  path="/new"
+                  element={
+                    <WrapperComponent>
+                      <LandingPagev3 />
+                    </WrapperComponent>
+                  }
+                />
                 {/* <Route
                   path="/home"
                   element={
@@ -196,14 +205,14 @@ class App extends Component {
                   }
                 /> */}
 
-                {/* <Route
+                <Route
                   path="dashboard/blogpage2"
                   element={
                     <WrapperComponent>
-                      <Blogpagev3 />
+                      <BlogPage2 />
                     </WrapperComponent>
                   }
-                /> */}
+                />
                 {/* <Route
                   path="dashboard/chat"
                   element={

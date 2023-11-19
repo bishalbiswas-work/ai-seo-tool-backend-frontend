@@ -432,7 +432,14 @@ async function generateBlogsLazy(uid, contentObject, topicCount, wordLimit) {
   let blogs = [];
 
   const usersRef = ref.child(uid);
-
+  // usersRef
+  //   .remove()
+  //   .then(() => {
+  //     console.log("User deleted successfully");
+  //   })
+  //   .catch((error) => {
+  //     console.log("Error deleting user:", error);
+  //   });
   // New function to save data to Firebase under the specific user ID
   async function saveToFirebase(blogData, index) {
     const blogRef = usersRef.child(index.toString());
@@ -476,11 +483,41 @@ async function generateBlogsLazy(uid, contentObject, topicCount, wordLimit) {
     let blog = await ensureContent(topics[i].title);
 
     let imagesUrl = [];
+    let dalleError = false;
+    // for (let ix = 0; ix < topics[i].imageKeywords.length; ix++) {
+    //   // let imageUrl = await getImageFromUnsplash(topics[i].imageKeywords[ix]);
+    //   // let imageUrl =
+    //   //   "https://images.unsplash.com/photo-1507099985932-87a4520ed1d5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w1MTM3NDR8MHwxfHNlYXJjaHwxfHxwcm9kdWN0aXZpdHl8ZW58MHx8fHwxNjk5NTQyMzUzfDA&ixlib=rb-4.0.3&q=85";
+    //   let imageUrl;
+    //   if (dalleError == false) {
+    //     imageUrl = await generateDalleImage(topics[i].imageKeywords[ix]);
+    //     if (imageUrl == null) {
+    //       dalleError = true;
+    //     }
+    //   } else {
+    //     imageUrl = await getImageFromUnsplash(topics[i].imageKeywords[ix]);
+    //   }
+
+    //   imagesUrl.push({ imageUrl });
+    //   await delay(150); // Assuming delay() returns a promise
+    // }
     for (let ix = 0; ix < topics[i].imageKeywords.length; ix++) {
       // let imageUrl = await getImageFromUnsplash(topics[i].imageKeywords[ix]);
       // let imageUrl =
       //   "https://images.unsplash.com/photo-1507099985932-87a4520ed1d5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w1MTM3NDR8MHwxfHNlYXJjaHwxfHxwcm9kdWN0aXZpdHl8ZW58MHx8fHwxNjk5NTQyMzUzfDA&ixlib=rb-4.0.3&q=85";
-      let imageUrl = await generateDalleImage(topics[i].imageKeywords[ix]);
+      let imageUrl;
+
+      if (!dalleError) {
+        imageUrl = await generateDalleImage(topics[i].imageKeywords[ix]);
+        if (imageUrl == null) {
+          dalleError = true;
+          imageUrl = await getImageFromUnsplash(topics[i].imageKeywords[ix]);
+        }
+      }
+      if (dalleError) {
+        imageUrl = await getImageFromUnsplash(topics[i].imageKeywords[ix]);
+      }
+
       imagesUrl.push({ imageUrl });
       await delay(150); // Assuming delay() returns a promise
     }

@@ -19,22 +19,50 @@ const SignupPage = () => {
 
   const [value, setvalue] = useState("");
 
-  const handelClick = () => {
-    signInWithPopup(auth, provider).then((data) => {
-      setvalue(data.user.email);
-      console.log(data.user.uid); // This will print the UID to the console.
-      dataContext.setUidFunction({ data: data.user.uid });
-      localStorage.setItem("email", data.user.email);
-      localStorage.setItem("name", data.user.displayName);
+  // const handelClick = async () => {
+  //   signInWithPopup(auth, provider).then((data) => {
+  //     setvalue(data.user.email);
+  //     console.log(data.user.uid); // This will print the UID to the console.
+  //     dataContext.setUidFunction({ data: data.user.uid });
+  //     localStorage.setItem("email", data.user.email);
+  //     localStorage.setItem("name", data.user.displayName);
 
+  //     dataContext.login();
+  //     dataContext.setonboardingUserDetails({
+  //       email: data.user.email,
+  //       name: data.user.displayName,
+  //     });
+  //   });
+  //   await dataContext.deleteUidIfExists({ uid: data.user.uid });
+  //   navigate("/extract-data");
+  // };
+  const handelClick = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      // Set context and local storage
+      setvalue(user.email);
+      console.log(user.uid); // Print the UID to the console
+      await dataContext.deleteUidIfExists({ uid: user.uid });
+
+      dataContext.setUidFunction({ data: user.uid });
+      localStorage.setItem("email", user.email);
+      localStorage.setItem("name", user.displayName);
+      localStorage.setItem("uid", user.uid);
       dataContext.login();
       dataContext.setonboardingUserDetails({
-        email: data.user.email,
-        name: data.user.displayName,
+        email: user.email,
+        name: user.displayName,
       });
+
+      // Delete UID if exists and then navigate
       navigate("/extract-data");
-    });
+    } catch (error) {
+      console.error("Error during sign in:", error);
+    }
   };
+
   useEffect(() => {
     setvalue(localStorage.getItem("email"));
 
