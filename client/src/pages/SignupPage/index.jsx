@@ -36,6 +36,8 @@ const SignupPage = () => {
   //   await dataContext.deleteUidIfExists({ uid: data.user.uid });
   //   navigate("/extract-data");
   // };
+  const delay = (time) => new Promise((resolve) => setTimeout(resolve, time));
+
   const handelClick = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
@@ -45,7 +47,7 @@ const SignupPage = () => {
       setvalue(user.email);
       console.log(user.uid); // Print the UID to the console
       await dataContext.deleteUidIfExists({ uid: user.uid });
-
+      await delay(2000);
       dataContext.setUidFunction({ data: user.uid });
       localStorage.setItem("email", user.email);
       localStorage.setItem("name", user.displayName);

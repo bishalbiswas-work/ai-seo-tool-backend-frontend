@@ -888,6 +888,8 @@ const DataState = (props) => {
         // If the uid exists, delete it
         await remove(dbRef);
         console.log(`UID ${uid} deleted successfully.`);
+        setBlogs([]);
+        setDataLoaded(false);
       } else {
         console.log(`UID ${uid} does not exist.`);
       }
