@@ -60,7 +60,8 @@ class App extends Component {
                   index
                   element={
                     <WrapperComponent>
-                      <LandingPagev2 />
+                      <LandingPagev3 />
+                      {/* <LandingPagev2 /> */}
                       {/* <LandingPage /> */}
                       {/* <Desktop6MixpanelGenerateTextToVideoPage /> */}
                       {/* <Prebuild_LandingPage /> */}
@@ -71,7 +72,8 @@ class App extends Component {
                   path="/try"
                   element={
                     <WrapperComponent>
-                      <LandingPagev2 />
+                      {/* <LandingPagev2 /> */}
+                      <LandingPagev3 />
                     </WrapperComponent>
                   }
                 />
@@ -79,7 +81,8 @@ class App extends Component {
                   path="/try-now"
                   element={
                     <WrapperComponent>
-                      <LandingPagev2 />
+                      {/* <LandingPagev2 /> */}
+                      <LandingPagev3 />
                     </WrapperComponent>
                   }
                 />
@@ -87,7 +90,8 @@ class App extends Component {
                   path="/try-for-now"
                   element={
                     <WrapperComponent>
-                      <LandingPagev2 />
+                      {/* <LandingPagev2 /> */}
+                      <LandingPagev3 />
                     </WrapperComponent>
                   }
                 />
@@ -95,7 +99,8 @@ class App extends Component {
                   path="/try-it"
                   element={
                     <WrapperComponent>
-                      <LandingPagev2 />
+                      {/* <LandingPagev2 /> */}
+                      <LandingPagev3 />
                     </WrapperComponent>
                   }
                 />
@@ -103,18 +108,19 @@ class App extends Component {
                   path="/try-it-now"
                   element={
                     <WrapperComponent>
-                      <LandingPagev2 />
+                      {/* <LandingPagev2 /> */}
+                      <LandingPagev3 />
                     </WrapperComponent>
                   }
                 />
-                <Route
+                {/* <Route
                   path="/new"
                   element={
                     <WrapperComponent>
                       <LandingPagev3 />
                     </WrapperComponent>
                   }
-                />
+                /> */}
                 {/* <Route
                   path="/home"
                   element={

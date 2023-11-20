@@ -514,7 +514,7 @@ const LandingPagev3 = ({ prop }) => {
 
         <div className="flex flex-col items-center justify-start w-full">
           {/* <div className="flex md:flex-col flex-row md:gap-11 h-[621px] md:h-auto items-center justify-between max-w-[1440px] md:px-10 sm:px-5 px-[120px] py-[60px] w-full"> */}
-          <div className="flex md:flex-col flex-row md:gap-11 h-[551px] md:h-auto items-center justify-between max-w-[1440px] md:px-[10px] sm:px-5 px-[120px] mt-[-45px] w-full">
+          <div className="flex md:flex-col flex-row md:gap-11 h-[551px] md:h-[550px] items-center justify-between max-w-[1440px] md:px-[10px] sm:px-5 px-[120px] mt-[-45px] w-full">
             <div className="md:h-80 h-[440px] relative w-[53%] md:w-full">
               <div className="md:h-80 h-[490px] m-auto w-full">
                 <div className="absolute flex flex-col md:h-auto h-full inset-[0] items-center justify-start m-auto max-w-[627px] pt-8 w-full">
@@ -674,8 +674,9 @@ const LandingPagev3 = ({ prop }) => {
                   },
                   width: {
                     xs: "100%",
-                    md: "500px",
+                    // md: "800px",
                   },
+                  height: "150px",
                 }}
               >
                 <Box
@@ -683,7 +684,7 @@ const LandingPagev3 = ({ prop }) => {
                   style={{
                     width: {
                       xs: "100%",
-                      md: "60%",
+                      md: "70%",
                     },
                     height: {
                       // xs: "200px",
@@ -726,7 +727,10 @@ const LandingPagev3 = ({ prop }) => {
                     error={confirmClick && !isValidUrl}
                     sx={{
                       height: "2rem !important",
-                      width: "100%",
+                      width: {
+                        xs: "100%",
+                        md: "450px",
+                      },
                       borderRadius: "15px", // Adjusted borderRadius here
                       "& .MuiOutlinedInput-root": {
                         borderRadius: "15px", // Apply borderRadius to the outline
@@ -760,9 +764,27 @@ const LandingPagev3 = ({ prop }) => {
                     // },
                   }}
                 >
-                  <div>
+                  <div
+                  // style={{
+                  //   top: (() => {
+                  //     // Use window.innerWidth directly within IIFE to determine the left value
+                  //     return window.innerWidth < 768 ? "0px" : "100px";
+                  //   })(),
+                  // }}
+                  >
                     <FormControl
-                      sx={{ mx: 1, minWidth: 140, borderRadius: "25px" }}
+                      sx={{
+                        mx: (() => {
+                          // Use window.innerWidth directly within IIFE to determine the left value
+                          return window.innerWidth < 768 ? "0" : "10px";
+                        })(),
+                        minWidth: 140,
+                        borderRadius: "25px",
+                        top: (() => {
+                          // Use window.innerWidth directly within IIFE to determine the left value
+                          return window.innerWidth < 768 ? "40px" : "0px";
+                        })(),
+                      }}
                     >
                       <Select
                         value={selectedLanguage}
@@ -808,19 +830,29 @@ const LandingPagev3 = ({ prop }) => {
                         //   md: "150px",
                         // },
                         width: "180px",
-                        top: "80px",
+                        top: window.matchMedia("(max-width: 768px)").matches
+                          ? "60px"
+                          : "80px",
 
                         // left: {
-                        //   xs: "-150px",
+                        //   xs: "0px",
                         //   md: "-155px",
                         // },
                         // left: "-155px",
-                        left: "-500px",
+                        // left: "-500px",
+                        // left: (() => {
+                        //   // Use window.innerWidth directly within IIFE to determine the left value
+                        //   return window.innerWidth < 768 ? "0px" : "-600px";
+                        // })(),
+                        left: window.matchMedia("(max-width: 768px)").matches
+                          ? "0px"
+                          : "-635px",
+
                         height: "38px",
                         color: "white",
                       }}
                     >
-                      Submit & Continue
+                      Get Started
                     </Button>
                   )}
                   {!successUrl && !checkUrlStatus && (
