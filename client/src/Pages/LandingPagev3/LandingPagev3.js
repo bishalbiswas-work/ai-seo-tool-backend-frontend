@@ -860,8 +860,13 @@ const LandingPagev3 = ({ prop }) => {
                       style={{
                         color: "purple",
                         position: "absolute",
-                        top: "32px",
-                        left: "10px",
+                        top: window.matchMedia("(max-width: 768px)").matches
+                          ? "-10px"
+                          : "10px",
+                        // left: "2px",
+                        left: window.matchMedia("(max-width: 768px)").matches
+                          ? "180px"
+                          : "-10px",
                       }}
                     />
                   )}
