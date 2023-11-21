@@ -749,7 +749,7 @@ const LandingPagev3 = ({ prop }) => {
                       height: "2rem !important",
                       width: {
                         xs: "100%",
-                        md: "450px",
+                        md: "380px",
                       },
                       borderRadius: "15px", // Adjusted borderRadius here
                       "& .MuiOutlinedInput-root": {
@@ -873,7 +873,7 @@ const LandingPagev3 = ({ prop }) => {
                         // })(),
                         left: window.matchMedia("(max-width: 768px)").matches
                           ? "0px"
-                          : "-670px",
+                          : "-630px",
 
                         height: "38px",
                         color: "white",
