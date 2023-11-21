@@ -106,7 +106,7 @@ const DataState = (props) => {
 
       // Load summary from local storage and update businessMetaData individually
       const storedSummary = localStorage.getItem("summary1");
-      if (storedSummary) {
+      if (storedSummary && !summaryLoad) {
         try {
           const summaryData = JSON.parse(storedSummary);
           console.log(summaryData);
@@ -120,6 +120,7 @@ const DataState = (props) => {
               return acc;
             }, {}),
           }));
+          console.log("Summary loaded from localstorage!");
         } catch (e) {
           console.error("Failed to parse summary from localStorage", e);
         }
@@ -824,7 +825,13 @@ const DataState = (props) => {
 
       setSummaryLoad(true);
 
-      setBusinessMetaDataFunction({ data: output.data });
+      // setBusinessMetaDataFunction({ data: output.data });
+      setBusinessMetaData({
+        name: output.data.name,
+        summary: output.data.summary,
+        faviconUrl: output.data.faviconUrl,
+      });
+
       // delay(2000);
       //  navigate("/dashboard");
     } catch (error) {
@@ -834,47 +841,55 @@ const DataState = (props) => {
     }
   };
   useEffect(() => {
-    const generateBlogs = async () => {
-      const getBlog = async (submitData) => {
+    console.log("BusinessMetaData: ", businessMetaData);
+  }, [businessMetaData]);
+  useEffect(
+    () => {
+      const generateBlogs = async () => {
+        await delay(3000);
+        const getBlog = async (submitData) => {
+          try {
+            const response = await axios.post(
+              `${API_BASE_URL}/api/get-blogs-lazy`,
+              // "http://localhost:5000/api/get-access-token",
+              submitData,
+              {
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              }
+            );
+            return response;
+          } catch (err) {
+            console.log(err);
+          }
+        };
         try {
-          const response = await axios.post(
-            `${API_BASE_URL}/api/get-blogs-lazy`,
-            // "http://localhost:5000/api/get-access-token",
-            submitData,
-            {
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-          return response;
+          const submitDataBlogs = {
+            summary: businessMetaData.summary,
+            uid: uid,
+            blogCount: 3,
+            wordCount: 2500,
+          };
+          console.log("BusinessMetaData Get Blogs: ", businessMetaData);
+          const Blogs = await getBlog(submitDataBlogs);
+          console.log("Backend Reponse Blogs: ", Blogs);
+
+          localStorage.setItem("blogs1", JSON.stringify(Blogs.data.blogs));
+
+          setBlogsFunction({ data: Blogs.data.blogs });
         } catch (err) {
           console.log(err);
         }
       };
-      try {
-        const submitDataBlogs = {
-          summary: businessMetaData.summary,
-          uid: uid,
-          blogCount: 3,
-          wordCount: 2500,
-        };
-
-        const Blogs = await getBlog(submitDataBlogs);
-        console.log("Backend Reponse Blogs: ", Blogs);
-
-        localStorage.setItem("blogs1", JSON.stringify(Blogs.data.blogs));
-
-        setBlogsFunction({ data: Blogs.data.blogs });
-      } catch (err) {
-        console.log(err);
+      if (uid && summaryLoad) {
+        console.log("blog Generation Started");
+        generateBlogs();
       }
-    };
-    if (uid && summaryLoad) {
-      console.log("blog Generation Started");
-      generateBlogs();
-    }
-  }, [uid, summaryLoad]);
+    },
+    // [uid, summaryLoad]
+    [businessMetaData]
+  );
 
   // ==================================================================
 

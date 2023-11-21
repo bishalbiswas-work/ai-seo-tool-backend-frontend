@@ -208,9 +208,21 @@ const LandingPagev3 = ({ prop }) => {
   // ==========================================================
 
   const [selectedLanguage, setSelectedLanguage] = useState("EN");
+  const [selectedLanguageLabel, setSelectedLanguageLabel] = useState(
+    "🇺🇸 Blogs in English"
+  ); // Include flag in label
 
   const languages = {
     US: { code: "EN", name: "English", flag: "🇺🇸" },
+    GB: { code: "EN", name: "English", flag: "🇬🇧" },
+    CA: { code: "EN", name: "English", flag: "🇨🇦" },
+    AU: { code: "EN", name: "English", flag: "🇦🇺" },
+    NZ: { code: "EN", name: "English", flag: "🇳🇿" },
+    IE: { code: "EN", name: "English", flag: "🇮🇪" },
+    ZA: { code: "EN", name: "English", flag: "🇿🇦" },
+    NG: { code: "EN", name: "English", flag: "🇳🇬" },
+    PH: { code: "EN", name: "English", flag: "🇵🇭" },
+    SG: { code: "EN", name: "English", flag: "🇸🇬" },
     ES: { code: "ES", name: "Spanish", flag: "🇪🇸" },
     FR: { code: "FR", name: "French", flag: "🇫🇷" },
     IN: { code: "IN", name: "Hindi", flag: "🇮🇳" },
@@ -226,11 +238,19 @@ const LandingPagev3 = ({ prop }) => {
     // Add more countries and languages as needed
   };
   const handleChangeLanguage = (event) => {
-    setSelectedLanguage(event.target.value);
+    const newLanguageCode = event.target.value;
+    setSelectedLanguage(newLanguageCode);
+
+    // Use optional chaining and nullish coalescing to avoid undefined errors
+    const languageFlag = languages[newLanguageCode]?.flag ?? languages.US.flag;
+    const languageName = languages[newLanguageCode]?.name ?? languages.US.name;
+
+    // Set the label with the appropriate flag and name
+    setSelectedLanguageLabel(`${languageFlag} Blogs in ${languageName}`);
   };
 
-  const englishOption = { code: "EN", name: "English", flag: "🇺🇸" };
-  const detectedLanguageOption = languages[detectedCountry];
+  const englishOption = languages.US;
+  const detectedLanguageOption = languages[detectedCountry]; // Assuming 'detectedCountry' is a variable set elsewhere
 
   return (
     <>
@@ -684,7 +704,7 @@ const LandingPagev3 = ({ prop }) => {
                   style={{
                     width: {
                       xs: "100%",
-                      md: "70%",
+                      md: "60%",
                     },
                     height: {
                       // xs: "200px",
@@ -778,7 +798,7 @@ const LandingPagev3 = ({ prop }) => {
                           // Use window.innerWidth directly within IIFE to determine the left value
                           return window.innerWidth < 768 ? "0" : "10px";
                         })(),
-                        minWidth: 140,
+                        minWidth: 200,
                         borderRadius: "25px",
                         top: (() => {
                           // Use window.innerWidth directly within IIFE to determine the left value
@@ -790,17 +810,24 @@ const LandingPagev3 = ({ prop }) => {
                         value={selectedLanguage}
                         onChange={handleChangeLanguage}
                         displayEmpty
-                        sx={{ borderRadius: "20px" }} // Add borderRadius here
+                        sx={{ borderRadius: "20px" }}
                       >
+                        {/* English language option */}
                         <MenuItem value={englishOption.code}>
-                          {englishOption.flag} {englishOption.name}
+                          {selectedLanguage === englishOption.code
+                            ? selectedLanguageLabel
+                            : `${englishOption.flag} ${englishOption.name}`}
                         </MenuItem>
-                        {detectedLanguageOption && (
-                          <MenuItem value={detectedLanguageOption.code}>
-                            {detectedLanguageOption.flag}{" "}
-                            {detectedLanguageOption.name}
-                          </MenuItem>
-                        )}
+                        {/* Detected language option, if it's different from English */}
+                        {detectedLanguageOption &&
+                          detectedLanguageOption.code !==
+                            englishOption.code && (
+                            <MenuItem value={detectedLanguageOption.code}>
+                              {selectedLanguage === detectedLanguageOption.code
+                                ? selectedLanguageLabel
+                                : `${detectedLanguageOption.flag} ${detectedLanguageOption.name}`}
+                            </MenuItem>
+                          )}
                       </Select>
                     </FormControl>
                   </div>
@@ -846,7 +873,7 @@ const LandingPagev3 = ({ prop }) => {
                         // })(),
                         left: window.matchMedia("(max-width: 768px)").matches
                           ? "0px"
-                          : "-635px",
+                          : "-670px",
 
                         height: "38px",
                         color: "white",

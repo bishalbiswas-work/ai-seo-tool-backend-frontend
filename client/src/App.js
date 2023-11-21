@@ -69,6 +69,15 @@ class App extends Component {
                   }
                 />
                 <Route
+                  path="/old"
+                  element={
+                    <WrapperComponent>
+                      {/* <LandingPagev2 /> */}
+                      <LandingPagev2 />
+                    </WrapperComponent>
+                  }
+                />
+                <Route
                   path="/try"
                   element={
                     <WrapperComponent>
