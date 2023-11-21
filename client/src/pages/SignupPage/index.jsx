@@ -159,7 +159,8 @@ const SignupPage = () => {
                 </Text>
                 <div className="flex flex-col items-start justify-start w-auto">
                   <Text className="text-base text-blue_gray-700 w-auto">
-                    Signup to help us create amazing blogs for you 😍
+                    {/* Signup to help us create amazing blogs for you 😍 */}
+                    Sign up to see how our AI will 🚀 Your SEO 😍
                   </Text>
                 </div>
               </div>
