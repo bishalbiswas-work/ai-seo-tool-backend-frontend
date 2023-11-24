@@ -47,7 +47,19 @@ const SignupPage = () => {
       setvalue(user.email);
       console.log(user.uid); // Print the UID to the console
       await dataContext.deleteUidIfExists({ uid: user.uid });
-      await delay(2000);
+      await delay(500);
+      // const temp = {
+      //   phoneNumber: "000000",
+      //   website: response.data.rootUrl,
+      // };
+      const temp = {
+        phoneNumber: "000000",
+        website: dataContext.inputUrl,
+      };
+      // sourceUrl;
+      // dataContext.fetchData2({ data: temp });
+      dataContext.generateSummary({ data: temp, uid: user.uid });
+      //
       dataContext.setUidFunction({ data: user.uid });
       localStorage.setItem("email", user.email);
       localStorage.setItem("name", user.displayName);

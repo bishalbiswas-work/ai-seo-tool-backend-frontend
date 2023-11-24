@@ -37,6 +37,31 @@ const Blogpagev3 = () => {
     window.scrollTo({ top: 0 });
   }, []);
 
+  // ===========================================================
+
+  // Content Highlighting
+
+  // const [activeSection, setActiveSection] = useState("");
+
+  // const handleScroll = () => {
+  //   const positions = {
+  //     introduction: introductionRef.current.getBoundingClientRect().top,
+  //     firstParagraph: firstParagraphRef.current.getBoundingClientRect().top,
+  //     // and so on for each section
+  //   };
+
+  //   // Determine which section is active based on scroll position
+  //   const currentSection = setActiveSection(currentSection); // logic to determine based on positions
+  // };
+
+  // // Add event listener for scroll
+  // useEffect(() => {
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, []);
+
+  // ===========================================================
+
   return (
     <>
       <div className="bg-white-A700 flex flex-col font-poppins items-center justify-end mx-auto w-full">

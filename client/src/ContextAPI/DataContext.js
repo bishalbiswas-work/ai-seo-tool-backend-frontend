@@ -44,7 +44,7 @@ const DataState = (props) => {
   const [phoneNumber, setPhoneNumber] = useState(""); // Initialize with your default values
   const [website, setWebsite] = useState("");
   const [sourceUrl, setSourceUrl] = useState("");
-
+  const [inputUrl, setInputUrl] = useState("");
   const [messages, setMessages] = useState([
     {
       sender: "bot",
@@ -374,6 +374,9 @@ const DataState = (props) => {
 
   const logout = () => {
     setIsLoggedIn(false);
+  };
+  const setInputUrlFunction = ({ data }) => {
+    setInputUrl(data);
   };
   const setUrlStoredFunction = ({ data }) => {
     setUrlStored(data);
@@ -792,7 +795,7 @@ const DataState = (props) => {
   // =====================================================
   const [summaryLoad, setSummaryLoad] = useState(false);
 
-  const generateSummary = async ({ data }) => {
+  const generateSummary = async ({ data, uid }) => {
     console.log("Fetch is called: ", data.phoneNumber, data.website);
     // await createNewFirebaseDoc();
     const getSummary = async (submitData) => {
@@ -826,14 +829,16 @@ const DataState = (props) => {
       setSummaryLoad(true);
 
       // setBusinessMetaDataFunction({ data: output.data });
-      setBusinessMetaData({
+      setBusinessMetaData((prevState) => ({
+        ...prevState,
         name: output.data.name,
         summary: output.data.summary,
         faviconUrl: output.data.faviconUrl,
-      });
+      }));
 
       // delay(2000);
       //  navigate("/dashboard");
+      await generateBlogs({ summary: output.data.summary, uid: uid });
     } catch (error) {
       //  setstate(false);
       console.error("There was an error with summary:", error);
@@ -883,13 +888,52 @@ const DataState = (props) => {
         }
       };
       if (uid && summaryLoad) {
-        console.log("blog Generation Started");
-        generateBlogs();
+        // console.log("blog Generation Started");
+        // generateBlogs();
       }
     },
     // [uid, summaryLoad]
     [businessMetaData]
   );
+
+  const generateBlogs = async ({ summary, uid }) => {
+    console.log("blog Generation Started");
+    await delay(3000);
+    const getBlog = async (submitData) => {
+      try {
+        const response = await axios.post(
+          `${API_BASE_URL}/api/get-blogs-lazy`,
+          // "http://localhost:5000/api/get-access-token",
+          submitData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        return response;
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    try {
+      const submitDataBlogs = {
+        summary: summary,
+        uid: uid,
+        blogCount: 3,
+        wordCount: 2500,
+      };
+      console.log("BusinessMetaData Get Blogs: ", businessMetaData);
+      const Blogs = await getBlog(submitDataBlogs);
+      console.log("Backend Reponse Blogs: ", Blogs);
+
+      localStorage.setItem("blogs1", JSON.stringify(Blogs.data.blogs));
+
+      setBlogsFunction({ data: Blogs.data.blogs });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   // ==================================================================
 
@@ -1047,6 +1091,7 @@ const DataState = (props) => {
         uid,
         name,
         email,
+        inputUrl,
         setonboardingUserDetails,
         profileUrl,
         docId,
@@ -1071,7 +1116,7 @@ const DataState = (props) => {
         fetchData,
         fetchData2,
         deleteUidIfExists,
-
+        setInputUrlFunction,
         setUrlStoredFunction,
         setBusinessMetaDataFunction,
         setProfileUrlFunction,

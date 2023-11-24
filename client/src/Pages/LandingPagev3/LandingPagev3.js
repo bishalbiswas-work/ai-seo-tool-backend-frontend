@@ -133,10 +133,11 @@ const LandingPagev3 = ({ prop }) => {
 
       dataContext.setWebsiteFunction({ data: response.data.rootUrl });
       const url = getCurrentURL();
+      dataContext.setInputUrlFunction({ data: response.data.rootUrl });
       dataContext.setSourceUrlFunction({ data: url });
-      const temp = { phoneNumber: "000000", website: response.data.rootUrl };
-      // dataContext.fetchData2({ data: temp });
-      dataContext.generateSummary({ data: temp });
+      // const temp = { phoneNumber: "000000", website: response.data.rootUrl };
+      // // dataContext.fetchData2({ data: temp });
+      // dataContext.generateSummary({ data: temp });
       // navigate("/extract-data");
       navigate("/auth");
     } else {
@@ -211,10 +212,11 @@ const LandingPagev3 = ({ prop }) => {
   const [selectedLanguageLabel, setSelectedLanguageLabel] = useState(
     "🇺🇸 Blogs in English"
   ); // Include flag in label
-
+  const [selectedLangCode, setSelectedLangCode] = useState("English");
+  const defaultLang = "English";
   const languages = {
     US: { code: "EN", name: "English", flag: "🇺🇸" },
-    GB: { code: "EN", name: "English", flag: "🇬🇧" },
+    UK: { code: "EN", name: "English", flag: "🇬🇧" },
     CA: { code: "EN", name: "English", flag: "🇨🇦" },
     AU: { code: "EN", name: "English", flag: "🇦🇺" },
     NZ: { code: "EN", name: "English", flag: "🇳🇿" },
@@ -237,10 +239,17 @@ const LandingPagev3 = ({ prop }) => {
     KR: { code: "KO", name: "Korean", flag: "🇰🇷" },
     // Add more countries and languages as needed
   };
+  useEffect(() => {
+    if (detectedCountry) {
+      console.log("Country: ", detectedCountry);
+      console.log("Language: ", languages[detectedCountry].name);
+      setSelectedLangCode(languages[detectedCountry].name);
+    }
+  }, [detectedCountry]);
   const handleChangeLanguage = (event) => {
     const newLanguageCode = event.target.value;
-    setSelectedLanguage(newLanguageCode);
 
+    console.log("Detected Lang: ", newLanguageCode);
     // Use optional chaining and nullish coalescing to avoid undefined errors
     const languageFlag = languages[newLanguageCode]?.flag ?? languages.US.flag;
     const languageName = languages[newLanguageCode]?.name ?? languages.US.name;
@@ -682,39 +691,154 @@ const LandingPagev3 = ({ prop }) => {
                   </div>
                 </div> */}
               </div>
-              <Box
-                sx={{
-                  display: {
-                    xs: "block",
-                    md: "flex",
-                  },
-                  mt: {
-                    xs: "-10px", // mobile
-                    md: "-150px", // desktop
-                  },
-                  width: {
-                    xs: "100%",
-                    // md: "800px",
-                  },
-                  height: "150px",
-                }}
-              >
-                <Box
-                  // width="60%"
-                  style={{
-                    width: {
-                      xs: "100%",
-                      md: "60%",
-                    },
-                    height: {
-                      // xs: "200px",
-                      // md: "60%",
-                    },
-                  }}
-                >
-                  {/* <p className="url-text">Your website URL</p> */}
+              {/* selectedLangCode */}
+              {selectedLangCode === defaultLang && (
+                <div>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      mt: {
+                        xs: "-10px", // mobile
+                        md: "-150px", // desktop
+                      },
+                      width: {
+                        xs: "100%",
+                        md: "500px",
+                      },
+                      // You can add more styles as needed here
+                    }}
+                  >
+                    <Box width="100%">
+                      <p className="url-text">Your website URL</p>
 
-                  {/* <TextField
+                      <TextField
+                        variant="outlined"
+                        type="text"
+                        fullWidth
+                        disabled={successUrl}
+                        value={input}
+                        onChange={handleChange}
+                        placeholder="example.com"
+                        error={confirmClick && !isValidUrl}
+                        sx={{
+                          height: "2.1rem !important",
+                          borderRadius: "15px !important",
+                          "& .MuiInputBase-input": {
+                            height: "2.1rem !important",
+                            padding: "0.75rem 0.875rem", // Adjust padding in rem units
+                          },
+                          "&.MuiTextField-root.Mui-error": {
+                            borderColor: "red",
+                            height: "2.1rem !important",
+                          },
+                        }}
+                      />
+                    </Box>
+                    <Box
+                      // width="30%"
+                      style={{ position: "relative" }}
+                    >
+                      {!successUrl && checkUrlStatus && (
+                        <Button
+                          variant="contained"
+                          onClick={handleConfirm}
+                          style={{
+                            background:
+                              "linear-gradient(180deg, rgb(105.08, 50, 131) 0%, rgb(50.16, 50.16, 130.74) 100%)",
+                            padding: "8px 15px",
+                            borderRadius: "8px",
+                            position: "absolute",
+                            // width: {
+                            //   xs: "50px",
+                            //   md: "150px",
+                            // },
+                            width: "150px",
+                            top: "32px",
+                            // left: {
+                            //   xs: "-150px",
+                            //   md: "-155px",
+                            // },
+                            left: "-155px",
+                            height: "38px",
+                            color: "white",
+                          }}
+                        >
+                          GO
+                        </Button>
+                      )}
+                      {!successUrl && !checkUrlStatus && (
+                        <CircularProgress
+                          style={{
+                            color: "purple",
+                            position: "absolute",
+                            top: "32px",
+                            left: "10px",
+                          }}
+                        />
+                      )}
+                      {input && isValidUrl && (
+                        <Box>
+                          <CheckCircleIcon
+                            style={{
+                              color: "green",
+                              position: "absolute",
+                              top: "40px",
+                              left: "10px",
+                            }}
+                          />
+                        </Box>
+                      )}
+                    </Box>
+                  </Box>
+                  {confirmClick && !isValidUrl && (
+                    <Text
+                      variant="h6"
+                      style={{
+                        color: "red",
+                        marginTop: "2px",
+                        fontSize: "12px",
+                      }}
+                    >
+                      Entered URL is not valid.
+                    </Text>
+                  )}
+                </div>
+              )}
+              {selectedLangCode !== defaultLang && (
+                <div>
+                  <Box
+                    sx={{
+                      display: {
+                        xs: "block",
+                        md: "flex",
+                      },
+                      mt: {
+                        xs: "-10px", // mobile
+                        md: "-150px", // desktop
+                      },
+                      width: {
+                        xs: "100%",
+                        // md: "800px",
+                      },
+                      height: "150px",
+                    }}
+                  >
+                    <Box
+                      // width="60%"
+                      style={{
+                        width: {
+                          xs: "100%",
+                          md: "60%",
+                        },
+                        height: {
+                          // xs: "200px",
+                          // md: "60%",
+                        },
+                      }}
+                    >
+                      {/* <p className="url-text">Your website URL</p> */}
+
+                      {/* <TextField
                     variant="outlined"
                     type="text"
                     fullWidth
@@ -736,192 +860,197 @@ const LandingPagev3 = ({ prop }) => {
                       },
                     }}
                   /> */}
-                  <TextField
-                    variant="outlined"
-                    type="text"
-                    fullWidth
-                    disabled={successUrl}
-                    value={input}
-                    onChange={handleChange}
-                    placeholder="example.com"
-                    error={confirmClick && !isValidUrl}
-                    sx={{
-                      height: "2rem !important",
-                      width: {
-                        xs: "100%",
-                        md: "380px",
-                      },
-                      borderRadius: "15px", // Adjusted borderRadius here
-                      "& .MuiOutlinedInput-root": {
-                        borderRadius: "15px", // Apply borderRadius to the outline
-                      },
-                      "& .MuiInputBase-input": {
-                        height: "2rem !important",
-                        padding: "0.75rem 0.875rem", // Adjust padding in rem units
-                      },
-                      "&.MuiTextField-root.Mui-error": {
-                        height: "2rem !important",
-                        borderColor: "red",
-                      },
-                    }}
-                  />
-                </Box>
-                <Box
-                  width="40%"
-                  style={{
-                    position: {
-                      xs: "relative",
-                    },
-                    // display: {
-                    //   xs: "block",
-                    //   md: "inline-block",
-                    // },
-                    // marginTop: {
-                    //   xs: "150px",
-                    // },
-                    // position: {
-                    //   xs: "50px",
-                    // },
-                  }}
-                >
-                  <div
-                  // style={{
-                  //   top: (() => {
-                  //     // Use window.innerWidth directly within IIFE to determine the left value
-                  //     return window.innerWidth < 768 ? "0px" : "100px";
-                  //   })(),
-                  // }}
-                  >
-                    <FormControl
-                      sx={{
-                        mx: (() => {
-                          // Use window.innerWidth directly within IIFE to determine the left value
-                          return window.innerWidth < 768 ? "0" : "10px";
-                        })(),
-                        minWidth: 200,
-                        borderRadius: "25px",
-                        top: (() => {
-                          // Use window.innerWidth directly within IIFE to determine the left value
-                          return window.innerWidth < 768 ? "40px" : "0px";
-                        })(),
-                      }}
-                    >
-                      <Select
-                        value={selectedLanguage}
-                        onChange={handleChangeLanguage}
-                        displayEmpty
-                        sx={{ borderRadius: "20px" }}
-                      >
-                        {/* English language option */}
-                        <MenuItem value={englishOption.code}>
-                          {selectedLanguage === englishOption.code
-                            ? selectedLanguageLabel
-                            : `${englishOption.flag} ${englishOption.name}`}
-                        </MenuItem>
-                        {/* Detected language option, if it's different from English */}
-                        {detectedLanguageOption &&
-                          detectedLanguageOption.code !==
-                            englishOption.code && (
-                            <MenuItem value={detectedLanguageOption.code}>
-                              {selectedLanguage === detectedLanguageOption.code
-                                ? selectedLanguageLabel
-                                : `${detectedLanguageOption.flag} ${detectedLanguageOption.name}`}
-                            </MenuItem>
-                          )}
-                      </Select>
-                    </FormControl>
-                  </div>
-                </Box>
-                <Box
-                  // width="30%"
-                  style={{ position: "relative" }}
-                  // style={{position:}}
-                >
-                  {!successUrl && checkUrlStatus && (
-                    <Button
-                      variant="contained"
-                      disabled={!input ? true : false}
-                      onClick={handleConfirm}
-                      style={{
-                        // background:
-                        //   "linear-gradient(180deg, rgb(105.08, 50, 131) 0%, rgb(50.16, 50.16, 130.74) 100%)",
-                        background: input
-                          ? "linear-gradient(180deg, rgb(105.08, 50, 131) 0%, rgb(50.16, 50.16, 130.74) 100%)"
-                          : "gray",
-                        // padding: "8px 15px",
-                        padding: "8px 10px",
-                        borderRadius: "8px",
-                        position: "absolute",
-                        // width: {
-                        //   xs: "50px",
-                        //   md: "150px",
-                        // },
-                        width: "180px",
-                        top: window.matchMedia("(max-width: 768px)").matches
-                          ? "60px"
-                          : "80px",
-
-                        // left: {
-                        //   xs: "0px",
-                        //   md: "-155px",
-                        // },
-                        // left: "-155px",
-                        // left: "-500px",
-                        // left: (() => {
-                        //   // Use window.innerWidth directly within IIFE to determine the left value
-                        //   return window.innerWidth < 768 ? "0px" : "-600px";
-                        // })(),
-                        left: window.matchMedia("(max-width: 768px)").matches
-                          ? "0px"
-                          : "-630px",
-
-                        height: "38px",
-                        color: "white",
-                      }}
-                    >
-                      Get Started
-                    </Button>
-                  )}
-                  {!successUrl && !checkUrlStatus && (
-                    <CircularProgress
-                      style={{
-                        color: "purple",
-                        position: "absolute",
-                        top: window.matchMedia("(max-width: 768px)").matches
-                          ? "-10px"
-                          : "10px",
-                        // left: "2px",
-                        left: window.matchMedia("(max-width: 768px)").matches
-                          ? "180px"
-                          : "-10px",
-                      }}
-                    />
-                  )}
-                  {input && isValidUrl && (
-                    <Box>
-                      <CheckCircleIcon
-                        style={{
-                          color: "green",
-                          position: "absolute",
-                          top: "40px",
-                          left: "10px",
+                      <TextField
+                        variant="outlined"
+                        type="text"
+                        fullWidth
+                        disabled={successUrl}
+                        value={input}
+                        onChange={handleChange}
+                        placeholder="example.com"
+                        error={confirmClick && !isValidUrl}
+                        sx={{
+                          height: "2rem !important",
+                          width: {
+                            xs: "100%",
+                            md: "380px",
+                          },
+                          borderRadius: "15px", // Adjusted borderRadius here
+                          "& .MuiOutlinedInput-root": {
+                            borderRadius: "15px", // Apply borderRadius to the outline
+                          },
+                          "& .MuiInputBase-input": {
+                            height: "2rem !important",
+                            padding: "0.75rem 0.875rem", // Adjust padding in rem units
+                          },
+                          "&.MuiTextField-root.Mui-error": {
+                            height: "2rem !important",
+                            borderColor: "red",
+                          },
                         }}
                       />
                     </Box>
+                    <Box
+                      width="40%"
+                      style={{
+                        position: {
+                          xs: "relative",
+                        },
+                        // display: {
+                        //   xs: "block",
+                        //   md: "inline-block",
+                        // },
+                        // marginTop: {
+                        //   xs: "150px",
+                        // },
+                        // position: {
+                        //   xs: "50px",
+                        // },
+                      }}
+                    >
+                      <div
+                      // style={{
+                      //   top: (() => {
+                      //     // Use window.innerWidth directly within IIFE to determine the left value
+                      //     return window.innerWidth < 768 ? "0px" : "100px";
+                      //   })(),
+                      // }}
+                      >
+                        <FormControl
+                          sx={{
+                            mx: (() => {
+                              // Use window.innerWidth directly within IIFE to determine the left value
+                              return window.innerWidth < 768 ? "0" : "10px";
+                            })(),
+                            minWidth: 200,
+                            borderRadius: "25px",
+                            top: (() => {
+                              // Use window.innerWidth directly within IIFE to determine the left value
+                              return window.innerWidth < 768 ? "40px" : "0px";
+                            })(),
+                          }}
+                        >
+                          <Select
+                            value={selectedLanguage}
+                            onChange={handleChangeLanguage}
+                            displayEmpty
+                            sx={{ borderRadius: "20px" }}
+                          >
+                            {/* English language option */}
+                            <MenuItem value={englishOption.code}>
+                              {selectedLanguage === englishOption.code
+                                ? selectedLanguageLabel
+                                : `${englishOption.flag} ${englishOption.name}`}
+                            </MenuItem>
+                            {/* Detected language option, if it's different from English */}
+                            {detectedLanguageOption &&
+                              detectedLanguageOption.code !==
+                                englishOption.code && (
+                                <MenuItem value={detectedLanguageOption.code}>
+                                  {selectedLanguage ===
+                                  detectedLanguageOption.code
+                                    ? selectedLanguageLabel
+                                    : `${detectedLanguageOption.flag} ${detectedLanguageOption.name}`}
+                                </MenuItem>
+                              )}
+                          </Select>
+                        </FormControl>
+                      </div>
+                    </Box>
+                    <Box
+                      // width="30%"
+                      style={{ position: "relative" }}
+                      // style={{position:}}
+                    >
+                      {!successUrl && checkUrlStatus && (
+                        <Button
+                          variant="contained"
+                          disabled={!input ? true : false}
+                          onClick={handleConfirm}
+                          style={{
+                            // background:
+                            //   "linear-gradient(180deg, rgb(105.08, 50, 131) 0%, rgb(50.16, 50.16, 130.74) 100%)",
+                            background: input
+                              ? "linear-gradient(180deg, rgb(105.08, 50, 131) 0%, rgb(50.16, 50.16, 130.74) 100%)"
+                              : "gray",
+                            // padding: "8px 15px",
+                            padding: "8px 10px",
+                            borderRadius: "8px",
+                            position: "absolute",
+                            // width: {
+                            //   xs: "50px",
+                            //   md: "150px",
+                            // },
+                            width: "180px",
+                            top: window.matchMedia("(max-width: 768px)").matches
+                              ? "60px"
+                              : "80px",
+
+                            // left: {
+                            //   xs: "0px",
+                            //   md: "-155px",
+                            // },
+                            // left: "-155px",
+                            // left: "-500px",
+                            // left: (() => {
+                            //   // Use window.innerWidth directly within IIFE to determine the left value
+                            //   return window.innerWidth < 768 ? "0px" : "-600px";
+                            // })(),
+                            left: window.matchMedia("(max-width: 768px)")
+                              .matches
+                              ? "0px"
+                              : "-630px",
+
+                            height: "38px",
+                            color: "white",
+                          }}
+                        >
+                          Get Started
+                        </Button>
+                      )}
+                      {!successUrl && !checkUrlStatus && (
+                        <CircularProgress
+                          style={{
+                            color: "purple",
+                            position: "absolute",
+                            top: window.matchMedia("(max-width: 768px)").matches
+                              ? "-10px"
+                              : "10px",
+                            // left: "2px",
+                            left: window.matchMedia("(max-width: 768px)")
+                              .matches
+                              ? "180px"
+                              : "-10px",
+                          }}
+                        />
+                      )}
+                      {input && isValidUrl && (
+                        <Box>
+                          <CheckCircleIcon
+                            style={{
+                              color: "green",
+                              position: "absolute",
+                              top: "40px",
+                              left: "10px",
+                            }}
+                          />
+                        </Box>
+                      )}
+                    </Box>
+                  </Box>
+                  {confirmClick && !isValidUrl && (
+                    <Text
+                      variant="h6"
+                      style={{
+                        color: "red",
+                        marginTop: "2px",
+                        fontSize: "12px",
+                      }}
+                    >
+                      Entered URL is not valid.
+                    </Text>
                   )}
-                </Box>
-              </Box>
-              {confirmClick && !isValidUrl && (
-                <Text
-                  variant="h6"
-                  style={{
-                    color: "red",
-                    marginTop: "2px",
-                    fontSize: "12px",
-                  }}
-                >
-                  Entered URL is not valid.
-                </Text>
+                </div>
               )}
             </div>
 
@@ -944,7 +1073,7 @@ const LandingPagev3 = ({ prop }) => {
               style={{ width: "100%", marginLeft: "3em", maxWidth: "500px" }}
               src="/assets/AI ConverterNew.mp4"
             /> */}
-            <video
+            {/* <video
               className="md:hidden"
               style={{ width: "100%", marginLeft: "3em", maxWidth: "500px" }}
               src="/assets/AI ConverterNew.mp4"
@@ -952,7 +1081,27 @@ const LandingPagev3 = ({ prop }) => {
               muted
               loop
               controls
-            />
+            /> */}
+            <div style={{ position: "relative" }}>
+              <h1 style={{ position: "absolute", zIndex: -1, top: 0, left: 0 }}>
+                Your Heading Text
+              </h1>
+              <video
+                className="md:hidden"
+                style={{
+                  width: "100%",
+                  marginLeft: "3em",
+                  maxWidth: "500px",
+                  position: "relative",
+                  zIndex: 2,
+                }}
+                src="/assets/AI ConverterNew.mp4"
+                autoPlay
+                muted
+                loop
+                controls
+              />
+            </div>
 
             <div className=""></div>
           </div>
@@ -1731,6 +1880,42 @@ const LandingPagev3 = ({ prop }) => {
                   />
                 </div> */}
               </div>
+              <div style={{ paddingTop: "20px", display: "flex", gap: "1" }}>
+                <a href="">
+                  <Text
+                    className="mt-[27px] text-[15px] text-white-A700_87 tracking-[-0.20px]"
+                    size="txtDMSansRegular15WhiteA70087"
+                    as="a" // Assuming Text component accepts an 'as' prop to render as an 'a' tag
+                    onClick={() => {
+                      navigate("/seo-automation-software");
+                    }}
+                    style={{ marginRight: "10px" }}
+                  >
+                    SEO Automation Software
+                  </Text>
+                </a>
+                <a href="">
+                  <Text
+                    className="mt-[27px] text-[15px] text-white-A700_87 tracking-[-0.20px]"
+                    size="txtDMSansRegular15WhiteA70087"
+                    as="a" // Assuming Text component accepts an 'as' prop to render as an 'a' tag
+                    onClick={() => {
+                      navigate("/free-chat-gpt-plugins");
+                    }}
+                  >
+                    Free Chat GPT Plugins
+                  </Text>
+                </a>
+              </div>
+              <Text
+                className="mt-[27px] text-[15px] text-white-A700_87 tracking-[-0.20px]"
+                size="txtDMSansRegular15WhiteA70087"
+                as="a" // Assuming Text component accepts an 'as' prop to render as an 'a' tag
+                href={`${window.location.origin}/privacy-policy.html`}
+              >
+                Privacy Policy
+              </Text>
+
               {/* <Text
                 className="mt-[27px] text-[15px] text-white-A700_87 tracking-[-0.20px]"
                 size="txtDMSansRegular15WhiteA70087"

@@ -41,6 +41,9 @@ import DataState from "./ContextAPI/DataContext";
 // import Success from "./Pages/Auth/Success";
 // ContentAPI End
 
+// Blogs
+import Seo_Automation_Software from "pages/Blogs/Seo_Automation_Software";
+import Free_chat_gpt_plugins from "pages/Blogs/Free_chat_gpt_plugins";
 // Onboarding Pages
 import SignupPage from "pages/SignupPage";
 import DNSSetup from "pages/DNSSetup";
@@ -144,6 +147,22 @@ class App extends Component {
                   element={
                     <WrapperComponent>
                       <LandingPagev2Shopify />
+                    </WrapperComponent>
+                  }
+                />
+                <Route
+                  path="/seo-automation-software"
+                  element={
+                    <WrapperComponent>
+                      <Seo_Automation_Software />
+                    </WrapperComponent>
+                  }
+                />
+                <Route
+                  path="/free-chat-gpt-plugins"
+                  element={
+                    <WrapperComponent>
+                      <Free_chat_gpt_plugins />
                     </WrapperComponent>
                   }
                 />
